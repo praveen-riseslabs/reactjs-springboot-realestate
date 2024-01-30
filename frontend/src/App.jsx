@@ -1,6 +1,6 @@
 import React from 'react'
 import './App.css';
-import Login from './Components/Login/Login'
+import Login from './Components/login/Login'
 import Registration from './Components/registration/Registration';
 import {BrowserRouter, Routes, Route} from 'react-router-dom'
 
