@@ -64,6 +64,13 @@ Follow the steps below to set up and run the project locally.
 - Method: GET
 - Headers: Authorization: Bearer {token}
 
+### Forgot Password
+- Endpoint: http://localhost:8086/api/public/forgotpassword
+- Method: POST
+- Request Body:{
+                  "email": ""
+              }
+
 ### Reset Password
 
 - Endpoint: http://localhost:8086/api/public/reset_password
