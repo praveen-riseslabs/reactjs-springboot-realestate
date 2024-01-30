@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import './Registration.scss';
+import { useNavigate } from 'react-router-dom';
 
 const Registration = () => {
 
@@ -7,9 +8,11 @@ const Registration = () => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [confirmPassword, setConfirmPassword] = useState('');
+    let navigate = useNavigate()
   
     const handleRegistration = () => {
       // Implement your registration logic here
+      navigate('/login')
       console.log('Registration clicked with:', { name, email, password, confirmPassword });
     };
 
@@ -50,9 +53,13 @@ const Registration = () => {
             onChange={(e) => setConfirmPassword(e.target.value)}
           />
 
-          <button type="button" onClick={handleRegistration}>
+          <button className='btn btn-primary' type="button" onClick={handleRegistration}>
             Register
           </button>
+
+          <div class="text-center">
+              <span>Already have a account?</span>  <a class="register" onClick={() => navigate('/login')}>  Login </a>
+          </div>
         </form>
       </div>
     </div>

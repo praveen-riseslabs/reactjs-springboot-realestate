@@ -34,7 +34,7 @@ function Login() {
         </div>
 
         <div className="text-center">
-          <span>Not a member?</span> <a className="register" href="#">Register</a>
+          <span>Not a member?</span> <a className="register" href="/signup">Register</a>
         </div>
       </form>
     </div>
