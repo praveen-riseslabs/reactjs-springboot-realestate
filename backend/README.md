@@ -28,7 +28,11 @@ Follow the steps below to set up and run the project locally.
 # Running the Application
 
 - Run the Spring Boot application:
-- java -jar target/Smple-0.0.1-SNAPSHOT.jar
+- download the jar executable jar file
+- https://drive.google.com/file/d/1Rp2oGijig-oFCH-MY-3o80jRS47c274n/view?usp=sharing
+- then run this command in terminal
+- java -jar FPCP-0.0.1-SNAPSHOT.jar
+- make sure that termial is opend in the folder of that jar file
 
 # Usage
 
