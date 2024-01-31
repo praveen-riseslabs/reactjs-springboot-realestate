@@ -3,6 +3,8 @@ package com.riseslabs.findprecon.model;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.UUID;
+
+import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -29,12 +31,15 @@ public class RegistrationModel {
 	@GeneratedValue(strategy=GenerationType.AUTO, generator="UUID")
 	@Column(nullable=false,updatable=false)
 	private UUID id;
+
 	@NotBlank(message = "Name is required")
 	@Size(max=25, min=3, message = "Atleast name should be 8-25 characters")
 	private String name;
+
 	@NotBlank(message = "Email is required")
 	@Email(message = "Invalid email address")
 	private String email;
+
 	@NotBlank(message = "Password is required")
 	@Size(min = 8, message = "Password should be at least 8 characters")
 	private String password;

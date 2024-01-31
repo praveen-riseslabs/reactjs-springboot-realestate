@@ -4,6 +4,7 @@ import com.riseslabs.findprecon.dto.LoginDTO;
 import com.riseslabs.findprecon.dto.Response.LoginResponse;
 import com.riseslabs.findprecon.service.impl.UserDetailsServiceImpl;
 import com.riseslabs.findprecon.util.JwtUtil;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.servlet.http.HttpServletResponse;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,6 +24,7 @@ import java.io.IOException;
 @RestController
 @RequestMapping("/api/public")
 @RequiredArgsConstructor
+@Tag(name="Login Controller", description = "APIs for Authentication !!")
 public class LoginController {
 
     @Autowired
