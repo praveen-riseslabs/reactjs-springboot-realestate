@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import './Registration.scss';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 const Registration = () => {
 
@@ -58,7 +58,7 @@ const Registration = () => {
           </button>
 
           <div class="text-center">
-              <span>Already have a account?</span>  <a class="register" onClick={() => navigate('/login')}>  Login </a>
+              <span>Already have a account?</span> <Link to='/login'>Login</Link>
           </div>
         </form>
       </div>
