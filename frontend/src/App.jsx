@@ -1,7 +1,7 @@
 import React from 'react'
 import './App.css';
 import Login from './Components/Login/Login'
-import Registration from './Components/Registration/Registration';
+import Registration from './Components/registration/Registration';
 import {BrowserRouter, Routes, Route} from 'react-router-dom'
 
 const App = () => {
