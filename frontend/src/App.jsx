@@ -1,13 +1,14 @@
 import React from 'react'
 import './App.css';
 import Login from './Components/Login/Login'
-import Registration from './Components/registration/Registration';
+import Registration from './Components/Registration/Registration';
 import {BrowserRouter, Routes, Route} from 'react-router-dom'
 
 const App = () => {
   return (
     <BrowserRouter>
     <Routes>
+      <Route path='/' element={<Login/>}/>
       <Route path='/signup' element={<Registration/>}/>
       <Route path='/login' element={<Login/>}/>
     </Routes>
