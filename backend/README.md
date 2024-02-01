@@ -25,14 +25,13 @@ Follow the steps below to set up and run the project locally.
 - MYSQL installed and running
 - SMTP server configured for sending emails
 
-# Running the Application
+# Creating the Jar file and running the application
 
-- Run the Spring Boot application:
-- download the jar executable jar file
-- https://drive.google.com/file/d/1Rp2oGijig-oFCH-MY-3o80jRS47c274n/view?usp=sharing
-- then run this command in terminal
-- java -jar FPCP-0.0.1-SNAPSHOT.jar
-- make sure that termial is opend in the folder of that jar file
+- make sure you are in the parent folder
+- use this command in terminal ` mvn clean install`
+- once the BUILD SUCCESS
+- then run java -jar  target/FPCP-0.0.1-SNAPSHOT.jar
+- Once the application is started you can use it
 
 # Usage
 
