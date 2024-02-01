@@ -37,6 +37,12 @@ Follow the steps below to set up and run the project locally.
 
 ## APIS
 
+### Swagger
+
+- Endpoint: `http://localhost:8086/swagger-ui/index.html`
+- try this browser to get the all the end points from Swagger
+
+
 ### Welcome
 
 - Endpoint: http://localhost:8086/api/public/welcome
