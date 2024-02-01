@@ -30,7 +30,7 @@ Follow the steps below to set up and run the project locally.
 - make sure you are in the parent folder
 - use this command in terminal ` mvn clean install`
 - once the BUILD SUCCESS
-- then run java -jar  target/FPCP-0.0.1-SNAPSHOT.jar
+- then run `java -jar  target/FPCP-0.0.1-SNAPSHOT.jar`
 - Once the application is started you can use it
 
 # Usage
