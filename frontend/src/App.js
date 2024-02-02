@@ -13,9 +13,11 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 
 import "./css/style.css";
-import Home from './jsx/components/Dashboard/Home';
-import Menu from './jsx/components/Cms/Menu';
+
 import Dashboard from './jsx/pages/Dashboard';
+import ForgetPassword from './jsx/pages/Forgetpassword';
+import ResetPassword from './jsx/pages/Resetpassword';
+
 
 const SignUp = lazy(() => import('./jsx/pages/Registration'));
 const Login = lazy(() => {
@@ -56,6 +58,8 @@ function App (props) {
         <Route  path='/login' element={<Login />} />
         <Route path='/register' element={<SignUp />} />        
         <Route path='/dashboard' element={<Dashboard />} />        
+        <Route path='/forgetpassword' element={<ForgetPassword />} />        
+        <Route path='/reset_password' element={<ResetPassword />} />        
       </Routes> 
     );
     if (props.isAuthenticated) {

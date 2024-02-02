@@ -15,7 +15,9 @@ function Login() {
         try {
             let res = await axios.post('http://ec2-54-90-254-70.compute-1.amazonaws.com:8086/api/public/authenticate', obj)
             console.log(res)
-            if (res.status === 200) {
+            if (res.data.jwtToken ) {
+              let token = res.data.jwtToken;
+              localStorage.setItem('token', token)
                 navigate('/dashboard')
             }
             else {
@@ -31,25 +33,25 @@ function Login() {
     return (
         <div className='login'>
             <h4 className='text-center fw-bold my-3'>Login</h4>
-            <form class="row g-3 " onSubmit={handleSubmit(onSubmit)}>
-                <div class="col-md-12 ">
-                    <label for="userName" class="form-label" >User Name</label>
-                    <input type="text" class="form-control" placeholder='Enter your name' {...register('name', { required: true })} id="userName" />
+            <form className="row g-3 " onSubmit={handleSubmit(onSubmit)}>
+                <div className="col-md-12 ">
+                    <label htmlFor="userName" className="form-label" >Email</label>
+                    <input type="text" className="form-control" placeholder='Enter your name' {...register('email', { required: true })} id="userName" />
                     {errors.userName && (errors.userName.type === 'required' && (<span className='text-danger'>username cannot be blank</span>))}
                 </div>
 
                 <div className="col-md-12">
-                    <label for="pass" class="form-label"> Password </label>
-                    <input type="password" class="form-control" placeholder="Enter your password" {...register('password', { required: true })} id="pass" />
+                    <label htmlFor="pass" className="form-label"> Password </label>
+                    <input type="password" className="form-control" placeholder="Enter your password" {...register('password', { required: true })} id="pass" />
                     {errors.password && (errors.password.type === 'required' && (<span className='text-danger'>Required field</span>))}
                 </div>
-                <div class="forget-password text-end"><a onClick={() => navigate('/forgetpass')}>Forget password? </a> </div>
-                <div class="col-12">
-                    <button id='btn' type="submit" class="btn btn-primary w-100">Login</button>
+                <div className="forget-password text-end"><a onClick={() => navigate('/forgetpassword')}>Forget password? </a> </div>
+                <div className="col-12">
+                    <button id='btn' type="submit" className="btn btn-primary w-100">Login</button>
                 </div>
 
-                <div class="text-center">
-                    <span>Not a member?</span>  <a class="register" onClick={() => navigate('/register')}>  Register </a>
+                <div className="text-center">
+                    <span>Not a member?</span>  <a className="register" onClick={() => navigate('/register')}>  Register </a>
                 </div>
 
             </form>
