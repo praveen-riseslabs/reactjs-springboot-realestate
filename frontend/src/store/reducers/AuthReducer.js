@@ -9,7 +9,7 @@ import {
 
 const initialState = {
     auth: {
-        email: '',
+        username: '',
         idToken: '',
         localId: '',
         expiresIn: '',

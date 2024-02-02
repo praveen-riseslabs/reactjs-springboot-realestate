@@ -48,9 +48,9 @@ export function Logout(navigate) {
     };
 }
 
-export function loginAction(email, password, navigate) {
+export function loginAction(username, password, navigate) {
     return (dispatch) => {
-         login(email, password)
+         login(username, password)
             .then((response) => { 
                 saveTokenInLocalStorage(response.data);
                 runLogoutTimer(
