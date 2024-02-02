@@ -55,7 +55,13 @@ Follow the steps below to set up and run the project locally.
   "email": "",
   "password": ""
   }`
-- Response : `Hey {name} Resistration successful with email {email}` 
+- Response : `Hey {name} Resistration successful with email {email}`
+- rules to get user registered `
+  1-same email must not be in db
+  2-name must be max=25, min=3
+  3-email must be vaild
+  4-password must be min = 8
+`
 
 ### Login
 
