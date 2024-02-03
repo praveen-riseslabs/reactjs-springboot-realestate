@@ -4,7 +4,7 @@ import axios from 'axios';
 import { Link, useNavigate } from 'react-router-dom';
 import '../../scss/pages/Registration.scss';
 
-function RegistrationForm() {
+function Registration() {
   const { register, handleSubmit, reset, formState: { errors } } = useForm();
   const navigate = useNavigate();
   
@@ -68,4 +68,4 @@ function RegistrationForm() {
   );
 }
 
-export default RegistrationForm;
+export default Registration;
