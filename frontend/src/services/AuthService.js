@@ -82,15 +82,7 @@ export function runLogoutTimer(dispatch, timer, navigate) {
     }, timer);
 }
 
-// extra part start //
 
-// export function checkAutoLogin(dispatch, navigate) {
-//     const tokenDetailsString = localStorage.getItem('userDetails');
-//     let tokenDetails = '';
-//     if (!tokenDetailsString) {
-//         dispatch(Logout(navigate));
-// 		return;
-//     }
 
 export function checkAutoLogin(dispatch, navigate, location) {
     if (
@@ -108,7 +100,7 @@ export function checkAutoLogin(dispatch, navigate, location) {
       dispatch(Logout(navigate));
       return;
     }
-// extra part end //
+
     tokenDetails = JSON.parse(tokenDetailsString);
     let expireDate = new Date(tokenDetails.expireDate);
     let todaysDate = new Date();
