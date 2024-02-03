@@ -1,9 +1,54 @@
+// import { lazy, Suspense, useEffect, } from 'react';
+
+// /// Components
+// import Index from "./jsx";
+// import { connect, useDispatch } from 'react-redux';
+// import {  Route, Routes,BrowserRouter, useLocation , useNavigate , useParams } from 'react-router-dom';
+// // action
+// import { checkAutoLogin } from './services/AuthService';
+// import { isAuthenticated } from './store/selectors/AuthSelectors';
+
+
+// import "slick-carousel/slick/slick.css"; 
+// import "slick-carousel/slick/slick-theme.css";
+
+// import "./css/style.css";
+
+// import Dashboard from './jsx/pages/Dashboard';
+// import ForgetPassword from './jsx/pages/Forgetpassword';
+// import ResetPassword from './jsx/pages/Resetpassword';
+// import Registration from './jsx/pages/Registration';
+// import Login from './jsx/pages/Login'
+
+
+
+// const App = () =>{
+// 		  return (
+			
+//         <Routes>   
+//           <Route  path='/login' element={<Login />} />
+//           <Route  path='/' element={<Login />} />
+//           <Route path='/register' element={<Registration />} />        
+//           <Route path='/dashboard' element={<Dashboard />} />        
+//           <Route path='/forgetpassword' element={<ForgetPassword />} />        
+//           <Route path='/reset_password' element={<ResetPassword />} />        
+//         </Routes> 
+//       );    
+	
+// };
+
+// export default App;
+
+
+
+// *****************************************************************************************//
+
 import { lazy, Suspense, useEffect, } from 'react';
 
 /// Components
 import Index from "./jsx";
 import { connect, useDispatch } from 'react-redux';
-import {  Route, Routes,BrowserRouter, useLocation , useNavigate , useParams } from 'react-router-dom';
+import {  Route, Routes, useLocation , useNavigate , useParams } from 'react-router-dom';
 // action
 import { checkAutoLogin } from './services/AuthService';
 import { isAuthenticated } from './store/selectors/AuthSelectors';
@@ -13,29 +58,101 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 
 import "./css/style.css";
-
+import Home from './jsx/components/Dashboard/Home';
+import Menu from './jsx/components/Cms/Menu';
 import Dashboard from './jsx/pages/Dashboard';
 import ForgetPassword from './jsx/pages/Forgetpassword';
 import ResetPassword from './jsx/pages/Resetpassword';
-import Registration from './jsx/pages/Registration';
-import Login from './jsx/pages/Login'
 
+const SignUp = lazy(() => import('./jsx/pages/Registration'));
+const Login = lazy(() => {
+    return new Promise(resolve => {
+    setTimeout(() => resolve(import('./jsx/pages/Login')), 500);
+  });
+});
 
-
-const App = () =>{
-		  return (
-			
-        <Routes>   
-          <Route  path='/login' element={<Login />} />
-          <Route  path='/' element={<Login />} />
-          <Route path='/register' element={<Registration />} />        
-          <Route path='/dashboard' element={<Dashboard />} />        
-          <Route path='/forgetpassword' element={<ForgetPassword />} />        
-          <Route path='/reset_password' element={<ResetPassword />} />        
-        </Routes> 
-      );    
+function withRouter(Component) {
+  function ComponentWithRouterProp(props) {
+    let location = useLocation();
+    let navigate = useNavigate();
+    let params = useParams();
 	
+    return (
+      <Component
+        {...props}
+        router={{ location, navigate, params }}
+      />
+    );
+  }
+
+  return ComponentWithRouterProp;
+}
+
+
+
+function App (props) {
+    const dispatch = useDispatch();
+    const navigate = useNavigate();    
+  const location = useLocation().pathname;
+
+      useEffect(() => {
+        checkAutoLogin(dispatch, navigate, location);    
+      }, []);
+
+    
+    let routeblog = (         
+      <Routes>   
+        <Route  path='/login' element={<Login />} />
+        <Route path='/register' element={<SignUp />} />        
+        <Route path='/dashboard' element={<Dashboard />} />        
+        <Route path='/forgetpassword' element={<ForgetPassword />} />   
+        <Route path='/reset_password' element={<ResetPassword />} />      
+      </Routes> 
+    );
+    if (props.isAuthenticated) {
+		  return (
+			  <>
+            <Suspense fallback={              
+                <div id="preloader">                
+                    <div className="sk-three-bounce">
+                        <div className="sk-child sk-bounce1"></div>
+                        <div className="sk-child sk-bounce2"></div>
+                        <div className="sk-child sk-bounce3"></div>
+                    </div>
+                </div>  
+              }
+            >
+              <Index /> 
+            </Suspense>
+        </>
+      );    
+	}else{
+		return (
+			  <div className="vh-100">
+            <Suspense fallback={
+                <div id="preloader">
+                    <div className="sk-three-bounce">
+                        <div className="sk-child sk-bounce1"></div>
+                        <div className="sk-child sk-bounce2"></div>
+                        <div className="sk-child sk-bounce3"></div>
+                    </div>
+                </div>
+              }
+            >
+                {routeblog}
+                
+            </Suspense>
+			  </div>
+		);
+	}
 };
 
-export default App;
+
+const mapStateToProps = (state) => {
+    return {
+        isAuthenticated: isAuthenticated(state),
+    };
+};
+
+export default withRouter(connect(mapStateToProps)(App)); 
 

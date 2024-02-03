@@ -82,14 +82,33 @@ export function runLogoutTimer(dispatch, timer, navigate) {
     }, timer);
 }
 
-export function checkAutoLogin(dispatch, navigate) {
-    const tokenDetailsString = localStorage.getItem('userDetails');
-    let tokenDetails = '';
-    if (!tokenDetailsString) {
-        dispatch(Logout(navigate));
-		return;
-    }
+// extra part start //
 
+// export function checkAutoLogin(dispatch, navigate) {
+//     const tokenDetailsString = localStorage.getItem('userDetails');
+//     let tokenDetails = '';
+//     if (!tokenDetailsString) {
+//         dispatch(Logout(navigate));
+// 		return;
+//     }
+
+export function checkAutoLogin(dispatch, navigate, location) {
+    if (
+      location === "/login" ||
+      location === "/reset_password" ||
+      location === "/register" ||
+      location === "/forgetpassword"
+    ) {
+      return;
+    }
+  
+    const tokenDetailsString = localStorage.getItem("userDetails");
+    let tokenDetails = "";
+    if (!tokenDetailsString) {
+      dispatch(Logout(navigate));
+      return;
+    }
+// extra part end //
     tokenDetails = JSON.parse(tokenDetailsString);
     let expireDate = new Date(tokenDetails.expireDate);
     let todaysDate = new Date();
