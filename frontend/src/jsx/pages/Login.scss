@@ -23,13 +23,23 @@ body{
   }
   
   .forgetpassword{
-    width: 70%;
+    width: 26%;
     margin: auto;
     background-color: white;
     box-shadow: 4px 4px 4px 3px rgba(0, 0, 0, 0.2);
     border-radius: 15px;
     margin-top: 8%;
-    padding: 35px;
+    padding: 20px;
+  }
+
+  .reset_password{
+    width: 26%;
+    margin: auto;
+    background-color: white;
+    box-shadow: 4px 4px 4px 3px rgba(0, 0, 0, 0.2);
+    border-radius: 15px;
+    margin-top: 8%;
+    padding: 10px;
   }
 
 
@@ -39,6 +49,12 @@ body{
     .login {
       width: 60%;
     }
+    .forgetpassword {
+      width: 60%;
+    }
+    .reset_password {
+      width: 60%;
+    }
   }
   
   /* For Mobile Portrait View */
@@ -46,10 +62,22 @@ body{
     .login {
       width: 95%;
     }
+    .forgetpassword {
+      width: 95%;
+    }
+    .reset_password {
+      width: 95%;
+    }
   }
   
   @media screen and (min-device-width: 320px) and (orientation: portrait) {
     .login {
+      width: 95%;
+    }
+    .forgetpassword {
+      width: 95%;
+    }
+    .reset_password {
       width: 95%;
     }
   }
