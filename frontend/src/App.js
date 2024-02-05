@@ -1,6 +1,6 @@
 
 import React, { useEffect, Suspense } from 'react';
-import { Routes, Route, Navigate, useLocation, useNavigate } from 'react-router-dom';
+import {Routes, Route, Navigate, useLocation, useNavigate } from 'react-router-dom';
 import { connect, useDispatch } from 'react-redux';
 import { checkAutoLogin } from './services/AuthService';
 import { isAuthenticated } from './store/selectors/AuthSelectors';
@@ -10,8 +10,8 @@ import "slick-carousel/slick/slick-theme.css";
 import "./css/style.css";
 import ForgetPassword from './jsx/pages/Forgetpassword';
 import ResetPassword from './jsx/pages/Resetpassword';
-import AppProfile from './jsx/components/AppsMenu/AppProfile/AppProfile';
-import Inbox from './jsx/components/AppsMenu/Email/Inbox/Inbox';
+// import AppProfile from './jsx/components/AppsMenu/AppProfile/AppProfile';
+// import Inbox from './jsx/components/AppsMenu/Email/Inbox/Inbox';
 
 const SignUp = React.lazy(() => import('./jsx/pages/Registration'));
 const Login = React.lazy(() => import('./jsx/pages/Login'));
@@ -32,8 +32,6 @@ function App(props) {
         <Route path='/dashboard/*' element={<Index />} />
         <Route path='/forgetpassword' element={<ForgetPassword />} />
         <Route path='/reset_password' element={<ResetPassword />} />
-        <Route path='/app-profile' element={<AppProfile />} />
-        <Route path='/email-inbox' element={<Inbox />} />
       </Routes> 
     );
 
@@ -66,6 +64,8 @@ function App(props) {
             </div>
           }>
             {routeblog}
+            <Index /> 
+
           </Suspense>
         </div>
       );
