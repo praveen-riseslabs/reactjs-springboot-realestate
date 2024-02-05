@@ -14,6 +14,7 @@ function Registration() {
       const res = await axios.post('http://ec2-54-90-254-70.compute-1.amazonaws.com:8086/api/public/register', obj);
       console.log(obj)
       console.log(res)
+      
       if (res.data) {
         console.log('User Details are created')
         reset();
@@ -39,8 +40,11 @@ function Registration() {
 
         <div>
           <label htmlFor="email" className="form-label">Enter your email</label>
-          <input type="email" className="form-control" id="email" {...register("email", { required: true, minLength: 3 })} />
-          {errors.email && (errors.email.type === 'required' && (<span className='text-danger'>Email is required</span>))}
+          <input type="email" className={`form-control ${errors.email ? 'is-invalid' : ''}`} id="email" {...register("email",
+           { required: 'Email is required',
+           pattern: { value: /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/, message: 'Invalid email address', },
+           })} />
+          {errors.email && ( <div className='invalid-feedback'>{errors.email.message}</div> )}
         </div>
 
         <div>
