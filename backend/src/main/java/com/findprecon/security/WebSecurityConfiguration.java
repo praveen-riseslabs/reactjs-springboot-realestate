@@ -16,19 +16,14 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
+import org.springframework.web.servlet.config.annotation.EnableWebMvc;
+
 
 
 @Configuration
 @EnableWebSecurity
 @EnableMethodSecurity
 public class WebSecurityConfiguration {
-
-
-    @Autowired
-    private JWTAuthenticationEntryPoint point;
-
-    @Autowired
-    private JwtRequestFilter requestFilter;
 
     public static final String[] PUBLIC_URLS = {
             "/api/public/**",
@@ -39,6 +34,14 @@ public class WebSecurityConfiguration {
             "/webjars/**"
     };
 
+
+    @Autowired
+    private JWTAuthenticationEntryPoint point;
+
+    @Autowired
+    private JwtRequestFilter requestFilter;
+
+
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http.csrf(csrf->csrf.disable())
@@ -46,7 +49,7 @@ public class WebSecurityConfiguration {
                 .authorizeHttpRequests(
                         auth->
                                 auth.requestMatchers("/api/private/home").authenticated()
-                                        .requestMatchers( PUBLIC_URLS).permitAll()
+                                        .requestMatchers(PUBLIC_URLS).permitAll()
                                         .anyRequest().permitAll())
                 .exceptionHandling(ex->ex.authenticationEntryPoint(point))
                 .sessionManagement(session->session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))

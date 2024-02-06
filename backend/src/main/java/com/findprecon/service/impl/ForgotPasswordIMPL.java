@@ -1,9 +1,11 @@
 package com.findprecon.service.impl;
 
+import com.findprecon.exception.ResourceNotFoundException;
 import com.findprecon.model.RegistrationModel;
 import com.findprecon.repository.UserRepository;
+
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.userdetails.UsernameNotFoundException;
+
 import org.springframework.stereotype.Service;
 
 @Service
@@ -17,7 +19,7 @@ public class ForgotPasswordIMPL  {
             user.setResetPasswordToken(token);
             userRepository.save(user);
         } else {
-            throw new UsernameNotFoundException("Could not find any email with " + email);
+            throw new ResourceNotFoundException("User" ,"email : "+ email);
         }
     }
 }

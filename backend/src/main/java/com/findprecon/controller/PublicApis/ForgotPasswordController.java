@@ -1,5 +1,6 @@
 package com.findprecon.controller.PublicApis;
 
+import com.findprecon.exception.ResourceNotFoundException;
 import com.findprecon.dto.Request.ForgotPasswordRequest;
 import com.findprecon.service.impl.ForgotPasswordIMPL;
 import jakarta.mail.MessagingException;
@@ -59,6 +60,7 @@ public class ForgotPasswordController {
         } catch (UsernameNotFoundException e) {
             response.put("error", e.getMessage());
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body(response);
+
         } catch (UnsupportedEncodingException | MessagingException e) {
             response.put("error", "Error while sending email");
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(response);

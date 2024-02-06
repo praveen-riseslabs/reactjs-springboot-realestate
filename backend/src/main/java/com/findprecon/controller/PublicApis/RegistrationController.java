@@ -37,7 +37,7 @@ public class RegistrationController {
 		if (createdUser == null){
 			return new ResponseEntity<>("User not created, come again later!", HttpStatus.BAD_REQUEST);
 		}
-		return new ResponseEntity<>("Hey "+ createdUser.getName() + " Resistration successful with email " + createdUser.getEmail(), HttpStatus.CREATED);
+		return new ResponseEntity<>("Hey "+ createdUser.getName() + " Registration successful with email " + createdUser.getEmail(), HttpStatus.CREATED);
 
 	}
 	

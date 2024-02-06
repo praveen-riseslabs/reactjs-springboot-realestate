@@ -34,7 +34,7 @@ public class HomeController {
         String username = jwtUtil.extractUsername(token);
 
         UserDetails userDetails = userDetailsService.loadUserByUsername(username);
-        RegistrationModel user = userRepository.findFirstByEmail(username);
+        RegistrationModel user = userRepository.findFirstByEmail(username).orElseThrow();
 
         Map<String, String> userDetailsMap = new HashMap<>();
 

@@ -1,5 +1,6 @@
 package com.findprecon.repository;
 
+import java.util.Optional;
 import java.util.UUID;
 
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -11,7 +12,7 @@ public interface UserRepository extends JpaRepository<RegistrationModel, UUID>{
 
     boolean existsByEmail(String email);
 
-    RegistrationModel findFirstByEmail(String email);
+    Optional<RegistrationModel> findFirstByEmail(String email);
 
     RegistrationModel findByEmail(String email);
 
