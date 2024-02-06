@@ -1,6 +1,6 @@
 
 import React, { useEffect, Suspense } from 'react';
-import {Routes, Route, Navigate, useLocation, useNavigate } from 'react-router-dom';
+import {Routes, Route, useLocation, useNavigate } from 'react-router-dom';
 import { connect, useDispatch } from 'react-redux';
 import { checkAutoLogin } from './services/AuthService';
 import { isAuthenticated } from './store/selectors/AuthSelectors';
@@ -27,7 +27,7 @@ function App(props) {
       <Routes>   
         <Route path='/login' element={<Login />} />
         <Route path='/register' element={<Registration />} />
-        <Route path='/dashboard/*' element={<Index />} />
+        {/* <Route path='/dashboard/*' element={<Index />} /> */}
         <Route path='/forgetpassword' element={<ForgetPassword />} />
         <Route path='/reset_password' element={<ResetPassword />} />
       </Routes> 
@@ -64,7 +64,7 @@ function App(props) {
           }>
             {routeblog}
             
-
+            <Index /> 
           </Suspense>
         </div>
       );

@@ -35,6 +35,7 @@ import SvgIcons from "./components/Icon/SvgIcons";
 
 /// App
 import AppProfile from './components/AppsMenu/AppProfile/AppProfile'
+import Users from './components/AppsMenu/AppProfile/Users'
 import PostDetails from './components/AppsMenu/AppProfile/PostDetails'
 import Compose from './components/AppsMenu/Email/Compose/Compose'
 import Inbox from './components/AppsMenu/Email/Inbox/Inbox'
@@ -153,6 +154,7 @@ const Markup = () => {
 
     /// Apps
     { url: "app-profile", component: <AppProfile /> },        
+    { url: "app-users", component: <Users /> },        
     { url: "post-details", component: <PostDetails /> }, 
     { url: "email-compose", component: <Compose /> },
     { url: "email-inbox", component: <Inbox /> },
