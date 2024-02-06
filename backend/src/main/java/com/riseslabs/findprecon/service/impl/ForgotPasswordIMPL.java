@@ -1,5 +1,6 @@
 package com.riseslabs.findprecon.service.impl;
 
+import com.riseslabs.findprecon.exception.ResourceNotFoundException;
 import com.riseslabs.findprecon.model.RegistrationModel;
 import com.riseslabs.findprecon.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,7 +18,7 @@ public class ForgotPasswordIMPL  {
             user.setResetPasswordToken(token);
             userRepository.save(user);
         } else {
-            throw new UsernameNotFoundException("Could not find any email with " + email);
+            throw new ResourceNotFoundException("User" ,"email : "+ email);
         }
     }
 }

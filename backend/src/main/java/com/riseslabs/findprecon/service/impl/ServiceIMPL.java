@@ -1,6 +1,7 @@
 package com.riseslabs.findprecon.service.impl;
 
 import com.riseslabs.findprecon.dto.RegisterDTO;
+import com.riseslabs.findprecon.exception.EmailExistException;
 import com.riseslabs.findprecon.model.RegistrationModel;
 import com.riseslabs.findprecon.model.Role;
 import com.riseslabs.findprecon.repository.UserRepository;
@@ -15,9 +16,6 @@ public class ServiceIMPL implements Service {
 
     public RegistrationModel registerUser(RegisterDTO registerDTO) {
         // Validate input if necessary
-        if (emailExists(registerDTO.getEmail())) {
-            throw new EmailExistsException("Email address is already in use");
-        }
 
         RegistrationModel registrationModel = RegistrationModel.builder()
                 .name(registerDTO.getName())
@@ -25,17 +23,17 @@ public class ServiceIMPL implements Service {
                 .password(new BCryptPasswordEncoder().encode(registerDTO.getPassword()))
                 .role(Role.Admin) // Set a default role or determine it based on your requirements
                 .build();
-
-        // Save the entity in the database
-        return userRepository.save(registrationModel);
+        if (!userRepository.existsByEmail(registrationModel.getEmail())) {
+            // Save the entity in the database
+            return userRepository.save(registrationModel);
+        }
+        else {
+                throw new EmailExistException("Email id is already in use");
+        }
     }
     private boolean emailExists(String email) {
         return userRepository.existsByEmail(email);
     }
-    public class EmailExistsException extends RuntimeException {
-        public EmailExistsException(String message) {
-            super(message);
-        }
-    }
+
 }
 

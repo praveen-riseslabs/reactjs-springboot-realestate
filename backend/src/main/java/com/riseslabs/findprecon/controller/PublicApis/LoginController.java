@@ -2,10 +2,12 @@ package com.riseslabs.findprecon.controller.PublicApis;
 
 import com.riseslabs.findprecon.dto.LoginDTO;
 import com.riseslabs.findprecon.dto.Response.LoginResponse;
+import com.riseslabs.findprecon.exception.ApiException;
 import com.riseslabs.findprecon.service.impl.UserDetailsServiceImpl;
 import com.riseslabs.findprecon.util.JwtUtil;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -37,11 +39,11 @@ public class LoginController {
     private UserDetailsServiceImpl userDetailsService;
 
     @PostMapping("/authenticate")
-    public LoginResponse createAuthenticationToken(@RequestBody LoginDTO authenticationDTO, HttpServletResponse response) throws BadCredentialsException, DisabledException, UsernameNotFoundException, IOException {
+    public LoginResponse createAuthenticationToken(@Valid @RequestBody LoginDTO authenticationDTO, HttpServletResponse response) throws BadCredentialsException, DisabledException, UsernameNotFoundException, IOException {
         try {
             authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(authenticationDTO.getEmail(), authenticationDTO.getPassword()));
         } catch (BadCredentialsException e) {
-            throw new BadCredentialsException("Incorrect username or password!");
+            throw new ApiException("Incorrect username or password!");
         } catch (DisabledException disabledException) {
             response.sendError(HttpServletResponse.SC_NOT_FOUND, "User is not activated");
             return null;

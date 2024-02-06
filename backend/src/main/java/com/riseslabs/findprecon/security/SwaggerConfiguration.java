@@ -23,6 +23,4 @@ public class SwaggerConfiguration {
                 .externalDocs(new ExternalDocumentation().url("findprecon.com").description("this is external url"));
     }
 
-
-
 }

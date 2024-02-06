@@ -1,6 +1,7 @@
 package com.riseslabs.findprecon.controller.PublicApis;
 
 import com.riseslabs.findprecon.dto.Request.ForgotPasswordRequest;
+import com.riseslabs.findprecon.exception.ResourceNotFoundException;
 import com.riseslabs.findprecon.service.impl.ForgotPasswordIMPL;
 import jakarta.mail.MessagingException;
 import jakarta.mail.internet.MimeMessage;
@@ -61,6 +62,7 @@ public class ForgotPasswordController {
         } catch (UsernameNotFoundException e) {
             response.put("error", e.getMessage());
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body(response);
+//            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(response);
         } catch (UnsupportedEncodingException | MessagingException e) {
             response.put("error", "Error while sending email");
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(response);
