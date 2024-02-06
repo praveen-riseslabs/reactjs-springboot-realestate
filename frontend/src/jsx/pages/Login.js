@@ -33,16 +33,16 @@ function Login() {
     return (
         <div className='login'>
             <h4 className='text-center fw-bold my-3'>Login</h4>
-            <form className="row g-3 " onSubmit={handleSubmit(onSubmit)}>
+            <form className="row g-3 " autocomplete="off" onSubmit={handleSubmit(onSubmit)}>
                 <div className="col-md-12 ">
                     <label htmlFor="userName" className="form-label" >Email</label>
-                    <input type="text" className="form-control" placeholder='Enter your name' {...register('email', { required: true })} id="userName" />
+                    <input type="text" autocomplete="off"  className="form-control" placeholder='Enter your name' {...register('email', { required: true })} id="userName" />
                     {errors.userName && (errors.userName.type === 'required' && (<span className='text-danger'>username cannot be blank</span>))}
                 </div>
 
                 <div className="col-md-12">
                     <label htmlFor="pass" className="form-label"> Password </label>
-                    <input type="password" className="form-control" placeholder="Enter your password" {...register('password', { required: true })} id="pass" />
+                    <input type="password" autocomplete="off"  className="form-control" placeholder="Enter your password" {...register('password', { required: true })} id="pass" />
                     {errors.password && (errors.password.type === 'required' && (<span className='text-danger'>Required field</span>))}
                 </div>
                 <div className="forget-password text-end"><a onClick={() => navigate('/forgetpassword')}>Forget password? </a> </div>
