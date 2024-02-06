@@ -7,12 +7,16 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="Smple" />
+        <module name="FPCP" />
       </profile>
     </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="Smple" target="17" />
+    </bytecodeTargetLevel>
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="FPCP" options="-parameters" />
       <module name="Smple" options="-parameters" />
     </option>
   </component>
