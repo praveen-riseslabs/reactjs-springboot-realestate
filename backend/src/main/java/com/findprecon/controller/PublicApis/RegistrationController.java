@@ -42,16 +42,14 @@ public class RegistrationController {
 			@ApiResponse(responseCode = "401", description = "not authorized"),
 			@ApiResponse(responseCode = "201", description = "new user created")
 	})
-	public ResponseEntity<?> registerUser(@Valid @RequestBody RegisterDTO registerDTO) throws MessagingException, UnsupportedEncodingException {
+		public ResponseEntity<?> registerUser(@Valid @RequestBody RegisterDTO registerDTO){
 		RegistrationModel createdUser =  service.registerUser(registerDTO);
 		if (createdUser == null){
 			return new ResponseEntity<>(Map.of("status", false, "message", "User not created, come again later!"), HttpStatus.BAD_REQUEST);
 		}
-
 		sendEmail(createdUser.getEmail());
 		String message = String.format("Hey %s Registration successful with email %s", createdUser.getName(), createdUser.getEmail());
 		return new ResponseEntity<>(Map.of("status", true, "message", message), HttpStatus.CREATED);
-
 	}
 
 	private void sendEmail(String email) throws UnsupportedEncodingException, MessagingException {
