@@ -1,6 +1,8 @@
 package com.findprecon.service.impl;
 
+import com.findprecon.dto.UserDTO;
 import com.findprecon.exception.EmailExistException;
+import com.findprecon.exception.ResourceNotFoundException;
 import com.findprecon.repository.UserRepository;
 import com.findprecon.dto.RegisterDTO;
 import com.findprecon.model.RegistrationModel;
@@ -32,6 +34,8 @@ public class ServiceIMPL implements Service {
                 throw new EmailExistException("Email id is already in use");
         }
     }
+
+
     private boolean emailExists(String email) {
         return userRepository.existsByEmail(email);
     }
