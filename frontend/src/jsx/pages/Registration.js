@@ -16,7 +16,7 @@ function Registration() {
       console.log(obj)
       console.log(res)
       
-      if (res.data.status) {
+      if (res.status) {
         console.log('User Details are created')
         reset();
         navigate('/login');
