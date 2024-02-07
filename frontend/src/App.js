@@ -10,6 +10,7 @@ import "slick-carousel/slick/slick-theme.css";
 import "./css/style.css";
 import ForgetPassword from './jsx/pages/Forgetpassword';
 import ResetPassword from './jsx/pages/Resetpassword';
+import Redirect from './jsx/pages/Redirect';
 
 const Login = React.lazy(() => import('./jsx/pages/Login'));
 const Registration = React.lazy(()=> import('./jsx/pages/Registration'));
@@ -27,7 +28,8 @@ console.log(props.isAuthenticated)
       <Routes>   
         <Route path='/login' element={<Login />} />
         <Route path='/register' element={<Registration />} />
-        <Route path='/*' element={<Index />} />
+        <Route path='/dashboard' element={<Index />} />
+        <Route path='/redirect' element={<Redirect />} />
         <Route path='/forgetpassword' element={<ForgetPassword />} />
         <Route path='/reset_password' element={<ResetPassword />} />
       </Routes> 
@@ -63,8 +65,7 @@ console.log(props.isAuthenticated)
             </div>
           }>
             {routeblog}
-            
-            
+            {/* <Redirect/> */}
           </Suspense>
         </div>
       );

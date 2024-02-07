@@ -41,6 +41,7 @@ export function signupAction(email, password, navigate) {
 
 export function Logout(navigate) {
 	localStorage.removeItem('userDetails');
+    navigate('/redirect')
     navigate('/login');
     
 	return {
