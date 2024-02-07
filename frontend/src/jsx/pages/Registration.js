@@ -1,4 +1,4 @@
-import React from 'react';
+import React,{useState} from 'react';
 import { useForm } from 'react-hook-form';
 import axios from 'axios';
 import { Link, useNavigate } from 'react-router-dom';
@@ -7,6 +7,7 @@ import '../../scss/pages/Registration.scss';
 function Registration() {
   const { register, handleSubmit, reset, formState: { errors } } = useForm();
   const navigate = useNavigate();
+  const [errorMessage, setErrorMessage] = useState('');
   
 
   const onSubmit = async (obj) => {
@@ -15,22 +16,25 @@ function Registration() {
       console.log(obj)
       console.log(res)
       
-      if (res.data) {
+      if (res.data.success) {
         console.log('User Details are created')
         reset();
         navigate('/login');
       } else {
-        alert(res.data.message);
+        setErrorMessage(res.data.message || "Email id is already in use");
       }
     } catch (error) {
       console.error(error);
+      setErrorMessage("An error occurred during register. Please try again later.");
     }
   };
 
   return (
     <div className='SignUp'>
       <h4 className='my-3'>Registration</h4>
-      <form className="row g-3" onSubmit={handleSubmit(onSubmit)}>
+      {errorMessage && <div className="text-danger text-center mt-3">{errorMessage}</div>}
+
+      <form className="row g-3" autocomplete="off" onSubmit={handleSubmit(onSubmit)}>
         <div>
           <label htmlFor="name" className="form-label">Enter your full name</label>
           <input type="text" className="form-control" id="name" {...register("name", { required: true, minLength: 3 })} />

@@ -18,7 +18,7 @@ function App(props) {
     const dispatch = useDispatch();
     const navigate = useNavigate();    
     const location = useLocation().pathname;
-
+console.log(props.isAuthenticated)
     useEffect(() => {
         checkAutoLogin(dispatch, navigate, location);    
     }, []);
@@ -27,7 +27,7 @@ function App(props) {
       <Routes>   
         <Route path='/login' element={<Login />} />
         <Route path='/register' element={<Registration />} />
-        {/* <Route path='/dashboard/*' element={<Index />} /> */}
+        <Route path='/*' element={<Index />} />
         <Route path='/forgetpassword' element={<ForgetPassword />} />
         <Route path='/reset_password' element={<ResetPassword />} />
       </Routes> 
@@ -64,7 +64,7 @@ function App(props) {
           }>
             {routeblog}
             
-            <Index /> 
+            
           </Suspense>
         </div>
       );

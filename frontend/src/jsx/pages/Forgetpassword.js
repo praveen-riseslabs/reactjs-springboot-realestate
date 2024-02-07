@@ -28,8 +28,10 @@ export default function ForgetPassword() {
 
       if (error.response && error.response.status === 404) {
         setErr('User is not registered with us');
+        setMSG('');
       } else {
         setErr('An unexpected error occurred. Please try again later.');
+        setMSG('');
       }
     }
   };
