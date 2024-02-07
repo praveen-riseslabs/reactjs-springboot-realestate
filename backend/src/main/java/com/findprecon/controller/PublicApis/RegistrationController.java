@@ -20,6 +20,7 @@ import org.springframework.web.bind.annotation.*;
 import lombok.RequiredArgsConstructor;
 
 import java.io.UnsupportedEncodingException;
+import java.util.Map;
 
 @RestController
 @CrossOrigin
@@ -42,7 +43,7 @@ public class RegistrationController {
 			@ApiResponse(responseCode = "401", description = "not authorized"),
 			@ApiResponse(responseCode = "201", description = "new user created")
 	})
-		public ResponseEntity<?> registerUser(@Valid @RequestBody RegisterDTO registerDTO){
+	public ResponseEntity<?> registerUser(@Valid @RequestBody RegisterDTO registerDTO) throws MessagingException, UnsupportedEncodingException {
 		RegistrationModel createdUser =  service.registerUser(registerDTO);
 		if (createdUser == null){
 			return new ResponseEntity<>(Map.of("status", false, "message", "User not created, come again later!"), HttpStatus.BAD_REQUEST);
