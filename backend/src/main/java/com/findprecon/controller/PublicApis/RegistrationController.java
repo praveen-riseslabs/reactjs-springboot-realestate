@@ -45,11 +45,12 @@ public class RegistrationController {
 	public ResponseEntity<?> registerUser(@Valid @RequestBody RegisterDTO registerDTO) throws MessagingException, UnsupportedEncodingException {
 		RegistrationModel createdUser =  service.registerUser(registerDTO);
 		if (createdUser == null){
-			return new ResponseEntity<>("User not created, come again later!", HttpStatus.BAD_REQUEST);
+			return new ResponseEntity<>(Map.of("status", false, "message", "User not created, come again later!"), HttpStatus.BAD_REQUEST);
 		}
 
 		sendEmail(createdUser.getEmail());
-		return new ResponseEntity<>("Hey "+ createdUser.getName() + " Resistration successful with email " + createdUser.getEmail(), HttpStatus.CREATED);
+		String message = String.format("Hey %s Registration successful with email %s", createdUser.getName(), createdUser.getEmail());
+		return new ResponseEntity<>(Map.of("status", true, "message", message), HttpStatus.CREATED);
 
 	}
 
