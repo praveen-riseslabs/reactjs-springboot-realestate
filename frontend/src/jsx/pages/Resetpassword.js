@@ -2,7 +2,9 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useNavigate, useLocation } from 'react-router-dom';
-import '../../scss/pages/Forgotpassword.scss'
+import '../../scss/pages/Forgotpassword.scss';
+import BlockUi from 'react-block-ui';
+import 'react-block-ui/style.css';
 
 const ResetPassword = () => {
   const navigate = useNavigate();
@@ -12,6 +14,7 @@ const ResetPassword = () => {
 
   const location = useLocation();
   const [token, setToken] = useState('');
+  const [blocking, setBlocking] =useState(false);
 
   useEffect(() => {
     const searchParams = new URLSearchParams(location.search);
@@ -27,20 +30,22 @@ const ResetPassword = () => {
         setError('Passwords do not match');
         return;
       }
- 
+      setBlocking(true);
       const response = await axios.post(
         `http://ec2-54-90-254-70.compute-1.amazonaws.com:8086/api/public/reset_password?token=${token}&password=${password}`
       );
-
+      setBlocking(false);
       console.log('Password reset successful', response);
       navigate('/login');
     } catch (error) {
+      setBlocking(false);
       console.error('Error resetting password', error.message);
       setError('Error resetting password. Please try again.');
     }
   };
 
   return (
+    <BlockUi tag="div" blocking={blocking}>
     <div className='container reset_password bg-light p-4'>
       <h4 className='text-center fw-bold my-3'>Reset Password</h4>
       <label className='form-label'>New Password:</label>
@@ -64,6 +69,7 @@ const ResetPassword = () => {
         Reset Password
       </button>
     </div>
+    </BlockUi>
   );
 };
 

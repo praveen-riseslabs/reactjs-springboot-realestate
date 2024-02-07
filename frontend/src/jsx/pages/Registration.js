@@ -3,34 +3,41 @@ import { useForm } from 'react-hook-form';
 import axios from 'axios';
 import { Link, useNavigate } from 'react-router-dom';
 import '../../scss/pages/Registration.scss';
+import BlockUi from 'react-block-ui';
+import 'react-block-ui/style.css';
 
 function Registration() {
   const { register, handleSubmit, reset, formState: { errors } } = useForm();
   const navigate = useNavigate();
   const [errorMessage, setErrorMessage] = useState('');
-  
+  const [blocking, setBlocking] = useState(false);
 
   const onSubmit = async (obj) => {
     try {
+      setBlocking(true);
       const res = await axios.post('http://localhost:8086/api/public/register', obj);
       console.log(obj)
       console.log(res)
       
-      if (res.status) {
+      if (res.data.status) {
+        setBlocking(false);
         console.log('User Details are created')
         reset();
-        navigate('/login');
+          navigate('/login');
       } else {
+        setBlocking(false)
         setErrorMessage(res.data.message || "Email id is already in use");
       }
     } catch (error) {
+      setBlocking(false);
       console.error(error);
       setErrorMessage("An error occurred during register. Please try again later.");
     }
   };
 
   return (
-    <div className='SignUp'>
+    <BlockUi tag="div" blocking={blocking}>
+        <div className='SignUp'>
       <h4 className='my-3'>Registration</h4>
       {errorMessage && <div className="text-danger text-left mt-3">{errorMessage}</div>}
 
@@ -73,6 +80,8 @@ function Registration() {
         </div>
       </form>
     </div>
+    </BlockUi>
+
   );
 }
 
