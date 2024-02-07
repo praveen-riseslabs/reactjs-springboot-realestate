@@ -3,6 +3,11 @@
   margin: 0 !important;
 }
 
+body{
+  background-image: url('../images/real.png');
+  background-size: 100% 100%;
+}
+
 /* /////////////////////////// Fixed ////////////////////////////////////// */
 
 /* ////////////////////////fixed */

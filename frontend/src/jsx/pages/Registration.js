@@ -12,11 +12,11 @@ function Registration() {
 
   const onSubmit = async (obj) => {
     try {
-      const res = await axios.post('http://ec2-54-90-254-70.compute-1.amazonaws.com:8086/api/public/register', obj);
+      const res = await axios.post('http://localhost:8086/api/public/register', obj);
       console.log(obj)
       console.log(res)
       
-      if (res.data.success) {
+      if (res.data.status) {
         console.log('User Details are created')
         reset();
         navigate('/login');
@@ -32,9 +32,9 @@ function Registration() {
   return (
     <div className='SignUp'>
       <h4 className='my-3'>Registration</h4>
-      {errorMessage && <div className="text-danger text-center mt-3">{errorMessage}</div>}
+      {errorMessage && <div className="text-danger text-left mt-3">{errorMessage}</div>}
 
-      <form className="row g-3" autocomplete="off" onSubmit={handleSubmit(onSubmit)}>
+      <form className="row g-3" autoComplete="off" onSubmit={handleSubmit(onSubmit)}>
         <div>
           <label htmlFor="name" className="form-label">Enter your full name</label>
           <input type="text" className="form-control" id="name" {...register("name", { required: true, minLength: 3 })} />

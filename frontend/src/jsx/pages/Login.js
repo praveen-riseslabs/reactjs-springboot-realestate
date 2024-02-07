@@ -14,8 +14,8 @@ function Login() {
     
     let onSubmit = async (obj) => {
         try {
-            let res = await axios.post('http://ec2-54-90-254-70.compute-1.amazonaws.com:8086/api/public/authenticate', obj)
-            console.log(res)
+            let res = await axios.post('http://localhost:8086/api/public/authenticate', obj)
+         
             if (res.data.jwtToken ) {
               let token = res.data.jwtToken;
               localStorage.setItem('token', token)
@@ -35,7 +35,11 @@ function Login() {
     return (
         <div className='login'>
             <h4 className='text-center fw-bold my-3'>Login</h4>
-            <form className="row g-3 " autocomplete="off"  onSubmit={handleSubmit(onSubmit)}>
+
+            <form className="row g-3 " autoComplete="off"  onSubmit={handleSubmit(onSubmit)}>
+            <div className="col-md-12 ">
+            {errorMessage && <div className="text-danger text-left mt-3">{errorMessage}</div>}
+            </div>
                 <div className="col-md-12 ">
                     <label htmlFor="email" className="form-label" >Email</label>
                     <input type="text"  className="form-control" placeholder='Enter your name' id="email"  {...register('email', { required: 'Email is required',
@@ -48,13 +52,10 @@ function Login() {
                     <input type="password"   className="form-control" placeholder="Enter your password" {...register('password', { required: true })} id="pass" />
                     {errors.password && (errors.password.type === 'required' && (<span className='text-danger'>Required field</span>))}
                 </div>
-                <div className="forget-password text-end"><a onClick={() => navigate('/forgetpassword')}>Forget password? </a> </div>
+                <div className="forget-password text-end"><a onClick={() => navigate('/forgetpassword')}>Forgot password? </a> </div>
                 <div className="col-12">
                     <button id='btn' type="submit" className="btn btn-primary w-100">Login</button>
                 </div>
-                
-                {errorMessage && <div className="text-danger text-center mt-3">{errorMessage}</div>}
-
                 <div className="text-center">
                     <span>Not a member?</span>  <a className="register" onClick={() => navigate('/register')}>  Register </a>
                 </div>

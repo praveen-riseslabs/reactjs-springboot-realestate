@@ -38,7 +38,7 @@ export default function ForgetPassword() {
 
   return (
     <div className='forgetpassword '>
-      <h4 className='text-center fw-bold my-3'>Forget Password</h4>
+      <h4 className='text-center fw-bold my-3'>Forgot Password</h4>
       {loading ? (
         <p className='text-center mt-5 fs-4 fw-bold'>Sending request, please wait...</p>
       ) : (
@@ -47,7 +47,7 @@ export default function ForgetPassword() {
           {err.length !== 0 && <h6 className='text-danger text-center'>{err}</h6>}
           <div class='col-md-12 '>
             <label for='email' class='form-label'> Email </label>
-            <input type='email' class='form-control' placeholder='Enter your mail to send Forget Password reset link' {...register('email')} id='email'/>
+            <input type='email' class='form-control' placeholder='Please enter email ID' {...register('email')} id='email'/>
           </div>
 
           <div class='col-md-4'>
