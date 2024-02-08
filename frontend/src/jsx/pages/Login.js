@@ -31,7 +31,7 @@ function Login() {
                 setErrorMessage(res.data.message || "Login failed. Please check your credentials.");
             }
         }
-        catch (error) {
+        catch (error) { 
             setBlocking(false);
             console.error(error)
             setErrorMessage("Email or password may be incorrect, please check and try again");
