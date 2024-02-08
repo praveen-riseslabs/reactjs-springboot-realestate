@@ -19,7 +19,7 @@ function Registration() {
       console.log(obj)
       console.log(res)
       
-      if (res.data.status) {
+      if (res.data || res.data.status) {
         setBlocking(false);
         console.log('User Details are created')
         reset();
