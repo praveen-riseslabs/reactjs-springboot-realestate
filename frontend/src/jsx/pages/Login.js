@@ -6,6 +6,7 @@ import { useNavigate } from 'react-router-dom';
 import './Login.scss'
 import BlockUi from 'react-block-ui';
 import 'react-block-ui/style.css';
+import backgrounImg from '../../images/backgroundImg.jpg';
 
 
 function Login() {
@@ -38,6 +39,9 @@ function Login() {
 
     return (
         <BlockUi tag="div" blocking={blocking}>
+            <div className='background-image'>
+                <img src={backgrounImg} alt="background-image" />
+            </div>
         <div className='login'>
             <h4 className='text-center fw-bold my-3'>Login</h4>
 

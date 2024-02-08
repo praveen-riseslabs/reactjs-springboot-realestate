@@ -1,4 +1,11 @@
-
+.background-image img{
+  width: 100%;
+  position: absolute;
+  z-index: -1;
+  margin-top: -110px;
+  height: 115vh;
+  object-fit: cover;
+}
 .login {
     width: 30%;
     margin: auto;
@@ -12,6 +19,8 @@
       color: blue;
       cursor: pointer;
     }
+
+    
   
     .register {
       color: blue;
@@ -61,5 +70,16 @@
     }
     .reset_password {
       width: 95%;
+    }
+  }
+  @media screen and (min-device-width: 270px) and (orientation: portrait) {
+    .login {
+      width: 75%;
+    }
+    .forgetpassword {
+      width: 75%;
+    }
+    .reset_password {
+      width: 75%;
     }
   }
