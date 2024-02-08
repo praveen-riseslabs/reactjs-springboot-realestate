@@ -5,6 +5,8 @@ import { Link, useNavigate } from 'react-router-dom';
 import '../../scss/pages/Registration.scss';
 import BlockUi from 'react-block-ui';
 import 'react-block-ui/style.css';
+import backgrounImg from '../../images/backgroundImg.jpg';
+
 
 function Registration() {
   const { register, handleSubmit, reset, formState: { errors } } = useForm();
@@ -37,6 +39,9 @@ function Registration() {
 
   return (
     <BlockUi tag="div" blocking={blocking}>
+      <div className='background-image'>
+                <img src={backgrounImg} alt="background-image" />
+            </div>
         <div className='SignUp'>
       <h4 className='my-3'>Registration</h4>
       {errorMessage && <div className="text-danger text-left mt-3">{errorMessage}</div>}

@@ -31,3 +31,8 @@
       width: 80%;
     }
   }
+  @media screen and (min-device-width: 270px) and (orientation: portrait) {
+    .SignUp {
+      width: 65%;
+    }
+  }
