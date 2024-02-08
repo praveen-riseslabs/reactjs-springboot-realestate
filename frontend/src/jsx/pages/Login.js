@@ -4,18 +4,22 @@ import { useForm } from 'react-hook-form'
 import axios from 'axios'
 import { useNavigate } from 'react-router-dom';
 import './Login.scss'
+import BlockUi from 'react-block-ui';
+import 'react-block-ui/style.css';
 
 
 function Login() {
     let { handleSubmit, register, formState: { errors } } = useForm()
     let navigate = useNavigate()
     const [errorMessage, setErrorMessage] = useState('');
+    const [blocking, setBlocking] = useState(false);
  
     
     let onSubmit = async (obj) => {
         try {
+            setBlocking(true);
             let res = await axios.post('http://localhost:8086/api/public/authenticate', obj)
-         
+            setBlocking(false);
             if (res.data.jwtToken ) {
               let token = res.data.jwtToken;
               localStorage.setItem('token', token)
@@ -33,6 +37,7 @@ function Login() {
     }
 
     return (
+        <BlockUi tag="div" blocking={blocking}>
         <div className='login'>
             <h4 className='text-center fw-bold my-3'>Login</h4>
 
@@ -62,6 +67,7 @@ function Login() {
 
             </form>
         </div>
+        </BlockUi>
     )
 }
 
