@@ -20,19 +20,21 @@ function Login() {
         try {
             setBlocking(true);
             let res = await axios.post('http://localhost:8086/api/public/authenticate', obj)
-            setBlocking(false);
             if (res.data.jwtToken ) {
+              setBlocking(true);
               let token = res.data.jwtToken;
               localStorage.setItem('token', token)
                 navigate('/dashboard')
             }
             else {
+                setBlocking(false);
                 setErrorMessage(res.data.message || "Login failed. Please check your credentials.");
             }
         }
         catch (error) {
+            setBlocking(false);
             console.error(error)
-            setErrorMessage("An error occurred during login. Please try again later.");
+            setErrorMessage("Email or password may be incorrect, please check and try again");
         }
 
     }
