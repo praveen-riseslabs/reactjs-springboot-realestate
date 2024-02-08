@@ -2,11 +2,13 @@ import axios from 'axios';
 import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import '../../scss/pages/Forgotpassword.scss';
+import { Link, useNavigate } from 'react-router-dom';
 import BlockUi from 'react-block-ui';
 import 'react-block-ui/style.css';
 import backgrounImg from '../../images/backgroundImg.jpg';
 
 export default function ForgetPassword() {
+  const navigate = useNavigate();
   let { handleSubmit, register } = useForm();
   let [message, setMSG] = useState('');
   let [err, setErr] = useState('');
@@ -46,6 +48,10 @@ export default function ForgetPassword() {
     }
   };
 
+  const gotoLogin=()=> {
+    navigate('/login');
+  }
+
   return (
     <BlockUi tag="div" blocking={blocking}>
       <div className='background-image'>
@@ -63,10 +69,15 @@ export default function ForgetPassword() {
             <label for='email' class='form-label'> Email </label>
             <input type='email' class='form-control' placeholder='Please enter email ID' {...register('email')} id='email'/>
           </div>
-
-          <div class='col-md-4'>
-            <button id='btn' type='submit' class='btn btn-primary w-100'> Send </button>
-          </div>
+             
+          <div  style={{}}>
+              <div  style={{float:"left"}}>
+              <button id='btn'  onClick={()=> gotoLogin()} className='btn btn-secondary w-100'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Back&nbsp;&nbsp;&nbsp;&nbsp;</button>
+              </div>
+              <div c style={{float:"right"}}>
+              <button id='btn' type="submit" className='btn btn-primary w-100'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Send&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</button>
+              </div>
+        </div>
         </form>
       )}
     </div>
