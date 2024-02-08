@@ -155,7 +155,7 @@ const SideBar = () => {
               })}  
             </ul>                    
             <div className="copyright">
-              <p><strong>Omah Dashboard</strong> © {date.getFullYear()} All Rights Reserved</p>
+              <p><strong>FPC Dashboard</strong> © {date.getFullYear()} All Rights Reserved</p>
               <p> by DexignZone</p>
             </div>
           </div>

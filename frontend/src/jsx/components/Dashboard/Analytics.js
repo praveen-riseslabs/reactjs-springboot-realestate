@@ -4,26 +4,26 @@ import { Dropdown } from "react-bootstrap";
 // Map
 import WorldMap from "react-svg-worldmap";
 
-import ChartDoughnut from "../Omah/Home/Chart/DonutChart";
+import ChartDoughnut from "../FPC/Home/Chart/DonutChart";
 
 import { ThemeContext } from "../../../context/ThemeContext";
 
 // Apex Chart
 import loadable from "@loadable/component";
 import pMinDelay from "p-min-delay";
-import WidgetChart1 from "../Omah/Analytics/WidgetChart1";
-import WidgetChart2 from "../Omah/Analytics/WidgetChart2";
+import WidgetChart1 from "../FPC/Analytics/WidgetChart1";
+import WidgetChart2 from "../FPC/Analytics/WidgetChart2";
 const ChartBar1 = loadable(() =>
-  pMinDelay(import("../Omah/Analytics/ChartBar1"), 500)
+  pMinDelay(import("../FPC/Analytics/ChartBar1"), 500)
 );
 const ChartBar2 = loadable(() =>
-  pMinDelay(import("../Omah/Analytics/ChartBar2"), 500)
+  pMinDelay(import("../FPC/Analytics/ChartBar2"), 500)
 );
 const ChartTimeLine = loadable(() =>
-  pMinDelay(import("../Omah/Analytics/ChartTimeline"), 500)
+  pMinDelay(import("../FPC/Analytics/ChartTimeline"), 500)
 );
 const RedialBar = loadable(() =>
-  pMinDelay(import("../Omah/Analytics/RadialBar"), 500)
+  pMinDelay(import("../FPC/Analytics/RadialBar"), 500)
 );
 
 const data = [

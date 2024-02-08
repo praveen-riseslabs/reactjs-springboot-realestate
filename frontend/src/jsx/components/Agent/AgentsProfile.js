@@ -2,7 +2,7 @@ import React from 'react';
 import {Link} from 'react-router-dom';
 
 import PageTitle from '../../layouts/PageTitle';
-import DonutChart from '../Omah/Home/Chart/DonutChart';
+import DonutChart from '../FPC/Home/Chart/DonutChart';
 
 import bigimg from '../../../images/big/img1.jpg'
 import profile from '../../../images/profile/profile.png'

@@ -7,8 +7,8 @@ import avatar1 from "../../../images/avatar/1.jpg";
 import customers10 from "../../../images/customers/10.jpg";
 import customers11 from "../../../images/customers/11.jpg";
 import customers12 from "../../../images/customers/12.jpg";
-import FrontViewSlider from "../Omah/PropertyDetails/FrontViewSlider";
-import ImageGallery from "../Omah/PropertyDetails/ImageGallery";
+import FrontViewSlider from "../FPC/PropertyDetails/FrontViewSlider";
+import ImageGallery from "../FPC/PropertyDetails/ImageGallery";
 
 function StarIcon () {
   return(

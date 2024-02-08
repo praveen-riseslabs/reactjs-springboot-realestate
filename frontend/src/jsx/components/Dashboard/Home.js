@@ -10,22 +10,22 @@ import customers1 from "../../../images/customers/1.jpg";
 import customers2 from "../../../images/customers/2.jpg";
 // import customers3 from "../../../images/customers/3.jpg";
 
-import PropertySlider from "../Omah/Home/Slider/PropertySlider";
+import PropertySlider from "../FPC/Home/Slider/PropertySlider";
 
 // Chart
-import ChartDoughnut from "../Omah/Home/Chart/DonutChart";
+import ChartDoughnut from "../FPC/Home/Chart/DonutChart";
 import { ThemeContext } from "../../../context/ThemeContext";
 // Apex Chart
 import loadable from "@loadable/component";
 import pMinDelay from "p-min-delay";
 const PieChart = loadable(() =>
-  pMinDelay(import("../Omah/Home/Chart/PieChart"), 500)
+  pMinDelay(import("../FPC/Home/Chart/PieChart"), 500)
 );
 const ChartTimeLine = loadable(() =>
-  pMinDelay(import("../Omah/Home/Chart/ChartTimeline"), 500)
+  pMinDelay(import("../FPC/Home/Chart/ChartTimeline"), 500)
 );
 const ChartBar = loadable(() =>
-  pMinDelay(import("../Omah/Home/Chart/ChartBar"), 500)
+  pMinDelay(import("../FPC/Home/Chart/ChartBar"), 500)
 );
 
 
@@ -74,7 +74,7 @@ function Home() {
       <div className="form-head d-md-flex mb-sm-4 mb-3 align-items-start">
         <div className="me-auto  d-lg-block">
           <h2 className="text-black font-w600">Dashboard</h2>
-          <p className="mb-0">Welcome to Omah Property Admin</p>
+          <p className="mb-0">Welcome to FPC Property Admin</p>
         </div>
         <Link to="/" className="btn btn-primary rounded light">
           Refresh
