@@ -4,6 +4,7 @@ import axios from 'axios'
 const Users = () => {
 
   let [users,setUsers]= useState([])
+  const [selectedClient,setSelectedClient] = useState([]);
     
   const getValues = async () => {
     try {
@@ -18,6 +19,15 @@ const Users = () => {
       // Handle error (e.g., display error message)
     }
   };
+  const saveRole =async(id) =>{//http://localhost:8086/api/private/give-role?email=praveen.rondi%40riseslabs.com&role=Data_Analyst_Admin
+    const res = await axios.post(`http://localhost:8086/api/private/give-role?role=${selectedClient}&email=${id}`); 
+    debugger;
+   
+  }
+
+  const handleSelectChange = (e) => {
+    setSelectedClient(e.target.value);
+  }
     
     useEffect(()=>{
         getValues();
@@ -46,7 +56,19 @@ const Users = () => {
                    <td>{obj.name}</td>
                    <td>{obj.email}</td>
                    <td>{obj.createdAt}</td>
-                   <td>{obj.role}</td>
+                   <td>
+                    <select className="form-select"  onChange={handleSelectChange}  aria-label="Default select example">
+                    <option selected value={obj.role}>{obj.role}</option>
+                    <option value="Super_Admin">Data_Entry_User</option>
+                    <option value="Data_Analyst_Admin">Data_Analyst_Admin</option>
+                    <option value="Agent">Agent</option>
+                  </select>
+                  </td>
+                  <td>
+                    <button className='btn btn-primary btn-sm' onClick={()=>saveRole(obj.email)}>
+                      Save
+                    </button>
+                  </td>
                </tr>
                )
            })

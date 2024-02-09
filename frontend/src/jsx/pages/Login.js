@@ -24,6 +24,19 @@ function Login() {
               setBlocking(true);
               let token = res.data.jwtToken;
               localStorage.setItem('token', token)
+              axios.get('http://localhost:8086/api/private/home', {
+              headers: {
+                    Authorization: `Bearer ${localStorage.getItem('token')}`,
+                },
+                })
+                .then((response1) => {
+                    localStorage.setItem('userinfo', JSON.stringify(response1.data))
+                })
+                .catch((error) => {
+                    console.log(error);
+                });
+             // let res2 = await axios.get('http://localhost:8086api/private/home')
+                 
                 navigate('/dashboard')
             }
             else {

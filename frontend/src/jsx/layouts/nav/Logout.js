@@ -24,8 +24,11 @@ function withRouter(Component) {
 function LogoutPage(pros){
     const dispatch = useDispatch();
 	const navigate = useNavigate();
+    
     function onLogout() {
+      
        dispatch(Logout(navigate));
+       window.location.reload();
     }
     return(
         <>

@@ -8,6 +8,7 @@ import { Dropdown } from "react-bootstrap";
 import Logout from './Logout'; 
 
 const Header = ({ onNote }) => {
+  const userinfo = JSON.parse(localStorage.getItem("userinfo"));
   return (
     <div className="header">
       <div className="header-content">
@@ -303,14 +304,14 @@ const Header = ({ onNote }) => {
                 >
                   <div className="header-info">
                     <span className="text-black">
-                      <strong>Henry Jr.</strong>
+                      <strong style={{textTransform: "capitalize"}}>{userinfo.name}</strong>
                     </span>
-                    <p className="fs-12 mb-0">Admin</p>
+                    <p className="fs-12 mb-0">{userinfo.role}</p>
                   </div>
                   <img src={profile} width={20} alt="" />
                 </Dropdown.Toggle>
                 <Dropdown.Menu align="end" className="mt-2">
-                  <Link to="/app-profile" className="dropdown-item ai-icon">
+                  {/* <Link to="/app-profile" className="dropdown-item ai-icon">
                     <svg
                       id="icon-user1"
                       xmlns="http://www.w3.org/2000/svg"
@@ -327,9 +328,9 @@ const Header = ({ onNote }) => {
                       <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
                       <circle cx={12} cy={7} r={4} />
                     </svg>
-                    <span className="ms-2">Profile </span>
-                  </Link>
-                  <Link to="/email-inbox" className="dropdown-item ai-icon">
+                     <span className="ms-2">Profile </span> 
+                  </Link> */}
+                  {/* <Link to="/email-inbox" className="dropdown-item ai-icon">
                     <svg
                       id="icon-inbox"
                       xmlns="http://www.w3.org/2000/svg"
@@ -346,9 +347,9 @@ const Header = ({ onNote }) => {
                       <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" />
                       <polyline points="22,6 12,13 2,6" />
                     </svg>
-                    <span className="ms-2">Inbox </span>
-                  </Link>
-                  <Link to="/app-users" className="dropdown-item ai-icon">
+                    <span className="ms-2">Inbox </span> 
+                  </Link> */}
+                 {userinfo.email === "admi.fpc@gmail.com" ? <Link to="/app-users" className="dropdown-item ai-icon">
                     <svg
                       id="icon-user1"
                       xmlns="http://www.w3.org/2000/svg"
@@ -365,8 +366,8 @@ const Header = ({ onNote }) => {
                       <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
                       <circle cx={12} cy={7} r={4} />
                     </svg>
-                    <span className="ms-2">Users </span>
-                  </Link>
+                    <span className="ms-2">User Management </span> 
+                  </Link> : <></>}
                  <Logout />
                 </Dropdown.Menu>
               </Dropdown>
