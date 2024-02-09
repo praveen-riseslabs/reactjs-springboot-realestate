@@ -53,7 +53,7 @@ function Login() {
             </div>
                 <div className="col-md-12 ">
                     <label htmlFor="email" className="form-label" >Email</label>
-                    <input type="text"  className="form-control" placeholder='Enter your name' id="email"  {...register('email', { required: 'Email is required',
+                    <input type="text"  className="form-control" placeholder='Enter your email' id="email"  {...register('email', { required: 'Email is required',
                     pattern: { value: /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/, message: 'Invalid email address', }, })} />
                     {errors.email && ( <div className='text-danger'>{errors.email.message}</div> )}
                 </div>
