@@ -30,7 +30,7 @@ const ResetPassword = () => {
       }
       setBlocking(true);
       const response = await axios.post(
-        `http://ec2-54-90-254-70.compute-1.amazonaws.com:8086/api/public/reset_password?token=${token}&password=${password}`
+        `http://localhost:8086/api/public/reset_password?token=${token}&password=${password}`
       );
       setBlocking(false);
       console.log("Password reset successful", response);
