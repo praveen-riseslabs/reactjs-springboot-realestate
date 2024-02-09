@@ -1,7 +1,6 @@
 import React from 'react';
 import Select from 'react-select';
 import { useForm } from 'react-hook-form';
-import "./AddProperty.scss"
 
 const ProjectType = [
     { value: '1', label: 'For Rent' },
