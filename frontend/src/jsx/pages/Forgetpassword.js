@@ -27,10 +27,16 @@ export default function ForgetPassword() {
         setBlocking(false);
         setErr('');
         setMSG(res.data.message);
+        setTimeout(()=>{
+           navigate("/login");
+        }, 2000)
       } else {
         setBlocking(false);
         setMSG('');
         setErr(res.data.message);
+        // setTimeout(()=>{
+        //     navigate("/login");
+        // }, 2000);
       }
     } catch (error) {
       setBlocking(false);
