@@ -94,3 +94,15 @@ Follow the steps below to set up and run the project locally.
   password: {new_password}
 
 - Example: http://localhost:8086/api/public/reset_password?token=reset_token&password=new_password
+
+### Get-All-Users
+- Endpoint: `http://localhost:8086/api/private/users`
+- Method: GET
+- Response:Users List
+### Update-Role of user
+- Endpoint: `http://localhost:8086/api/private/give-role`
+- Method: POST
+- Query Parameters:
+  token: {role}
+  password: {email}
+
