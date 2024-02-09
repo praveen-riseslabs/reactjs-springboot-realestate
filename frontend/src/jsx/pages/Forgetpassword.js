@@ -9,7 +9,7 @@ import backgrounImg from '../../images/backgroundImg.jpg';
 
 export default function ForgetPassword() {
   const navigate = useNavigate();
-  let { handleSubmit, register } = useForm();
+  let { handleSubmit, register ,formState: { errors }} = useForm();
   let [message, setMSG] = useState('');
   let [err, setErr] = useState('');
   let [loading, setLoading] = useState(false);
@@ -20,7 +20,7 @@ export default function ForgetPassword() {
 
     try {
       setBlocking(true);
-      let res = await axios.post('http://ec2-54-90-254-70.compute-1.amazonaws.com:8086/api/public/forgotpassword', obj );
+      let res = await axios.post('http://localhost:8086/api/public/forgotpassword', obj );
       setLoading(false);
 
       if (res.status === 200) {
@@ -55,19 +55,21 @@ export default function ForgetPassword() {
   return (
     <BlockUi tag="div" blocking={blocking}>
       <div className='background-image'>
-                <img src={backgrounImg} alt="background-image" />
-            </div>
-    <div className='forgetpassword '>
-      <h4 className='text-center fw-bold my-3'>Forgot Password</h4>
-      {loading ? (
-        <p className='text-center mt-5 fs-4 fw-bold'>Sending request, please wait...</p>
-      ) : (
-        <form class='row g-3 ' onSubmit={handleSubmit(onSubmit)}>
+          <img src={backgrounImg} alt="background-image" />
+      </div>
+
+      <div className='forgetpassword '>
+        <h4 className='text-center fw-bold my-3'>Forgot Password</h4>
+        {loading ? ( <p className='text-center mt-5 fs-4 fw-bold'>Sending request, please wait...</p>
+        ) : (
+        <form class='row g-3 ' autoComplete='off' onSubmit={handleSubmit(onSubmit)}>
           {message.length !== 0 && <h6 className='text-success text-center'>{message}</h6>}
           {err.length !== 0 && <h6 className='text-danger text-center'>{err}</h6>}
           <div class='col-md-12 '>
             <label for='email' class='form-label'> Email </label>
-            <input type='email' class='form-control' placeholder='Please enter email ID' {...register('email')} id='email'/>
+            <input type='email' class='form-control' placeholder='Please enter email ID' id='email' {...register('email', { required: 'Please enter Email ID',
+              pattern: { value: /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/, message: 'Invalid email address', }, })} />
+              {errors.email && <span className="text-danger">{errors.email.message}</span>}
           </div>
              
           <div  style={{}}>

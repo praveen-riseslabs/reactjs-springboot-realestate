@@ -1,10 +1,9 @@
 import React from 'react';
 import Select from 'react-select';
-import { Uploader } from 'rsuite';
+import { useForm } from 'react-hook-form';
+import "./AddProperty.scss"
 
-import PageTitle from '../../layouts/PageTitle';
-
-const Rent = [
+const ProjectType = [
     { value: '1', label: 'For Rent' },
     { value: '2', label: 'For Sale' },
 ]
@@ -16,13 +15,9 @@ const beds = [
     { value: '5', label: '5' },
     { value: '6', label: '6' }
 ];
-const options0 = [
-    { value: '1', label: '1' },
-    { value: '2', label: '2' },
-    { value: '3', label: '3' },
-    { value: '4', label: '4' },
-    { value: '5', label: '5' },
-    { value: '6', label: '6' }
+const Status = [
+    { value: '1', label: 'Active' },
+    { value: '2', label: 'Inactive' },
 ];
 const options1 = [
     { value: '1', label: '1' },
@@ -52,45 +47,118 @@ const inputBlog = [
 ];
 
 const AddProperty = () => {
+
+    const { handleSubmit} = useForm();
+
+    const onSubmit = (data) => {
+        console.log(data);
+      };
+
+
     return (
         <>
-           <PageTitle activeMenu={"Add Property"} motherMenu={"Property"} />
-            <div className="row">
+            <div className="row property">
                 <div className="col-12">
                     <div className="card">
                         <div className="card-header">
                             <h4 className="card-title">Add Property</h4>
                         </div>
+
                         <div className="card-body">
-                            <form>
+                            <form className="row g-3" onSubmit={handleSubmit(onSubmit)}>
                                 <div className="row">
-                                    <div className="mb-3 col-lg-4 col-md-6">
-                                        <label className="form-label">Property Type</label>
-                                        <input type="text" className="form-control" placeholder="office,villa,apartment" required="" />
+                                    <div className="mb-3 col-6">
+                                        <label className="form-label">Project Name</label>
+                                        <input type="text" className="form-control" placeholder="Enter Project Name" required="" />
                                     </div>
-                                    <div className="mb-3 col-lg-4 col-md-6">
-                                        <label className="form-label">Property Status</label>
+
+                                    <div className="mb-3 col-6">
+                                        <label className="form-label">Front Lot</label>
+                                        <input type="text" className="form-control" placeholder="Enter Front Lot size" required="" />
+                                    </div>
+
+                                    <div className="mb-3 col-6">
+                                        <label className="form-label">Project Type</label>
                                         <Select 
-                                            options={Rent} 
-                                            defaultValue={Rent[0]}
+                                            options={ProjectType} 
                                             className="custom-react-select"
-                                            isSearchable = {false}
+                                            isSearchable = {true}
                                         />
                                     </div>
-                                    <div className="mb-3 col-lg-4 col-md-6">
+
+                                    <div className="mb-3 col-6">
+                                        <label className="form-label">Developer</label>
+                                        <input type="text" className="form-control"  required="" />
+                                    </div>
+
+                                    <div className="mb-3 col-6">
+                                        <label className="form-label">Development Fee</label>
+                                        <input type="text" className="form-control"  required="" />
+                                    </div>
+
+                                    <div className="mb-3 col-6">
+                                        <label className="form-label">Project Closing year</label>
+                                        <input type="text" className="form-control"  required="" />
+                                    </div>
+
+                                    <div className="mb-3 col-6">
                                         <label className="form-label">Property Price</label>
                                         <input type="text" className="form-control" placeholder="$2800" required="" />
                                     </div>
-                                    <div className="mb-3 col-lg-4 col-md-6">
-                                        <label className="form-label">Max Rooms</label>
+
+                                    <div className="mb-3 col-6">
+                                        <label className="form-label">Customer Special Incentive</label>
+                                        <input type="text" className="form-control"  required="" />
+                                    </div>
+
+                                    <div className="mb-3 col-6">
+                                        <label className="form-label">Comission</label>
+                                        <input type="text" className="form-control"  required="" />
+                                    </div>
+
+                                    <div className="mb-3 col-6">
+                                        <label className="form-label">Brokerage Special Incentive</label>
+                                        <input type="text" className="form-control"  required="" />
+                                    </div>
+
+                                    <div className="mb-3 col-6">
+                                        <label className="form-label">Developer Email</label>
+                                        <input type="text" className="form-control"  required="" />
+                                    </div>
+
+                                    <div className="mb-3 col-6">
+                                        <label className="form-label">Sales Representative</label>
+                                        <input type="text" className="form-control"  required="" />
+                                    </div>
+
+                                    <div className="mb-3 col-6">
+                                        <label className="form-label">Developer Address</label>
+                                        <input type="text" className="form-control"  required="" />
+                                    </div>
+
+                                    <div className="mb-3 col-6">
+                                        <label className="form-label">Sales Office Telephone</label>
+                                        <input type="number" className="form-control"  required="" />
+                                    </div>
+
+                                    <div className="mb-3 col-6">
+                                        <label className="form-label">Status</label>
                                         <Select 
-                                            options={options0} 
-                                            defaultValue={options0[0]}
+                                            options={Status} 
+                                            defaultValue={Status[0]}
                                             className="custom-react-select"
                                             isSearchable = {false}
                                         /> 
                                     </div>
-                                    <div className="mb-3 col-lg-4 col-md-6">
+
+                                    <div className="mb-3 col-6">
+                                        <label className="form-label">Property Area</label>
+                                        <input type="text" className="form-control"  required="" />
+                                    </div>
+
+                                    <hr className="my-4" />
+
+                                    <div className="mb-3 col-6">
                                         <label className="form-label">Beds</label>
                                         <Select 
                                             options={beds} 
@@ -99,7 +167,8 @@ const AddProperty = () => {
                                             isSearchable = {false}
                                         /> 
                                     </div>
-                                    <div className="mb-3 col-lg-4 col-md-6">
+
+                                    <div className="mb-3 col-6">
                                         <label className="form-label">Baths</label>                                       
                                         <Select 
                                             options={options1} 
@@ -108,15 +177,18 @@ const AddProperty = () => {
                                             isSearchable = {false}
                                         />  
                                     </div>
-                                    <div className="mb-3 col-lg-4 col-md-6">
+
+                                    <div className="mb-3 col-6">
                                         <label className="form-label">Area</label>
                                         <input type="text" className="form-control" placeholder="85 sq ft" />
                                     </div>
-                                    <div className="mb-3 col-lg-4 col-md-6">
+
+                                    <div className="mb-3 col-6">
                                         <label className="form-label">Price</label>
                                         <input type="text" className="form-control" placeholder="$3000" />
                                     </div>
-                                    <div className="mb-3 col-lg-4 col-md-6">
+
+                                    <div className="mb-3 col-6">
                                         <label className="form-label">Premiere</label>
                                         <Select 
                                             options={options2} 
@@ -125,6 +197,7 @@ const AddProperty = () => {
                                             isSearchable = {false}
                                         /> 
                                     </div>
+
                                     <div className="mb-3 col-12">
                                         <label className="form-label">Description</label>
                                         <textarea className="form-control" 
@@ -132,10 +205,12 @@ const AddProperty = () => {
                                             rows="4" 
                                         />
                                     </div>
+
                                     <div className="mb-3 col-sm-6">
                                         <label className="form-label">Address</label>
                                         <input type="text" className="form-control" placeholder="Address of your property" />
                                     </div>
+
                                     <div className="mb-3 col-sm-6">
                                         <label className="form-label">Zip Code</label>
                                         <input type="number" id="zip_code" className="form-control" placeholder="Enter pin code" required="" />
@@ -143,40 +218,12 @@ const AddProperty = () => {
                                     
                                 </div>
                             </form>
-                            <div className="dropzone-admin mb-3">
-                                <label className="form-label">Media</label>
-                                <Uploader className="dropzone"  action="//jsonplaceholder.typicode.com/posts/" draggable>
-                                    <div className="dz-message needsclick">
-                                        <i className="fas fa-cloud-upload-alt"></i>
-                                        <h6>Drop files here or click to upload.</h6>
-                                    </div>
-                                </Uploader>
-                            </div>                             
-                            <form>
-                                <div className="row">
-                                    <div className="mb-3 col-12">
-                                        <label className="form-label">video (mp4)</label>
-                                        <input type="text" className="form-control" placeholder="mp4 video link" />
-                                    </div>
-                                    <div className="mb-3 col-12">
-                                        <label className="form-label d-block">Additional features</label>
-                                        {inputBlog.map((item, ind)=>(
-                                            <div className="form-check form-check-inline" key={ind}>
-                                                <input type="checkbox" className="form-check-input" value="" id={item.id} />
-                                                <label className="form-check-label" htmlFor={item.id}>{item.title}</label>
-                                            </div>
-                                        ))}                                        
-                                    </div>
-                                    <div className="col-sm-12 pt-3">
-                                        <button type="button" className="btn btn-sm btn-primary me-2">Submit</button>
-                                        <button type="button" className="btn btn-sm btn-danger light">Cancel</button>
-                                    </div>									
-                                </div>	
-                            </form>
+                           
                         </div> 
                     </div>
                 </div>
             </div>
+            
         </>
     );
 };

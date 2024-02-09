@@ -28,7 +28,6 @@ function App(props) {
       <Routes>   
         <Route path='/login' element={<Login />} />
         <Route path='/register' element={<Registration />} />
-        <Route path='/dashboard/*' element={<Index />} />
         <Route path='/redirect' element={<Redirect />} />
         <Route path='/forgetpassword' element={<ForgetPassword />} />
         <Route path='/reset_password' element={<ResetPassword />} />
