@@ -103,6 +103,6 @@ Follow the steps below to set up and run the project locally.
 - Endpoint: `http://localhost:8086/api/private/give-role`
 - Method: POST
 - Query Parameters:
-  token: {role}
-  password: {email}
+  role: {role}
+  email: {email}
 
