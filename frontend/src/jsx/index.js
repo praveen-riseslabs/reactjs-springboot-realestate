@@ -123,6 +123,13 @@ import EmptyPage from "./components/Dashboard/EmptyPage";
 
 //Scroll To Top
 import ScrollToTop from './layouts/ScrollToTop';
+import PropertyType from "./components/Metadata/PropertyType";
+import PropertyArea from "./components/Metadata/PropertyArea";
+import Garage from "./components/Metadata/Garage";
+import FrontLot from "./components/Metadata/FrontLot";
+import Bedrooms from "./components/Metadata/Bedrooms";
+import Basement from "./components/Metadata/Basement";
+import BasementType from "./components/Metadata/BasementType";
 
 
 
@@ -142,6 +149,17 @@ const Markup = () => {
 	  { url: 'add-agent-wizard', component: <AddAgentWizard/> },
 	  { url: 'all-agents', component: <AllAgents/> },
 	  { url: 'agent-profile', component: <AgentsProfile/> },
+    
+
+    // Metadata
+	  { url: 'property-type', component: <PropertyType/> },
+	  { url: 'property-area', component: <PropertyArea/> },
+	  { url: 'garage', component: <Garage/> },
+	  { url: 'front-lot', component: <FrontLot/> },
+	  { url: 'bedrooms', component: <Bedrooms/> },
+	  { url: 'basement-type', component: <BasementType/> },
+	  { url: 'basement', component: <Basement/> },
+
     
     //property    
 	  { url: 'add-property', component: <AddProperty/> },

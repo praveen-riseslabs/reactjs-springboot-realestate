@@ -34,6 +34,42 @@ export const MenuList = [
         ],
     },
     {
+        title:"Metadata",
+        update : 'New',
+        classsChange:'mm-collapse',
+        iconStyle : < i className="flaticon-bar-chart-2" />,
+        content : [
+            {
+                title:'Property Type',
+                to:'property-type',
+            },
+            {
+                title:'Property Area',
+                to:'property-area',
+            },
+            {
+                title:'Front Lot',
+                to:'front-lot',
+            },
+            {
+                title:'Bedrooms',
+                to:'bedrooms',
+            },
+            {
+                title:'Garage',
+                to:'garage',
+            },
+            {
+                title:'Basement Type',
+                to:'basement-type',
+            },
+            {
+                title:'Basement',
+                to:'basement',
+            },
+        ]
+    },
+    {
         title:"Agents",
         update : 'New',
         classsChange:'mm-collapse',
