@@ -2,7 +2,6 @@ package com.findprecon.service.impl;
 
 import com.findprecon.dto.UserDTO;
 import com.findprecon.exception.EmailExistException;
-import com.findprecon.exception.ResourceNotFoundException;
 import com.findprecon.repository.UserRepository;
 import com.findprecon.dto.RegisterDTO;
 import com.findprecon.model.RegistrationModel;
@@ -21,8 +20,24 @@ public class ServiceIMPL implements Service {
     @Autowired
     private UserRepository userRepository;
 
+    public RegistrationModel createDefaultUser() {
+        if (!userRepository.existsByEmail("admin@gmail.com")) {
+            // Save the entity in the database
+            RegistrationModel defaultUser = new RegistrationModel();
+            defaultUser.setName("ajay");
+            defaultUser.setPassword("Test@132");
+            defaultUser.setEmail("admin@gmail.com");
+            defaultUser.setRole(Role.valueOf("Admin"));
+
+            return userRepository.save(defaultUser);
+        }
+        // User already exists, handle this case gracefully
+        return null;
+    }
     public RegistrationModel registerUser(RegisterDTO registerDTO) {
         // Validate input if necessary
+
+
 
         RegistrationModel registrationModel = RegistrationModel.builder()
                 .name(registerDTO.getName())
