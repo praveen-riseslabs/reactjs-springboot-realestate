@@ -26,9 +26,9 @@ function LogoutPage(pros){
 	const navigate = useNavigate();
     
     function onLogout() {
-      
+       localStorage.clear();
        dispatch(Logout(navigate));
-       window.location.reload();
+       
     }
     return(
         <>
