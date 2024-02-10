@@ -25,7 +25,7 @@ public class ServiceIMPL implements Service {
             // Save the entity in the database
             RegistrationModel defaultUser = new RegistrationModel();
             defaultUser.setName("FPC PROTAL");
-            defaultUser.setPassword("Test@123");
+            defaultUser.setPassword("$2a$10$w/6ntzTuMz0qobxcAhn3fuun9zHwkFTF.Fu0J.KphC5x2XJR2i9LO");
             defaultUser.setEmail("admi.fpc@gmail.com");
             defaultUser.setRole(Role.valueOf("Admin"));
 
