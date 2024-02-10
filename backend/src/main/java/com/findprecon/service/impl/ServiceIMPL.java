@@ -21,12 +21,12 @@ public class ServiceIMPL implements Service {
     private UserRepository userRepository;
 
     public RegistrationModel createDefaultUser() {
-        if (!userRepository.existsByEmail("admin@gmail.com")) {
+        if (!userRepository.existsByEmail("admi.fpc@gmail.com")) {
             // Save the entity in the database
             RegistrationModel defaultUser = new RegistrationModel();
-            defaultUser.setName("ajay");
-            defaultUser.setPassword("Test@132");
-            defaultUser.setEmail("admin@gmail.com");
+            defaultUser.setName("FPC PROTAL");
+            defaultUser.setPassword("Test@123");
+            defaultUser.setEmail("admi.fpc@gmail.com");
             defaultUser.setRole(Role.valueOf("Admin"));
 
             return userRepository.save(defaultUser);
