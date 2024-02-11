@@ -18,22 +18,18 @@ function Registration() {
     try {
       setBlocking(true);
       const res = await axios.post('http://localhost:8086/api/public/register', obj);
-      console.log(obj)
-      console.log(res)
-      
-      if (res.data || res.data.status) {
+      if (res.data.status) {
         setBlocking(false);
-        console.log('User Details are created')
         reset();
-          navigate('/login');
+        navigate('/login');
       } else {
         setBlocking(false)
         setErrorMessage(res.data.message || "Email id is already in use");
       }
     } catch (error) {
+      console.log("res.data.message", error)
       setBlocking(false);
-      console.error(error);
-      setErrorMessage("An error occurred during register. Please try again later.");
+      setErrorMessage((error.response.data && error.response.data.message) || "An error occurred during register. Please try again later.");
     }
   };
 
@@ -46,17 +42,17 @@ function Registration() {
       <h4 className='my-3'>Registration</h4>
       {errorMessage && <div className="text-danger text-left mt-3">{errorMessage}</div>}
 
-      <form className="row g-3" autoComplete="off" onSubmit={handleSubmit(onSubmit)}>
+      <form className="row g-3" autoComplete="off"onSubmit={handleSubmit(onSubmit)}>
         <div>
           <label htmlFor="name" className="form-label">Enter your full name</label>
-          <input type="text" className="form-control" id="name" {...register("name", { required: true, minLength: 3 })} />
+          <input type="text" className="form-control" autoComplete="off" role="presentation" id="name" {...register("name", { required: true, minLength: 3 })} />
           {errors.name && (errors.name.type === 'required' && (<span className='text-danger'>Full Name is required</span>))}
           {errors.name && (errors.name.type === "minLength" && (<span className="text-danger">Minimum length should be 3 characters</span>))}
         </div>
 
         <div>
           <label htmlFor="email" className="form-label">Enter your email</label>
-          <input type="email" className={`form-control ${errors.email ? 'is-invalid' : ''}`} id="email" {...register("email",
+          <input type="email" autoComplete="off" role="presentation"  className={`form-control ${errors.email ? 'is-invalid' : ''}`} id="email" {...register("email",
            { required: 'Email is required',
            pattern: { value: /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/, message: 'Invalid email address', },
            })} />
@@ -65,7 +61,7 @@ function Registration() {
 
         <div>
           <label htmlFor="pass" className="form-label">Create a password </label>
-          <input type="password" className={`form-control ${errors.password ? 'is-invalid' : ''}`} id="pass" {...register('password', { required: 'Password is required', minLength: { value: 6, message: 'Minimum length should be 6 characters' } })} />
+          <input type="password"  autoComplete="off" role="presentation" className={`form-control ${errors.password ? 'is-invalid' : ''}`} id="pass" {...register('password', { required: 'Password is required', minLength: { value: 6, message: 'Minimum length should be 6 characters' } })} />
           {errors.password && (<div className="invalid-feedback">{errors.password.message}</div>)}
         </div>
 
