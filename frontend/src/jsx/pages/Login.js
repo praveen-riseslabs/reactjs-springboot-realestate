@@ -73,7 +73,7 @@ function Login() {
                 <div className="col-md-12">
                     <label htmlFor="pass" className="form-label"> Password </label>
                     <input type="password"   className="form-control" placeholder="Enter your password" {...register('password', { required: true })} id="pass" />
-                    {errors.password && (errors.password.type === 'required' && (<span className='text-danger'>Required field</span>))}
+                    {errors.password && (errors.password.type === 'required' && (<span className='text-danger'>Password is required</span>))}
                 </div>
                 <div className="forget-password text-end"><a onClick={() => navigate('/forgetpassword')}>Forgot password? </a> </div>
                 <div className="col-12">
