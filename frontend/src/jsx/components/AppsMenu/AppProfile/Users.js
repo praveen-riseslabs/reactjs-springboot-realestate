@@ -3,12 +3,20 @@ import axios from 'axios'
 
 const Users = () => {
 
-  let [users,setUsers]= useState([])
+  let [users,setUsers]= useState([
+    // {
+    //   name:'kalyan',
+    //   email:'kalyan@gmail.com',
+    //   createdAt:10-11-11,
+
+    // }
+  ])
   const [selectedClient,setSelectedClient] = useState([]);
     
   const getValues = async () => {
     try {
       const res = await axios.get('http://localhost:8086/api/private/users');
+      console.log(res)
       if (Array.isArray(res.data)) {
         setUsers(res.data);
       } else {
@@ -16,13 +24,13 @@ const Users = () => {
       }
     } catch (error) {
       console.error('Error fetching data:', error);
-      // Handle error (e.g., display error message)
     }
   };
+  console.log(users)
   const saveRole =async(id) =>{//http://localhost:8086/api/private/give-role?email=praveen.rondi%40riseslabs.com&role=Data_Analyst_Admin
     const res = await axios.post(`http://localhost:8086/api/private/give-role?role=${selectedClient}&email=${id}`); 
     debugger;
-   
+   console.log(res)
   }
 
   const handleSelectChange = (e) => {
@@ -47,36 +55,47 @@ const Users = () => {
                <th scope="col">Role</th>
            </tr>
        </thead>
-       <tbody>
-          {
-           users.map((obj,index)=>{
-               return(
-               <tr key={index}>
-                   <td>{index+1}</td>
-                   <td>{obj.name}</td>
-                   <td>{obj.email}</td>
-                   <td>{obj.createdAt}</td>
-                   <td>
-                    <select className="form-select"  onChange={handleSelectChange}  aria-label="Default select example">
-                    <option selected value={obj.role}>{obj.role}</option>
-                    <option value="Super_Admin">Data_Entry_User</option>
-                    <option value="Data_Analyst_Admin">Data_Analyst_Admin</option>
-                    <option value="Agent">Agent</option>
-                  </select>
-                  </td>
-                  <td>
-                    <button className='btn btn-primary btn-sm' onClick={()=>saveRole(obj.email)}>
-                      Save
-                    </button>
-                  </td>
-               </tr>
-               )
-           })
-          }
-       </tbody>
-   </table>
-   </div>
-</div>
+       {users.length === 0 ? (
+            <tbody>
+              <tr>
+                <td colSpan="5" className="text-center text-danger">
+                  No users found
+                </td>
+              </tr>
+            </tbody>
+          ) : ( 
+            <tbody>
+                {
+                users.map((obj,index)=>{
+                    return(
+                    <tr key={index}>
+                        <td>{index+1}</td>
+                        <td>{obj.name}</td>
+                        <td>{obj.email}</td>
+                        <td>{obj.createdAt}</td>
+                        <td>
+                          <select className="form-select"  onChange={handleSelectChange}  aria-label="Default select example">
+                          <option selected value={obj.role}>{obj.role}</option>
+                          <option value="Super_Admin">Data_Entry_User</option>
+                          <option value="Data_Analyst_Admin">Data_Analyst_Admin</option>
+                          <option value="Agent">Agent</option>
+                        </select>
+                        </td>
+                        <td>
+                          <button className='btn btn-primary btn-sm' onClick={()=>saveRole(obj.email)}>
+                            Save
+                          </button>
+                        </td>
+                    </tr>
+                    )
+                })
+                }
+            </tbody>
+            )}
+            
+    </table>
+  </div>
+  </div>
   )
 }
 

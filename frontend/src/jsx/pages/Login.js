@@ -21,7 +21,6 @@ function Login() {
             setBlocking(true);
             let res = await axios.post('http://localhost:8086/api/public/authenticate', obj)
             if (res.data.jwtToken ) {
-              setBlocking(true);
               let token = res.data.jwtToken;
               localStorage.setItem('token', token)
               axios.get('http://localhost:8086/api/private/home', {
@@ -30,14 +29,15 @@ function Login() {
                 },
                 })
                 .then((response1) => {
-                    localStorage.setItem('userinfo', JSON.stringify(response1.data))
+                    localStorage.setItem('userinfo', JSON.stringify(response1.data));
+                    //Navigate to dashboard only after setting userinfo in localstorage
+                    navigate('/dashboard')
                 })
                 .catch((error) => {
                     console.log(error);
+                    setBlocking(false);
+                    setErrorMessage(res.message || "An error occurred while fetching userinfo.");
                 });
-             // let res2 = await axios.get('http://localhost:8086api/private/home')
-                 
-                navigate('/dashboard')
             }
             else {
                 setBlocking(false);
@@ -49,7 +49,6 @@ function Login() {
             console.error(error)
             setErrorMessage("Email or password may be incorrect, please check and try again");
         }
-
     }
 
     return (
