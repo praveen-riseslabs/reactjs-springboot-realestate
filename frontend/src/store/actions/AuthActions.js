@@ -40,7 +40,7 @@ export function signupAction(email, password, navigate) {
 }
 
 export function Logout(navigate) {
-	localStorage.removeItem('userinfo');
+	localStorage.clear();
     navigate('/redirect')
     navigate('/login');
     

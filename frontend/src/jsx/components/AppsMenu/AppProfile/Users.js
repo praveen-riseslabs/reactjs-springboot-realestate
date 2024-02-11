@@ -1,8 +1,10 @@
 import React, {useState, useEffect} from 'react'
-import axios from 'axios'
+import axios from 'axios';
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const Users = () => {
-
+  
   let [users,setUsers]= useState([
     // {
     //   name:'kalyan',
@@ -29,7 +31,17 @@ const Users = () => {
   console.log(users)
   const saveRole =async(id) =>{//http://localhost:8086/api/private/give-role?email=praveen.rondi%40riseslabs.com&role=Data_Analyst_Admin
     const res = await axios.post(`http://localhost:8086/api/private/give-role?role=${selectedClient}&email=${id}`); 
-    debugger;
+    if(res.data.status) {
+      toast.success(res.data.message, {
+        position: toast.POSITION.TOP_RIGHT,
+      });
+    //  addToast(res.data.message, { appearance: 'success' });
+    } else {
+      toast.error("Error, Unable update at this time", {
+        position:  toast.POSITION.TOP_RIGHT,
+      });
+      //addToast("Error, Unable update at this time", { appearance: 'error' });
+    }
    console.log(res)
   }
 
@@ -95,6 +107,7 @@ const Users = () => {
             
     </table>
   </div>
+  <ToastContainer />
   </div>
   )
 }
