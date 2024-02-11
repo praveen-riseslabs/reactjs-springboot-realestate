@@ -73,7 +73,7 @@ export default function ForgetPassword() {
           {err.length !== 0 && <h6 className='text-danger text-center'>{err}</h6>}
           <div class='col-md-12 '>
             <label for='email' class='form-label'> Email </label>
-            <input type='email' class='form-control' placeholder='Please enter email ID' id='email' {...register('email', { required: 'Please enter Email ID',
+            <input type='email' class='form-control' placeholder='Enter email address' id='email' {...register('email', { required: 'Please enter valid email address',
               pattern: { value: /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/, message: 'Invalid email address', }, })} />
               {errors.email && <span className="text-danger">{errors.email.message}</span>}
           </div>
