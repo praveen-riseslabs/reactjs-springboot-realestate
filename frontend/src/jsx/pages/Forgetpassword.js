@@ -1,5 +1,5 @@
 import axios from 'axios';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import '../../scss/pages/Forgotpassword.scss';
 import { Link, useNavigate } from 'react-router-dom';
@@ -14,6 +14,7 @@ export default function ForgetPassword() {
   let [err, setErr] = useState('');
   let [loading, setLoading] = useState(false);
   const [blocking, setBlocking] = useState(false);
+  const [val, setVal] = useState("");
 
   let onSubmit = async (obj) => {
     setLoading(true);
@@ -57,7 +58,9 @@ export default function ForgetPassword() {
   const gotoLogin=()=> {
     navigate('/login');
   }
-
+  function handleChange(e){
+    setVal(e.target.value);
+  }
   return (
     <BlockUi tag="div" blocking={blocking}>
       <div className='background-image'>
@@ -73,7 +76,7 @@ export default function ForgetPassword() {
           {err.length !== 0 && <h6 className='text-danger text-center'>{err}</h6>}
           <div class='col-md-12 '>
             <label for='email' class='form-label'> Email </label>
-            <input type='email' class='form-control' placeholder='Enter email address' id='email' {...register('email', { required: 'Please enter valid email address',
+            <input type='email' onKeyDown={handleChange} class='form-control' placeholder='Enter email address' id='email' {...register('email', { required: 'Please enter valid email address',
               pattern: { value: /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/, message: 'Invalid email address', }, })} />
               {errors.email && <span className="text-danger">{errors.email.message}</span>}
           </div>
@@ -83,7 +86,7 @@ export default function ForgetPassword() {
               <button id='btn'  onClick={()=> gotoLogin()} className='btn btn-secondary w-100'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Back&nbsp;&nbsp;&nbsp;&nbsp;</button>
               </div>
               <div c style={{float:"right"}}>
-              <button id='btn' type="submit" className='btn btn-primary w-100'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Send&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</button>
+              <button id='btn'  type="submit" className={'btn btn-primary w-100 ' + (!val.length ? "disabled" : "")}>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Send&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</button>
               </div>
         </div>
         </form>
