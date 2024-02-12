@@ -1,9 +1,9 @@
 export const MenuList = [
     //Dashboard
     {
-        title: 'Dashboard',	
+        title: 'Home',	
         classsChange: 'mm-collapse',		
-        iconStyle: <i className="flaticon-dashboard-1" />,
+        iconStyle: <i className="flaticon-home" />,
         content: [
             {
                 title: 'Dashboard',

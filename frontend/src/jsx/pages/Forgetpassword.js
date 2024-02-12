@@ -71,12 +71,12 @@ export default function ForgetPassword() {
         <h4 className='text-center fw-bold my-3'>Forgot Password</h4>
         {loading ? ( <p className='text-center mt-5 fs-4 fw-bold'>Sending request, please wait...</p>
         ) : (
-        <form class='row g-3 ' autoComplete='off' onSubmit={handleSubmit(onSubmit)}>
+        <form className='row g-3 ' autoComplete='off' onSubmit={handleSubmit(onSubmit)}>
           {message.length !== 0 && <h6 className='text-success text-center'>{message}</h6>}
           {err.length !== 0 && <h6 className='text-danger text-center'>{err}</h6>}
-          <div class='col-md-12 '>
-            <label for='email' class='form-label'> Email </label>
-            <input type='email' onKeyDown={handleChange} class='form-control' placeholder='Enter email address' id='email' {...register('email', { required: 'Please enter valid email address',
+          <div className='col-md-12 '>
+            <label htmlFor='email' className='form-label'> Email </label>
+            <input type='email' onKeyDown={handleChange} className='form-control' placeholder='Enter email address' id='email' {...register('email', { required: 'Please enter valid email address',
               pattern: { value: /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/, message: 'Invalid email address', }, })} />
               {errors.email && <span className="text-danger">{errors.email.message}</span>}
           </div>
