@@ -22,7 +22,7 @@ export default function ForgetPassword() {
       setBlocking(true);
       let res = await axios.post('http://localhost:8086/api/public/forgotpassword', obj );
       setLoading(false);
-
+      debugger;
       if (res.status === 200) {
         setBlocking(false);
         setErr('');
@@ -34,9 +34,9 @@ export default function ForgetPassword() {
         setBlocking(false);
         setMSG('');
         setErr(res.data.message);
-        // setTimeout(()=>{
-        //     navigate("/login");
-        // }, 2000);
+        setTimeout(()=>{
+            navigate("/login");
+        }, 2000);
       }
     } catch (error) {
       setBlocking(false);
