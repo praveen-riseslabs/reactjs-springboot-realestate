@@ -61,8 +61,12 @@ function Registration() {
 
         <div>
           <label htmlFor="pass" className="form-label">Create a password </label>
-          <input type="password"  autoComplete="off" role="presentation" className={`form-control ${errors.password ? 'is-invalid' : ''}`} id="pass" {...register('password', { required: 'Password is required', minLength: { value: 6, message: 'Minimum length should be 6 characters' } })} />
-          {errors.password && (<div className="invalid-feedback">{errors.password.message}</div>)}
+          <input type="password" autoComplete="off" role="presentation" className={`form-control ${errors.password ? 'is-invalid' : ''}`} id="pass" {...register('password', { required: 'Password is required',
+           minLength: { value: 8, message: 'Minimum length should be 8 characters' },
+           pattern: { value: /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/, message: 'Please enter minimum 1 digit, 1 Uppercase, 1 lowercase, and one special character!!' }
+          })}
+          />
+          {errors.password && (<div className="invalid-feedback">{errors.password.message}</div> )}
         </div>
 
         {/* <div>
