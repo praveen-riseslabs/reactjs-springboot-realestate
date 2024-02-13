@@ -397,11 +397,11 @@ const AddProperty = () => {
                   <div className="mb-3 col-6" style={{ overflowX: "auto" }}>
                     <label className="form-label">Price</label>
                     <input
-                    type="range"
-                    className="form-range"
-                    min="0"
-                    max="10000"
-                    step="100"
+                      type="range"
+                      className="form-range"
+                      min="0"
+                      max="10000"
+                      step="100"
                     />
                   </div>
 
@@ -447,6 +447,96 @@ const AddProperty = () => {
                       name="zip_code"
                       value={userProperty.zip_code}
                       onChange={handleInputChange}
+                    />
+                  </div>
+
+                  <div className="mb-3 col-6" style={{ overflowX: "auto" }}>
+                    <label className="form-label">
+                      Deposit with Agreement/Offer
+                    </label>
+                    <div className="d-flex align-items-center">
+                      <button className="btn btn-outline-primary me-2">
+                        Price
+                      </button>
+                      <button className="btn btn-outline-primary me-2">
+                        Days
+                      </button>
+                      <button className="btn btn-outline-primary me-2">
+                        Percentage
+                      </button>
+                    </div>
+                    <input
+                      type="range"
+                      className="form-range mt-3"
+                      min="0"
+                      max="10000"
+                      step="100"
+                    />
+                  </div>
+
+                  <div className="mb-3 col-6" style={{ overflowX: "auto" }}>
+                    <label className="form-label">Deposit structure 2</label>
+                    <div className="d-flex align-items-center">
+                      <button className="btn btn-outline-primary me-2">
+                        Price
+                      </button>
+                      <button className="btn btn-outline-primary me-2">
+                        Days
+                      </button>
+                      <button className="btn btn-outline-primary me-2">
+                        Percentage
+                      </button>
+                    </div>
+                    <input
+                      type="range"
+                      className="form-range"
+                      min="0"
+                      max="10000"
+                      step="100"
+                    />
+                  </div>
+
+                  <div className="mb-3 col-6" style={{ overflowX: "auto" }}>
+                    <label className="form-label">Deposit structure 1</label>
+                    <div className="d-flex align-items-center">
+                      <button className="btn btn-outline-primary me-2">
+                        Price
+                      </button>
+                      <button className="btn btn-outline-primary me-2">
+                        Days
+                      </button>
+                      <button className="btn btn-outline-primary me-2">
+                        Percentage
+                      </button>
+                    </div>
+                    <input
+                      type="range"
+                      className="form-range"
+                      min="0"
+                      max="10000"
+                      step="100"
+                    />
+                  </div>
+
+                  <div className="mb-3 col-6" style={{ overflowX: "auto" }}>
+                    <label className="form-label">Deposit structure 3</label>
+                    <div className="d-flex align-items-center">
+                      <button className="btn btn-outline-primary me-2">
+                        Price
+                      </button>
+                      <button className="btn btn-outline-primary me-2">
+                        Days
+                      </button>
+                      <button className="btn btn-outline-primary me-2">
+                        Percentage
+                      </button>
+                    </div>
+                    <input
+                      type="range"
+                      className="form-range"
+                      min="0"
+                      max="10000"
+                      step="100"
                     />
                   </div>
 
@@ -497,6 +587,10 @@ const AddProperty = () => {
                       className="custom-react-select"
                       isSearchable={false}
                     />
+                  </div>
+
+                  <div className=" d-flex justify-content-center">
+                    <button className="btn btn-primary">Submit</button>
                   </div>
                 </div>
               </form>
