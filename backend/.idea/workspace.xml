@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="a5d8f9d1-e681-4d2a-8edb-ab47fd62456c" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/findprecon/Filter/JwtRequestFilter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/findprecon/Filter/JwtRequestFilter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/findprecon/FindpreconApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/findprecon/FindpreconApplication.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/findprecon/dto/RegisterDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/findprecon/dto/RegisterDTO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/findprecon/model/RegistrationModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/findprecon/model/RegistrationModel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/findprecon/security/WebSecurityConfiguration.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/findprecon/security/WebSecurityConfiguration.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/findprecon/service/impl/ServiceIMPL.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/findprecon/service/impl/ServiceIMPL.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/application-dev.properties" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/application-dev.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/findprecon/Filter/JwtRequestFilter.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/findprecon/Filter/JwtRequestFilter.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/findprecon/FindpreconApplication$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/findprecon/FindpreconApplication$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/findprecon/FindpreconApplication.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/findprecon/FindpreconApplication.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/findprecon/controller/AdminApis/UpdateUserRoleController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/findprecon/controller/AdminApis/UpdateUserRoleController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/findprecon/controller/PublicApis/ForgotPasswordController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/findprecon/controller/PublicApis/ForgotPasswordController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/findprecon/controller/PublicApis/LoginController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/findprecon/controller/PublicApis/LoginController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/findprecon/controller/PublicApis/RegistrationController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/findprecon/controller/PublicApis/RegistrationController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/findprecon/controller/PublicApis/ResetPasswordController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/findprecon/controller/PublicApis/ResetPasswordController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/findprecon/dto/LoginDTO.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/findprecon/dto/LoginDTO.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/findprecon/dto/RegisterDTO.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/findprecon/dto/RegisterDTO.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/findprecon/dto/Response/LoginResponse.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/findprecon/dto/Response/LoginResponse.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/findprecon/dto/UserDTO.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/findprecon/dto/UserDTO.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/findprecon/exception/GlobalExceptionHandler.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/findprecon/exception/GlobalExceptionHandler.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/findprecon/exception/ResourceNotFoundException.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/findprecon/exception/ResourceNotFoundException.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/findprecon/model/RegistrationModel$RegistrationModelBuilder.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/findprecon/model/RegistrationModel$RegistrationModelBuilder.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/findprecon/model/RegistrationModel.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/findprecon/model/RegistrationModel.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/findprecon/security/WebSecurityConfiguration.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/findprecon/security/WebSecurityConfiguration.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/findprecon/service/Authentication/JWTAuthenticationEntryPoint.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/findprecon/service/Authentication/JWTAuthenticationEntryPoint.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/findprecon/service/impl/ForgotPasswordIMPL.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/findprecon/service/impl/ForgotPasswordIMPL.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/findprecon/service/impl/ServiceIMPL.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/findprecon/service/impl/ServiceIMPL.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/findprecon/service/impl/UserDetailsServiceImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/findprecon/service/impl/UserDetailsServiceImpl.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/findprecon/util/JwtUtil.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/findprecon/util/JwtUtil.class" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Interface" />
+        <option value="Class" />
+        <option value="Enum" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
+  <component name="MavenImportPreferences">
+    <option name="generalSettings">
+      <MavenGeneralSettings>
+        <option name="useMavenConfig" value="true" />
+      </MavenGeneralSettings>
+    </option>
+  </component>
+  <component name="ProjectId" id="2bhuU13PGVPLkU8BIpIRjmrAVVh" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "last_opened_file_path": "D:/learnings/backend"
+  }
+}]]></component>
+  <component name="RunManager" selected="Application.com.findprecon.FindpreconApplication">
+    <configuration name="FindpreconApplication" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.riseslabs.findprecon.FindpreconApplication" />
+      <module name="Smple" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.riseslabs.findprecon.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="com.findprecon.FindpreconApplication" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.findprecon.FindpreconApplication" />
+      <module name="FPCP" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.findprecon.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration default="true" type="JetRunConfigurationType">
+      <module name="backend" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Application.com.findprecon.FindpreconApplication" />
+        <item itemvalue="Application.FindpreconApplication" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="a5d8f9d1-e681-4d2a-8edb-ab47fd62456c" name="Changes" comment="" />
+      <created>1706679646372</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1706679646372</updated>
+    </task>
+    <servers />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+</project>

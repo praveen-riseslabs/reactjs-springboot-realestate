@@ -36,14 +36,11 @@ public class ServiceIMPL implements Service {
     }
     public RegistrationModel registerUser(RegisterDTO registerDTO) {
         // Validate input if necessary
-
-
-
         RegistrationModel registrationModel = RegistrationModel.builder()
                 .name(registerDTO.getName())
                 .email(registerDTO.getEmail())
                 .password(new BCryptPasswordEncoder().encode(registerDTO.getPassword()))
-                .role(Role.Agent) // Set a default role or determine it based on your requirements
+                .role(registerDTO.getRole()) // Set a default role or determine it based on your requirements
                 .build();
         if (!userRepository.existsByEmail(registrationModel.getEmail())) {
             // Save the entity in the database
