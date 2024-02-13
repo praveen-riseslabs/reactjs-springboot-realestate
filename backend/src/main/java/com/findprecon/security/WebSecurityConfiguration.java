@@ -27,6 +27,7 @@ public class WebSecurityConfiguration {
 
     public static final String[] PUBLIC_URLS = {
             "/api/public/**",
+            "/api/public/project-details/**",
             "/v3/api-docs",
             "/v2/api-docs",
             "/swagger-resources/**",

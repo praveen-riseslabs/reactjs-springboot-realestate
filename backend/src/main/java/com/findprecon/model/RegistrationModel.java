@@ -6,12 +6,7 @@ import java.util.Collection;
 import java.util.UUID;
 
 import io.swagger.v3.oas.annotations.media.Schema;
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
@@ -52,7 +47,8 @@ public class RegistrationModel implements UserDetails {
 	
 	private final String createdAt = LocalDateTime.now()
 			.format(DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm:ss"));
-	
+
+	@Enumerated(EnumType.STRING)
 	private Role role;
 
 	@Override
