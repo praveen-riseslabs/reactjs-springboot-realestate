@@ -54,16 +54,24 @@ public class ServiceIMPL implements Service {
         }
     }
 
-    @Override
+     @Override
     public List<UserDTO> getAllUsers() {
         return userRepository.findAll()
                 .stream()
-                .map(user->new UserDTO(
-                        user.getName(),
-                        user.getEmail(),
-                        user.getRole()
-                )).collect(Collectors.toList());
-
+                .filter(user -> !user.getRole().equals(Role.Admin))
+                .map(user -> {
+                    List<Role> remainingRoles = Arrays.stream(Role.values())
+                            .filter(role -> !role.equals(user.getRole()))
+                            .collect(Collectors.toList());
+                    return new UserDTO(
+                            user.getName(),
+                            user.getEmail(),
+                            user.getCreatedAt(),
+                            user.getRole(),
+                            remainingRoles
+                    );
+                })
+                .collect(Collectors.toList());
     }
 
     @Override
