@@ -8,6 +8,8 @@ import jakarta.validation.constraints.Size;
 import com.findprecon.model.Role;
 import lombok.Data;
 
+import java.util.List;
+
 @Data
 public class UserDTO {
 
