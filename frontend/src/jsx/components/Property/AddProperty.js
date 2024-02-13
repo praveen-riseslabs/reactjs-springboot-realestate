@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import Select from "react-select";
 import { useForm } from "react-hook-form";
+import * as XLSX from "xlsx";
 
 const ProjectType = [
   { value: "1", label: "For Rent" },
@@ -80,12 +81,12 @@ const basements_type = [
 const AddProperty = () => {
   const [userProperty, setUserProperty] = useState({
     project_name: "",
-    front_lot: "",
-    project_type: "",
+    front_lot_size: "",
+    property_type: "",
     developer: "",
     development_fee: "",
     project_closing: "",
-    property_price: "",
+    property_price: "0",
     cus_special_inc: "",
     comission: "",
     broker_spec_inc: "",
@@ -110,13 +111,40 @@ const AddProperty = () => {
     const value = e.target.value;
 
     setUserProperty({ ...userProperty, [name]: value });
-    console.log(name, value);
+    // console.log(name, value);
   };
 
   const { handleSubmit } = useForm();
 
   const onSubmit = (data) => {
     console.log(data);
+  };
+
+  const handleExcelSheetChange = (e) => {
+    const file = e.target.files[0];
+    const reader = new FileReader();
+    reader.onload = (e) => {
+      const data = new Uint8Array(e.target.result);
+      const workbook = XLSX.read(data, { type: "array" });
+      const firstSheetName = workbook.SheetNames[0];
+      const worksheet = workbook.Sheets[firstSheetName];
+      const parsedData = XLSX.utils.sheet_to_json(worksheet, { header: 1 });
+
+      
+      const headers = parsedData[0];
+      const values = parsedData[1]; 
+
+      const mappedData = headers.reduce((acc, curr, index) => {
+        if (values[index]) {
+          acc[curr.toLowerCase()] = values[index];
+        }
+        return acc;
+      }, {});
+
+      setUserProperty({ ...userProperty, ...mappedData });
+    };
+
+    reader.readAsArrayBuffer(file);
   };
 
   return (
@@ -152,7 +180,7 @@ const AddProperty = () => {
                       placeholder="Enter Front Lot size"
                       required=""
                       name="front_lot"
-                      value={userProperty.front_lot}
+                      value={userProperty.front_lot_size}
                       onChange={handleInputChange}
                     />
                   </div>
@@ -164,7 +192,7 @@ const AddProperty = () => {
                       className="custom-react-select"
                       isSearchable={true}
                       value={ProjectType.find(
-                        (option) => option.value === userProperty.project_type
+                        (option) => option.value === userProperty.property_type
                       )}
                       onChange={(selectedOption) =>
                         setUserProperty({
@@ -226,6 +254,9 @@ const AddProperty = () => {
 
                   <div className="mb-3 col-6">
                     <label className="form-label">Property Price</label>
+                    <output className="form-output d-block text-end">
+                      ${userProperty.property_price}
+                    </output>
                     <input
                       type="range"
                       className="form-range"
@@ -236,9 +267,6 @@ const AddProperty = () => {
                       onChange={handleInputChange}
                       name="property_price"
                     />
-                    <output className="form-output">
-                      ${userProperty.property_price}
-                    </output>
                   </div>
 
                   <div className="mb-3 col-6">
@@ -589,9 +617,21 @@ const AddProperty = () => {
                     />
                   </div>
 
+                  <div className="mb-3 col-6">
+                  <label className="form-label">Upload Excel Sheet</label>
+                  <input
+                    type="file"
+                    className="form-control"
+                    accept=".xlsx, .xls"
+                    name="excel_sheet"
+                    onChange={handleExcelSheetChange}
+                  />
+                </div>
+
                   <div className=" d-flex justify-content-center">
                     <button className="btn btn-primary">Submit</button>
                   </div>
+
                 </div>
               </form>
             </div>
