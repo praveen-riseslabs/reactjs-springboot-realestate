@@ -19,10 +19,15 @@ public class UserDTO {
     @Email(message = "Invalid email address")
     private String email;
     private Role role;
+    private String createdAt;
+    private List<Role> remainingRoles; // Add this field
 
-    public UserDTO(String name, String email, Role role) {
-        this.name= name;
-        this.email=email;
-        this.role=role;
+    public UserDTO(String name, String email, String createdAt, Role role, List<Role> remainingRoles) {
+        this.name = name;
+        this.email = email;
+        this.createdAt = createdAt;
+        this.role = role;
+        this.remainingRoles = remainingRoles;
     }
-}
+
+    }
