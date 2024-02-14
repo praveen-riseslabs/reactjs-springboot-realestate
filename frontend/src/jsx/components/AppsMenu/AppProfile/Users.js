@@ -92,7 +92,7 @@ const Users = () => {
                           <option selected value={obj.role}>
                             {obj.role}
                           </option>
-                          {obj.remainingRoles.map((item1) => {
+                          {obj.remainingRoles && obj.remainingRoles.map((item1) => {
                              return (<option value={item1}>{item1}</option>)
                           })}
                         </select>
