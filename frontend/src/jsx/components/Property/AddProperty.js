@@ -114,7 +114,7 @@ const AddProperty = () => {
     developmentCharges: "",
     maintainanceFreehold: "",
     maintainanceAmount: "",
-    propertyPrice: "",
+    propertyPrice: "0",
     customerSpecialIncentive: "",
     brokerageSpecialIncentive: "",
     beds: "",
@@ -124,6 +124,9 @@ const AddProperty = () => {
     address: "",
     zipCode: "",
   });
+
+  const [file, setFile] = useState(null);
+
 
   const handleInputChange = (e) => {
     const name = e.target.name;
@@ -139,30 +142,45 @@ const AddProperty = () => {
     console.log(userProperty);
   };
 
-  const handleExcelSheetChange = (e) => {
-    const file = e.target.files[0];
-    const reader = new FileReader();
-    reader.onload = (e) => {
-      const data = new Uint8Array(e.target.result);
-      const workbook = XLSX.read(data, { type: "array" });
-      const firstSheetName = workbook.SheetNames[0];
-      const worksheet = workbook.Sheets[firstSheetName];
-      const parsedData = XLSX.utils.sheet_to_json(worksheet, { header: 1 });
+  const handleFileChange = (e) => {
+    const selectedFile = e.target.files[0];
+    setFile(selectedFile);
+  };
 
-      const headers = parsedData[0];
-      const values = parsedData[1];
+  const handleUpload = async () => {
+    if (!file) return;
 
-      const mappedData = headers.reduce((acc, curr, index) => {
-        if (values[index]) {
-          acc[curr.toLowerCase()] = values[index];
-        }
-        return acc;
-      }, {});
+    try {
+      const fileReader = new FileReader();
+      fileReader.onload = (e) => {
+        const data = new Uint8Array(e.target.result);
+        const workbook = XLSX.read(data, { type: 'array' });
+        const sheetName = workbook.SheetNames[0];
+        const sheet = workbook.Sheets[sheetName];
+        const jsonData = XLSX.utils.sheet_to_json(sheet, { header: 1 });
 
-      setUserProperty({ ...userProperty, ...mappedData });
-    };
-
-    reader.readAsArrayBuffer(file);
+        // Assuming your Excel sheet has headers and you want to convert each row into an object
+        const objectsArray = jsonData.slice(1).map(row => {
+          const obj = {};
+          jsonData[0].forEach((header, index) => {
+            obj[header] = row[index];
+          });
+          return obj;
+        });
+        console.log(objectsArray)
+       
+        // axios.post('YOUR_BACKEND_ENDPOINT', objectsArray)
+        // .then(response => {
+        //   console.log('Data sent to backend successfully');
+        // })
+        // .catch(error => {
+        //   console.error('Error sending data to backend:', error);
+        // })
+      };
+      fileReader.readAsArrayBuffer(file);
+    } catch (error) {
+      console.error('Error reading file:', error);
+    }
   };
 
   return (
@@ -649,7 +667,7 @@ const AddProperty = () => {
                       step="100"
                       value={userProperty.propertyPrice}
                       onChange={handleInputChange}
-                      name="property_price"
+                      name="propertyPrice"
                     />
                   </div>
 
@@ -767,15 +785,12 @@ const AddProperty = () => {
                     />
                   </div>
 
-                  <div className="mb-3 col-6">
-                    <label className="form-label">Upload Excel Sheet</label>
-                    <input
-                      type="file"
-                      className="form-control"
-                      accept=".xlsx, .xls"
-                      name="excel_sheet"
-                      onChange={handleExcelSheetChange}
-                    />
+                  <div className="mb-3 col-6 ">
+                    <label className="form-label">Upload Excel Sheet</label><br/>
+                    <div className="d-flex align-items-center">
+                    <input type="file" accept=".xlsx, .xls"  name="excel_sheet" className="form-control" onChange={handleFileChange} />
+                    <button className="bg-gray p-2 m-2 border-0 " onClick={handleUpload}>Upload</button>
+                    </div>
                   </div>
 
                   <div className=" d-flex justify-content-center">
