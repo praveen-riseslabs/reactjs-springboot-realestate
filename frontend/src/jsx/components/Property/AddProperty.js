@@ -267,6 +267,11 @@ const AddProperty = () => {
                       onChange={handleInputChange}
                       name="property_price"
                     />
+
+                    <output className="form-output" style={{ display: "flex", float:"right", position:"relative", top: '-50px', right: '0' }}>
+                      ${userProperty.property_price}
+                    </output>
+
                   </div>
 
                   <div className="mb-3 col-6">
