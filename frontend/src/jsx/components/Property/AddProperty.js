@@ -80,30 +80,49 @@ const basements_type = [
 
 const AddProperty = () => {
   const [userProperty, setUserProperty] = useState({
-    project_name: "",
-    front_lot_size: "",
-    property_type: "",
+    projectName: "",
+    propertyType: "",
+    propertyArea: "",
     developer: "",
-    development_fee: "",
-    project_closing: "",
-    property_price: "0",
-    cus_special_inc: "",
-    comission: "",
-    broker_spec_inc: "",
-    developer_email: "",
-    sales_respresentative: "",
-    developer_address: "",
-    sales_office_telephone: "",
+    propertyClosing: "",
+    projectClosingYear: "",
     status: "",
-    property_area: "",
+    comission: "",
+    commissionPayment: "",
+    developerEmail: "",
+    salesRepresentatives: "",
+    salesOfficeTelephone: "",
+    developerAddress: "",
+    developmentFee: "",
+    modelName: "",
+    modelCost: "",
+    modelSize: "",
+    story: "",
+    frontLotSize: "",
+    lotDepth: "",
+    bedrooms: "",
+    garage: "",
+    bathrooms: "",
+    basement: "",
+    basementType: "",
+    inclusion: "",
+    addOn: "",
+    intersection: "",
+    projectPhase: "",
+    totalDeposit: "",
+    depositSubmission: "",
+    developmentCharges: "",
+    maintainanceFreehold: "",
+    maintainanceAmount: "",
+    propertyPrice: "",
+    customerSpecialIncentive: "",
+    brokerageSpecialIncentive: "",
     beds: "",
-    bath: "",
+    baths: "",
     area: "",
-    price: "",
     premiere: "",
-    description: "",
     address: "",
-    zip_code: "",
+    zipCode: "",
   });
 
   const handleInputChange = (e) => {
@@ -117,7 +136,7 @@ const AddProperty = () => {
   const { handleSubmit } = useForm();
 
   const onSubmit = (data) => {
-    console.log(data);
+    console.log(userProperty);
   };
 
   const handleExcelSheetChange = (e) => {
@@ -130,9 +149,8 @@ const AddProperty = () => {
       const worksheet = workbook.Sheets[firstSheetName];
       const parsedData = XLSX.utils.sheet_to_json(worksheet, { header: 1 });
 
-      
       const headers = parsedData[0];
-      const values = parsedData[1]; 
+      const values = parsedData[1];
 
       const mappedData = headers.reduce((acc, curr, index) => {
         if (values[index]) {
@@ -166,40 +184,39 @@ const AddProperty = () => {
                       className="form-control"
                       placeholder="Enter Project Name"
                       required=""
-                      name="project_name"
-                      value={userProperty.project_name}
+                      name="projectName"
+                      value={userProperty.projectName}
                       onChange={handleInputChange}
                     />
                   </div>
 
                   <div className="mb-3 col-6">
-                    <label className="form-label">Front Lot</label>
-                    <input
-                      type="text"
-                      className="form-control"
-                      placeholder="Enter Front Lot size"
-                      required=""
-                      name="front_lot"
-                      value={userProperty.front_lot_size}
-                      onChange={handleInputChange}
-                    />
-                  </div>
-
-                  <div className="mb-3 col-6">
-                    <label className="form-label">Project Type</label>
+                    <label className="form-label">Property Type</label>
                     <Select
                       options={ProjectType}
                       className="custom-react-select"
                       isSearchable={true}
                       value={ProjectType.find(
-                        (option) => option.value === userProperty.property_type
+                        (option) => option.value === userProperty.propertyType
                       )}
                       onChange={(selectedOption) =>
                         setUserProperty({
                           ...userProperty,
-                          project_type: selectedOption.value,
+                          ProjectType: selectedOption.value,
                         })
                       }
+                    />
+                  </div>
+
+                  <div className="mb-3 col-6">
+                    <label className="form-label">Property Area</label>
+                    <input
+                      type="text"
+                      className="form-control"
+                      required=""
+                      name="propertyArea"
+                      value={userProperty.propertyArea}
+                      onChange={handleInputChange}
                     />
                   </div>
 
@@ -216,13 +233,14 @@ const AddProperty = () => {
                   </div>
 
                   <div className="mb-3 col-6">
-                    <label className="form-label">Development Fee</label>
+                    <label className="form-label">Property Closing</label>
                     <input
                       type="text"
                       className="form-control"
+                      placeholder="Enter Project Name"
                       required=""
-                      name="development_fee"
-                      value={userProperty.development_fee}
+                      name="propertyClosing"
+                      value={userProperty.propertyClosing}
                       onChange={handleInputChange}
                     />
                   </div>
@@ -233,58 +251,27 @@ const AddProperty = () => {
                       type="text"
                       className="form-control"
                       required=""
-                      name="project_closing"
-                      value={userProperty.project_closing}
+                      name="projectClosingYear"
+                      value={userProperty.projectClosingYear}
                       onChange={handleInputChange}
                     />
                   </div>
 
-                  {/* <div className="mb-3 col-6">
-                    <label className="form-label">Property Price</label>
-                    <input
-                      type="text"
-                      className="form-control"
-                      placeholder="$2800"
-                      required=""
-                      name="property_price"
-                      value={userProperty.property_price}
-                      onChange={handleInputChange}
-                    />
-                  </div> */}
-
                   <div className="mb-3 col-6">
-                    <label className="form-label">Property Price</label>
-                    <output className="form-output d-block text-end">
-                      ${userProperty.property_price}
-                    </output>
-                    <input
-                      type="range"
-                      className="form-range"
-                      min="0"
-                      max="10000"
-                      step="100"
-                      value={userProperty.property_price}
-                      onChange={handleInputChange}
-                      name="property_price"
-                    />
-
-                    <output className="form-output" style={{ display: "flex", float:"right", position:"relative", top: '-50px', right: '0' }}>
-                      ${userProperty.property_price}
-                    </output>
-
-                  </div>
-
-                  <div className="mb-3 col-6">
-                    <label className="form-label">
-                      Customer Special Incentive
-                    </label>
-                    <input
-                      type="text"
-                      className="form-control"
-                      required=""
-                      name="cus_special_inc"
-                      value={userProperty.cus_special_inc}
-                      onChange={handleInputChange}
+                    <label className="form-label">Status</label>
+                    <Select
+                      options={Status}
+                      className="custom-react-select"
+                      isSearchable={false}
+                      value={Status.find(
+                        (option) => option.value === userProperty.status
+                      )}
+                      onChange={(selectedOption) =>
+                        setUserProperty({
+                          ...userProperty,
+                          status: selectedOption.value,
+                        })
+                      }
                     />
                   </div>
 
@@ -301,15 +288,14 @@ const AddProperty = () => {
                   </div>
 
                   <div className="mb-3 col-6">
-                    <label className="form-label">
-                      Brokerage Special Incentive
-                    </label>
+                    <label className="form-label">Comission Payment</label>
                     <input
                       type="text"
                       className="form-control"
+                      placeholder="Enter Project Name"
                       required=""
-                      name="broker_spec_inc"
-                      value={userProperty.broker_spec_inc}
+                      name="commissionPayment"
+                      value={userProperty.commissionPayment}
                       onChange={handleInputChange}
                     />
                   </div>
@@ -317,11 +303,11 @@ const AddProperty = () => {
                   <div className="mb-3 col-6">
                     <label className="form-label">Developer Email</label>
                     <input
-                      type="text"
+                      type="email"
                       className="form-control"
                       required=""
-                      name="developer_email"
-                      value={userProperty.developer_email}
+                      name="developerEmail"
+                      value={userProperty.developerEmail}
                       onChange={handleInputChange}
                     />
                   </div>
@@ -332,20 +318,8 @@ const AddProperty = () => {
                       type="text"
                       className="form-control"
                       required=""
-                      name="sales_respresentative"
-                      value={userProperty.sales_respresentative}
-                      onChange={handleInputChange}
-                    />
-                  </div>
-
-                  <div className="mb-3 col-6">
-                    <label className="form-label">Developer Address</label>
-                    <input
-                      type="text"
-                      className="form-control"
-                      required=""
-                      name="developer_address"
-                      value={userProperty.developer_address}
+                      name="salesRepresentatives"
+                      value={userProperty.salesRepresentatives}
                       onChange={handleInputChange}
                     />
                   </div>
@@ -356,30 +330,353 @@ const AddProperty = () => {
                       type="number"
                       className="form-control"
                       required=""
-                      name="sales_office_telephone"
-                      value={userProperty.sales_office_telephone}
+                      name="salesOfficeTelephone"
+                      value={userProperty.salesOfficeTelephone}
                       onChange={handleInputChange}
                     />
                   </div>
 
                   <div className="mb-3 col-6">
-                    <label className="form-label">Status</label>
-                    <Select
-                      options={Status}
-                      defaultValue={Status[0]}
-                      className="custom-react-select"
-                      isSearchable={false}
-                    />
-                  </div>
-
-                  <div className="mb-3 col-6">
-                    <label className="form-label">Property Area</label>
+                    <label className="form-label">Developer Address</label>
                     <input
                       type="text"
                       className="form-control"
                       required=""
-                      name="property_area"
-                      value={userProperty.property_area}
+                      name="developerAddress"
+                      value={userProperty.developerAddress}
+                      onChange={handleInputChange}
+                    />
+                  </div>
+
+                  <div className="mb-3 col-6">
+                    <label className="form-label">Development Fee</label>
+                    <input
+                      type="text"
+                      className="form-control"
+                      required=""
+                      name="developmentFee"
+                      value={userProperty.developmentFee}
+                      onChange={handleInputChange}
+                    />
+                  </div>
+
+                  <div className="mb-3 col-6">
+                    <label className="form-label">Model Name</label>
+                    <input
+                      type="text"
+                      className="form-control"
+                      required=""
+                      name="modelName"
+                      value={userProperty.modelName}
+                      onChange={handleInputChange}
+                    />
+                  </div>
+
+                  <div className="mb-3 col-6">
+                    <label className="form-label">Model cost</label>
+                    <input
+                      type="text"
+                      className="form-control"
+                      required=""
+                      name="modelCost"
+                      value={userProperty.modelCost}
+                      onChange={handleInputChange}
+                    />
+                  </div>
+
+                  <div className="mb-3 col-6">
+                    <label className="form-label">Model size</label>
+                    <input
+                      type="text"
+                      className="form-control"
+                      required=""
+                      name="modelSize"
+                      value={userProperty.modelSize}
+                      onChange={handleInputChange}
+                    />
+                  </div>
+
+                  <div className="mb-3 col-6">
+                    <label className="form-label">Story</label>
+                    <input
+                      type="text"
+                      className="form-control"
+                      required=""
+                      name="story"
+                      value={userProperty.story}
+                      onChange={handleInputChange}
+                    />
+                  </div>
+
+                  <div className="mb-3 col-6">
+                    <label className="form-label">Front Lot Size</label>
+                    <input
+                      type="text"
+                      className="form-control"
+                      placeholder="Enter Front Lot size"
+                      required=""
+                      name="frontLotSize"
+                      value={userProperty.frontLotSize}
+                      onChange={handleInputChange}
+                    />
+                  </div>
+
+                  <div className="mb-3 col-6">
+                    <label className="form-label">Lot Depth</label>
+                    <input
+                      type="text"
+                      className="form-control"
+                      placeholder="Enter Front Lot size"
+                      required=""
+                      name="lotDepth"
+                      value={userProperty.lotDepth}
+                      onChange={handleInputChange}
+                    />
+                  </div>
+
+                  <div className="mb-3 col-6">
+                    <label className="form-label">Bedrooms</label>
+                    <Select
+                      options={options1}
+                      defaultValue={options1[0]}
+                      className="custom-react-select"
+                      isSearchable={false}
+                      value={ProjectType.find(
+                        (option) => option.value === userProperty.propertyType
+                      )}
+                      onChange={(selectedOption) =>
+                        setUserProperty({
+                          ...userProperty,
+                          propertyType: selectedOption.value,
+                        })
+                      }
+                    />
+                  </div>
+
+                  <div className="mb-3 col-6">
+                    <label className="form-label">Garage</label>
+                    <Select
+                      options={options1}
+                      defaultValue={options1[0]}
+                      className="custom-react-select"
+                      isSearchable={false}
+                      value={garages.find(
+                        (option) => option.value === userProperty.garage
+                      )}
+                      onChange={(selectedOption) =>
+                        setUserProperty({
+                          ...userProperty,
+                          garage: selectedOption.value,
+                        })
+                      }
+                    />
+                  </div>
+
+                  <div className="mb-3 col-6">
+                    <label className="form-label">Bathrooms</label>
+                    <Select
+                      options={options1}
+                      defaultValue={options1[0]}
+                      className="custom-react-select"
+                      isSearchable={false}
+                      value={bathrooms.find(
+                        (option) => option.value === userProperty.bathrooms
+                      )}
+                      onChange={(selectedOption) =>
+                        setUserProperty({
+                          ...userProperty,
+                          bathrooms: selectedOption.value,
+                        })
+                      }
+                    />
+                  </div>
+
+                  <div className="mb-3 col-6">
+                    <label className="form-label">Basement </label>
+                    <Select
+                      options={options1}
+                      defaultValue={options1[0]}
+                      className="custom-react-select"
+                      isSearchable={false}
+                      value={basements.find(
+                        (option) => option.value === userProperty.basement
+                      )}
+                      onChange={(selectedOption) =>
+                        setUserProperty({
+                          ...userProperty,
+                          basement: selectedOption.value,
+                        })
+                      }
+                    />
+                  </div>
+                  <div className="mb-3 col-6">
+                    <label className="form-label">Basement Type</label>
+                    <Select
+                      options={basements_type}
+                      defaultValue={basements_type[1]}
+                      className="custom-react-select"
+                      isSearchable={false}
+                      value={basements_type.find(
+                        (option) => option.value === userProperty.basementType
+                      )}
+                      onChange={(selectedOption) =>
+                        setUserProperty({
+                          ...userProperty,
+                          basementType: selectedOption.value,
+                        })
+                      }
+                    />
+                  </div>
+
+                  <div className="mb-3 col-6">
+                    <label className="form-label">Inclusion</label>
+                    <input
+                      type="text"
+                      className="form-control"
+                      required=""
+                      name="inclusion"
+                      value={userProperty.inclusion}
+                      onChange={handleInputChange}
+                    />
+                  </div>
+
+                  <div className="mb-3 col-6">
+                    <label className="form-label">Add on</label>
+                    <input
+                      type="text"
+                      className="form-control"
+                      required=""
+                      name="addOn"
+                      value={userProperty.addOn}
+                      onChange={handleInputChange}
+                    />
+                  </div>
+
+                  <div className="mb-3 col-6">
+                    <label className="form-label">Intersection</label>
+                    <input
+                      type="text"
+                      className="form-control"
+                      required=""
+                      name="intersection"
+                      value={userProperty.intersection}
+                      onChange={handleInputChange}
+                    />
+                  </div>
+
+                  <div className="mb-3 col-6">
+                    <label className="form-label">Project Phase</label>
+                    <input
+                      type="text"
+                      className="form-control"
+                      required=""
+                      name="projectPhase"
+                      value={userProperty.projectPhase}
+                      onChange={handleInputChange}
+                    />
+                  </div>
+
+                  <div className="mb-3 col-6">
+                    <label className="form-label">Total Deposit</label>
+                    <input
+                      type="text"
+                      className="form-control"
+                      required=""
+                      name="totalDeposit"
+                      value={userProperty.totalDeposit}
+                      onChange={handleInputChange}
+                    />
+                  </div>
+
+                  <div className="mb-3 col-6">
+                    <label className="form-label">Deposit Submission</label>
+                    <input
+                      type="text"
+                      className="form-control"
+                      required=""
+                      name="depositSubmission"
+                      value={userProperty.depositSubmission}
+                      onChange={handleInputChange}
+                    />
+                  </div>
+
+                  <div className="mb-3 col-6">
+                    <label className="form-label">Development Charges</label>
+                    <input
+                      type="text"
+                      className="form-control"
+                      required=""
+                      name="developmentCharges"
+                      value={userProperty.developmentCharges}
+                      onChange={handleInputChange}
+                    />
+                  </div>
+
+                  <div className="mb-3 col-6">
+                    <label className="form-label">Maintainance freehold</label>
+                    <input
+                      type="text"
+                      className="form-control"
+                      required=""
+                      name="maintainanceFreehold"
+                      value={userProperty.maintainanceFreehold}
+                      onChange={handleInputChange}
+                    />
+                  </div>
+
+                  <div className="mb-3 col-6">
+                    <label className="form-label">Maintainance amount</label>
+                    <input
+                      type="text"
+                      className="form-control"
+                      required=""
+                      name="maintainanceAmount"
+                      value={userProperty.maintainanceAmount}
+                      onChange={handleInputChange}
+                    />
+                  </div>
+
+                  <div className="mb-3 col-6">
+                    <label className="form-label">Property Price</label>
+                    <output className="form-output d-block text-end">
+                      ${userProperty.propertyPrice}
+                    </output>
+                    <input
+                      type="range"
+                      className="form-range"
+                      min="0"
+                      max="10000"
+                      step="100"
+                      value={userProperty.propertyPrice}
+                      onChange={handleInputChange}
+                      name="property_price"
+                    />
+                  </div>
+
+                  <div className="mb-3 col-6">
+                    <label className="form-label">
+                      Customer Special Incentive
+                    </label>
+                    <input
+                      type="text"
+                      className="form-control"
+                      required=""
+                      name="customerSpecialIncentive"
+                      value={userProperty.customerSpecialIncentive}
+                      onChange={handleInputChange}
+                    />
+                  </div>
+
+                  <div className="mb-3 col-6">
+                    <label className="form-label">
+                      Brokerage Special Incentive
+                    </label>
+                    <input
+                      type="text"
+                      className="form-control"
+                      required=""
+                      name="brokerageSpecialIncentive"
+                      value={userProperty.brokerageSpecialIncentive}
                       onChange={handleInputChange}
                     />
                   </div>
@@ -389,20 +686,36 @@ const AddProperty = () => {
                   <div className="mb-3 col-6">
                     <label className="form-label">Beds</label>
                     <Select
-                      options={beds}
-                      defaultValue={beds[0]}
+                      options={beds} // Assuming 'beds' is the correct array of options
+                      defaultValue={beds.find(
+                        (option) => option.value === userProperty.bedrooms
+                      )}
                       className="custom-react-select"
                       isSearchable={false}
+                      onChange={(selectedOption) =>
+                        setUserProperty({
+                          ...userProperty,
+                          bedrooms: selectedOption.value,
+                        })
+                      }
                     />
                   </div>
 
                   <div className="mb-3 col-6">
                     <label className="form-label">Baths</label>
                     <Select
-                      options={options1}
-                      defaultValue={options1[0]}
+                      options={bathrooms}
+                      defaultValue={bathrooms.find(
+                        (option) => option.value === userProperty.bathrooms
+                      )}
                       className="custom-react-select"
                       isSearchable={false}
+                      onChange={(selectedOption) =>
+                        setUserProperty({
+                          ...userProperty,
+                          bathrooms: selectedOption.value,
+                        })
+                      }
                     />
                   </div>
 
@@ -418,26 +731,6 @@ const AddProperty = () => {
                     />
                   </div>
 
-                  {/* <div className="mb-3 col-6">
-                    <label className="form-label">Price</label>
-                    <input
-                      type="text"
-                      className="form-control"
-                      placeholder="$3000"
-                    />
-                  </div> */}
-
-                  <div className="mb-3 col-6" style={{ overflowX: "auto" }}>
-                    <label className="form-label">Price</label>
-                    <input
-                      type="range"
-                      className="form-range"
-                      min="0"
-                      max="10000"
-                      step="100"
-                    />
-                  </div>
-
                   <div className="mb-3 col-6">
                     <label className="form-label">Premiere</label>
                     <Select
@@ -447,15 +740,6 @@ const AddProperty = () => {
                       isSearchable={false}
                     />
                   </div>
-
-                  {/* <div className="mb-3 col-12">
-                    <label className="form-label">Description</label>
-                    <textarea
-                      className="form-control"
-                      defaultValue={""}
-                      rows="4"
-                    />
-                  </div> */}
 
                   <div className="mb-3 col-sm-6">
                     <label className="form-label">Address</label>
@@ -477,166 +761,26 @@ const AddProperty = () => {
                       className="form-control"
                       placeholder="Enter pin code"
                       required=""
-                      name="zip_code"
-                      value={userProperty.zip_code}
+                      name="zipCode"
+                      value={userProperty.zipCode}
                       onChange={handleInputChange}
                     />
                   </div>
 
-                  <div className="mb-3 col-6" style={{ overflowX: "auto" }}>
-                    <label className="form-label">
-                      Deposit with Agreement/Offer
-                    </label>
-                    <div className="d-flex align-items-center">
-                      <button className="btn btn-outline-primary me-2">
-                        Price
-                      </button>
-                      <button className="btn btn-outline-primary me-2">
-                        Days
-                      </button>
-                      <button className="btn btn-outline-primary me-2">
-                        Percentage
-                      </button>
-                    </div>
-                    <input
-                      type="range"
-                      className="form-range mt-3"
-                      min="0"
-                      max="10000"
-                      step="100"
-                    />
-                  </div>
-
-                  <div className="mb-3 col-6" style={{ overflowX: "auto" }}>
-                    <label className="form-label">Deposit structure 2</label>
-                    <div className="d-flex align-items-center">
-                      <button className="btn btn-outline-primary me-2">
-                        Price
-                      </button>
-                      <button className="btn btn-outline-primary me-2">
-                        Days
-                      </button>
-                      <button className="btn btn-outline-primary me-2">
-                        Percentage
-                      </button>
-                    </div>
-                    <input
-                      type="range"
-                      className="form-range"
-                      min="0"
-                      max="10000"
-                      step="100"
-                    />
-                  </div>
-
-                  <div className="mb-3 col-6" style={{ overflowX: "auto" }}>
-                    <label className="form-label">Deposit structure 1</label>
-                    <div className="d-flex align-items-center">
-                      <button className="btn btn-outline-primary me-2">
-                        Price
-                      </button>
-                      <button className="btn btn-outline-primary me-2">
-                        Days
-                      </button>
-                      <button className="btn btn-outline-primary me-2">
-                        Percentage
-                      </button>
-                    </div>
-                    <input
-                      type="range"
-                      className="form-range"
-                      min="0"
-                      max="10000"
-                      step="100"
-                    />
-                  </div>
-
-                  <div className="mb-3 col-6" style={{ overflowX: "auto" }}>
-                    <label className="form-label">Deposit structure 3</label>
-                    <div className="d-flex align-items-center">
-                      <button className="btn btn-outline-primary me-2">
-                        Price
-                      </button>
-                      <button className="btn btn-outline-primary me-2">
-                        Days
-                      </button>
-                      <button className="btn btn-outline-primary me-2">
-                        Percentage
-                      </button>
-                    </div>
-                    <input
-                      type="range"
-                      className="form-range"
-                      min="0"
-                      max="10000"
-                      step="100"
-                    />
-                  </div>
-
-                  <div className="mb-3 col-6" style={{ overflowX: "auto" }}>
-                    <label className="form-label">Bedrooms</label>
-                    <Select
-                      options={options1}
-                      defaultValue={options1[0]}
-                      className="custom-react-select"
-                      isSearchable={false}
-                    />
-                  </div>
-
-                  <div className="mb-3 col-6" style={{ overflowX: "auto" }}>
-                    <label className="form-label">Garage</label>
-                    <Select
-                      options={options1}
-                      defaultValue={options1[0]}
-                      className="custom-react-select"
-                      isSearchable={false}
-                    />
-                  </div>
-
-                  <div className="mb-3 col-6" style={{ overflowX: "auto" }}>
-                    <label className="form-label">Bathrooms</label>
-                    <Select
-                      options={options1}
-                      defaultValue={options1[0]}
-                      className="custom-react-select"
-                      isSearchable={false}
-                    />
-                  </div>
-
-                  <div className="mb-3 col-6" style={{ overflowX: "auto" }}>
-                    <label className="form-label">Basement</label>
-                    <Select
-                      options={options1}
-                      defaultValue={options1[0]}
-                      className="custom-react-select"
-                      isSearchable={false}
-                    />
-                  </div>
-                  <div className="mb-3 col-6" style={{ overflowX: "auto" }}>
-                    <label className="form-label">Basement Type</label>
-                    <Select
-                      options={basements_type}
-                      defaultValue={basements_type[1]}
-                      className="custom-react-select"
-                      isSearchable={false}
-                    />
-                  </div>
-
                   <div className="mb-3 col-6">
-                  <label className="form-label">Upload Excel Sheet</label>
-                  <input
-                    type="file"
-                    className="form-control"
-                    accept=".xlsx, .xls"
-                    name="excel_sheet"
-                    onChange={handleExcelSheetChange}
-                  />
-                </div>
+                    <label className="form-label">Upload Excel Sheet</label>
+                    <input
+                      type="file"
+                      className="form-control"
+                      accept=".xlsx, .xls"
+                      name="excel_sheet"
+                      onChange={handleExcelSheetChange}
+                    />
+                  </div>
 
                   <div className=" d-flex justify-content-center">
                     <button className="btn btn-primary">Submit</button>
                   </div>
-
                 </div>
               </form>
             </div>
