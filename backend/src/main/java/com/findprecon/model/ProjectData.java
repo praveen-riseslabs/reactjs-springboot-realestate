@@ -1,6 +1,8 @@
 package com.findprecon.model;
 
+import com.findprecon.enums.Basement;
 import com.findprecon.enums.ProjectType;
+import com.findprecon.enums.Status;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -65,8 +67,27 @@ public class ProjectData {
     @Column(name = "PROPERTY_AREA")
     private String propertyArea;
 
-    @OneToOne(cascade = CascadeType.ALL)
-    private Metadata metadata;
-//    private List<Metadata> metadata = new ArrayList<>();
+    @Column(name="PROPERTY_TYPE")
+    private String propertyType;
+
+    @Column(name="STATUS")
+    private Status status;
+
+    @Column(name="BEDROOMS")
+    private int bedrooms;
+
+    @Column(name="BATHROOMS")
+    private int bathrooms;
+
+    @Column(name="BASEMENT")
+    private Basement basement;
+
+    @Column(name="GARAGE")
+    private int garage;
+
+    @Column(name="FRONT_LOT")
+    private int frontLot;
+
+
 
 }

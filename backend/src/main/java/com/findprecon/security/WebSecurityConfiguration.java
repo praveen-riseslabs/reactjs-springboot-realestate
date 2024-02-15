@@ -22,7 +22,7 @@ import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 
 @Configuration
 @EnableWebSecurity
-@EnableMethodSecurity
+@EnableMethodSecurity(prePostEnabled = true)
 public class WebSecurityConfiguration {
 
     public static final String[] PUBLIC_URLS = {
@@ -49,7 +49,8 @@ public class WebSecurityConfiguration {
                 .cors(cors->cors.disable())
                 .authorizeHttpRequests(
                         auth->
-                                auth.requestMatchers("/api/private/home").authenticated()
+                                auth.requestMatchers("/api/private/**")
+                                        .authenticated()
                                         .requestMatchers(PUBLIC_URLS).permitAll()
                                         .anyRequest().permitAll())
                 .exceptionHandling(ex->ex.authenticationEntryPoint(point))
