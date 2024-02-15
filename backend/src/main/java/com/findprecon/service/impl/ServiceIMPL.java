@@ -11,6 +11,7 @@ import com.findprecon.service.Service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
+import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -27,7 +28,7 @@ public class ServiceIMPL implements Service {
             defaultUser.setName("FPC PROTAL");
             defaultUser.setPassword("$2a$10$w/6ntzTuMz0qobxcAhn3fuun9zHwkFTF.Fu0J.KphC5x2XJR2i9LO");
             defaultUser.setEmail("admi.fpc@gmail.com");
-            defaultUser.setRole(Role.valueOf("Admin"));
+            defaultUser.setRole(Role.valueOf("ADMIN"));
 
             return userRepository.save(defaultUser);
         }
@@ -55,7 +56,7 @@ public class ServiceIMPL implements Service {
     public List<UserDTO> getAllUsers() {
         return userRepository.findAll()
                 .stream()
-                .filter(user -> !user.getRole().equals(Role.Admin))
+                .filter(user -> !user.getRole().equals(Role.ADMIN))
                 .map(user -> {
                     List<Role> remainingRoles = Arrays.stream(Role.values())
                             .filter(role -> !role.equals(user.getRole()))

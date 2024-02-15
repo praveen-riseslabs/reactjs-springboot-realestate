@@ -5,38 +5,36 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="a5d8f9d1-e681-4d2a-8edb-ab47fd62456c" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/findprecon/Filter/JwtRequestFilter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/findprecon/Filter/JwtRequestFilter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/findprecon/FindpreconApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/findprecon/FindpreconApplication.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/findprecon/dto/RegisterDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/findprecon/dto/RegisterDTO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/findprecon/dto/MetadataDto.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/findprecon/dto/ProjectDataDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/findprecon/dto/ProjectDataDto.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/findprecon/model/Metadata.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/findprecon/model/ProjectData.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/findprecon/model/ProjectData.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/findprecon/model/RegistrationModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/findprecon/model/RegistrationModel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/findprecon/model/Role.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/findprecon/model/Role.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/findprecon/repository/MetadataRepository.java" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/findprecon/security/WebSecurityConfiguration.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/findprecon/security/WebSecurityConfiguration.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/findprecon/service/MetadataService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/findprecon/service/impl/MetadataServiceImpl.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/findprecon/service/impl/ProjectDataServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/findprecon/service/impl/ProjectDataServiceImpl.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/findprecon/service/impl/ServiceIMPL.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/findprecon/service/impl/ServiceIMPL.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/application-dev.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application-dev.properties" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/application-dev.properties" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/application-dev.properties" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/application.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/findprecon/Filter/JwtRequestFilter.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/findprecon/Filter/JwtRequestFilter.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/findprecon/FindpreconApplication$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/findprecon/FindpreconApplication$1.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/findprecon/FindpreconApplication.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/findprecon/FindpreconApplication.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/findprecon/controller/AdminApis/UpdateUserRoleController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/findprecon/controller/AdminApis/UpdateUserRoleController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/findprecon/controller/PublicApis/ForgotPasswordController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/findprecon/controller/PublicApis/ForgotPasswordController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/findprecon/controller/PublicApis/LoginController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/findprecon/controller/PublicApis/LoginController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/findprecon/controller/PublicApis/RegistrationController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/findprecon/controller/PublicApis/RegistrationController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/findprecon/controller/PublicApis/ResetPasswordController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/findprecon/controller/PublicApis/ResetPasswordController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/findprecon/dto/LoginDTO.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/findprecon/dto/LoginDTO.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/findprecon/dto/RegisterDTO.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/findprecon/dto/RegisterDTO.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/findprecon/dto/Response/LoginResponse.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/findprecon/dto/Response/LoginResponse.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/findprecon/dto/MetadataDto.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/findprecon/dto/ProjectDataDto.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/findprecon/dto/ProjectDataDto.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/findprecon/dto/UserDTO.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/findprecon/dto/UserDTO.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/findprecon/exception/GlobalExceptionHandler.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/findprecon/exception/GlobalExceptionHandler.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/findprecon/exception/ResourceNotFoundException.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/findprecon/exception/ResourceNotFoundException.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/findprecon/model/Metadata.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/findprecon/model/ProjectData.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/findprecon/model/ProjectData.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/findprecon/model/RegistrationModel$RegistrationModelBuilder.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/findprecon/model/RegistrationModel$RegistrationModelBuilder.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/findprecon/model/RegistrationModel.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/findprecon/model/RegistrationModel.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/findprecon/model/Role.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/findprecon/model/Role.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/findprecon/repository/MetadataRepository.class" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/findprecon/security/WebSecurityConfiguration.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/findprecon/security/WebSecurityConfiguration.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/findprecon/service/Authentication/JWTAuthenticationEntryPoint.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/findprecon/service/Authentication/JWTAuthenticationEntryPoint.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/findprecon/service/impl/ForgotPasswordIMPL.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/findprecon/service/impl/ForgotPasswordIMPL.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/findprecon/service/MetadataService.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/findprecon/service/impl/MetadataServiceImpl.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/findprecon/service/impl/ProjectDataServiceImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/findprecon/service/impl/ProjectDataServiceImpl.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/findprecon/service/impl/ServiceIMPL.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/findprecon/service/impl/ServiceIMPL.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/findprecon/service/impl/UserDetailsServiceImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/findprecon/service/impl/UserDetailsServiceImpl.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/findprecon/util/JwtUtil.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/findprecon/util/JwtUtil.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -47,8 +45,8 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="Interface" />
-        <option value="Class" />
         <option value="Enum" />
+        <option value="Class" />
       </list>
     </option>
   </component>
@@ -74,9 +72,18 @@
   "keyToString": {
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
-    "last_opened_file_path": "D:/learnings/backend"
+    "last_opened_file_path": "F:/project-findprecon/FPCProject/backend/src/main/java/com/findprecon/repository"
   }
 }]]></component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="F:\project-findprecon\FPCProject\backend\src\main\java\com\findprecon\repository" />
+      <recent name="F:\project-findprecon\FPCProject\backend\src\main\java\com\findprecon\service\impl" />
+      <recent name="F:\project-findprecon\FPCProject\backend\src\main\java\com\findprecon\service" />
+      <recent name="F:\project-findprecon\FPCProject\backend\src\main\java\com\findprecon\model" />
+      <recent name="F:\project-findprecon\FPCProject\backend\src\main\java\com\findprecon\dto" />
+    </key>
+  </component>
   <component name="RunManager" selected="Application.com.findprecon.FindpreconApplication">
     <configuration name="FindpreconApplication" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="com.riseslabs.findprecon.FindpreconApplication" />
