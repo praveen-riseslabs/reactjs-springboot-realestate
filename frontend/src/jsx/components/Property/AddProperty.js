@@ -92,8 +92,6 @@ const AddProperty = () => {
     developerEmail: "",
     salesRepresentatives: "",
     salesOfficeTelephone: "",
-    developerAddress: "",
-    developmentFee: "",
     modelName: "",
     modelCost: "",
     modelSize: "",
@@ -114,15 +112,10 @@ const AddProperty = () => {
     developmentCharges: "",
     maintainanceFreehold: "",
     maintainanceAmount: "",
-    propertyPrice: "0",
-    customerSpecialIncentive: "",
-    brokerageSpecialIncentive: "",
-    beds: "",
-    baths: "",
-    area: "",
-    premiere: "",
+    developerSpecialIncentive: "",
+    dhreSpecialIncentive: "",
+    websiteLink: "",
     address: "",
-    zipCode: "",
   });
 
   const [file, setFile] = useState(null);
@@ -255,7 +248,6 @@ const AddProperty = () => {
                     <input
                       type="text"
                       className="form-control"
-                      placeholder="Enter Project Name"
                       required=""
                       name="propertyClosing"
                       value={userProperty.propertyClosing}
@@ -310,7 +302,6 @@ const AddProperty = () => {
                     <input
                       type="text"
                       className="form-control"
-                      placeholder="Enter Project Name"
                       required=""
                       name="commissionPayment"
                       value={userProperty.commissionPayment}
@@ -354,29 +345,6 @@ const AddProperty = () => {
                     />
                   </div>
 
-                  <div className="mb-3 col-6">
-                    <label className="form-label">Developer Address</label>
-                    <input
-                      type="text"
-                      className="form-control"
-                      required=""
-                      name="developerAddress"
-                      value={userProperty.developerAddress}
-                      onChange={handleInputChange}
-                    />
-                  </div>
-
-                  <div className="mb-3 col-6">
-                    <label className="form-label">Development Fee</label>
-                    <input
-                      type="text"
-                      className="form-control"
-                      required=""
-                      name="developmentFee"
-                      value={userProperty.developmentFee}
-                      onChange={handleInputChange}
-                    />
-                  </div>
 
                   <div className="mb-3 col-6">
                     <label className="form-label">Model Name</label>
@@ -654,110 +622,49 @@ const AddProperty = () => {
                     />
                   </div>
 
-                  <div className="mb-3 col-6">
-                    <label className="form-label">Property Price</label>
-                    <output className="form-output d-block text-end">
-                      ${userProperty.propertyPrice}
-                    </output>
-                    <input
-                      type="range"
-                      className="form-range"
-                      min="0"
-                      max="10000"
-                      step="100"
-                      value={userProperty.propertyPrice}
-                      onChange={handleInputChange}
-                      name="propertyPrice"
-                    />
-                  </div>
+                
 
                   <div className="mb-3 col-6">
                     <label className="form-label">
-                      Customer Special Incentive
+                    Developer Special Incentive
                     </label>
                     <input
                       type="text"
                       className="form-control"
                       required=""
-                      name="customerSpecialIncentive"
-                      value={userProperty.customerSpecialIncentive}
+                      name="developerSpecialIncentive"
+                      value={userProperty.developerSpecialIncentive}
                       onChange={handleInputChange}
                     />
                   </div>
 
                   <div className="mb-3 col-6">
                     <label className="form-label">
-                      Brokerage Special Incentive
+                    DHRE SPECIAL INCENTIVE
                     </label>
                     <input
                       type="text"
                       className="form-control"
                       required=""
-                      name="brokerageSpecialIncentive"
-                      value={userProperty.brokerageSpecialIncentive}
+                      name="dhreSpecialIncentive"
+                      value={userProperty.dhreSpecialIncentive}
                       onChange={handleInputChange}
                     />
                   </div>
 
+                  <div className="mb-3 col-6">
+                    <label className="form-label">Website Link</label>
+                    <input
+                      type="text"
+                      className="form-control"
+                      required=""
+                      name="websiteLink"
+                      value={userProperty.websiteLink}
+                      onChange={handleInputChange}
+                    />
+                  </div>
+             
                   <hr className="my-4" />
-
-                  <div className="mb-3 col-6">
-                    <label className="form-label">Beds</label>
-                    <Select
-                      options={beds} // Assuming 'beds' is the correct array of options
-                      defaultValue={beds.find(
-                        (option) => option.value === userProperty.bedrooms
-                      )}
-                      className="custom-react-select"
-                      isSearchable={false}
-                      onChange={(selectedOption) =>
-                        setUserProperty({
-                          ...userProperty,
-                          bedrooms: selectedOption.value,
-                        })
-                      }
-                    />
-                  </div>
-
-                  <div className="mb-3 col-6">
-                    <label className="form-label">Baths</label>
-                    <Select
-                      options={bathrooms}
-                      defaultValue={bathrooms.find(
-                        (option) => option.value === userProperty.bathrooms
-                      )}
-                      className="custom-react-select"
-                      isSearchable={false}
-                      onChange={(selectedOption) =>
-                        setUserProperty({
-                          ...userProperty,
-                          bathrooms: selectedOption.value,
-                        })
-                      }
-                    />
-                  </div>
-
-                  <div className="mb-3 col-6">
-                    <label className="form-label">Area</label>
-                    <input
-                      type="text"
-                      className="form-control"
-                      placeholder="85 sq ft"
-                      name="area"
-                      value={userProperty.area}
-                      onChange={handleInputChange}
-                    />
-                  </div>
-
-                  <div className="mb-3 col-6">
-                    <label className="form-label">Premiere</label>
-                    <Select
-                      options={options2}
-                      defaultValue={options2[0]}
-                      className="custom-react-select"
-                      isSearchable={false}
-                    />
-                  </div>
 
                   <div className="mb-3 col-sm-6">
                     <label className="form-label">Address</label>
@@ -771,19 +678,7 @@ const AddProperty = () => {
                     />
                   </div>
 
-                  <div className="mb-3 col-sm-6">
-                    <label className="form-label">Zip Code</label>
-                    <input
-                      type="number"
-                      id="zip_code"
-                      className="form-control"
-                      placeholder="Enter pin code"
-                      required=""
-                      name="zipCode"
-                      value={userProperty.zipCode}
-                      onChange={handleInputChange}
-                    />
-                  </div>
+               
 
                   <div className="mb-3 col-6 ">
                     <label className="form-label">Upload Excel Sheet</label><br/>
