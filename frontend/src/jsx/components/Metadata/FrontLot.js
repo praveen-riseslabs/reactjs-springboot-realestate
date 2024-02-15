@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import './style.scss'
+// import './style.scss'
 
 function FrontLot() {
   const [metadata, setMetadata] = useState([

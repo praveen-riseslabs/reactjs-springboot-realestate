@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import './style.scss'
+// import './style.scss'
 
 function PropertyType() {
   const [metadata, setMetadata] = useState([
