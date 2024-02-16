@@ -8,7 +8,7 @@ import java.security.Permission;
 import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
-@RequiredArgsConstructor
+
 public enum Role {
 	
 	SUPER_ADMIN,
@@ -17,9 +17,6 @@ public enum Role {
 	DATA_ANALYST_ADMIN,
 	AGENT;
 
-	public List<SimpleGrantedAuthority> getAuthorities() {
-		SimpleGrantedAuthority authorities = new SimpleGrantedAuthority(this.name());
-		return List.of(authorities);
-	}
+
 	
 }
