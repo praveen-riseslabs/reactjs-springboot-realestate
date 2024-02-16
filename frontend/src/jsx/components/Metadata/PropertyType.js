@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 function PropertyType() {
   const [metadata, setMetadata] = useState([]);
@@ -10,9 +12,15 @@ function PropertyType() {
   const getvalues = () => {
     axios.get('http://localhost:8086/api/metadata/property/all')
     .then(response => {
+      toast.success("Data saved successfully", {
+        position: toast.POSITION.TOP_RIGHT
+      });
       setMetadata(response.data);
     })
     .catch(error => {
+      toast.error("Error fetching data", {
+        position: toast.POSITION.TOP_RIGHT
+      });
       console.error('Error fetching data:', error);
     });
   }
@@ -35,12 +43,18 @@ function PropertyType() {
     
     axios.post('http://localhost:8086/api/metadata/property/add', newData)
       .then(response => {
+        toast.success("Data saved successfully", {
+          position: toast.POSITION.TOP_RIGHT
+        });
         console.log('Data saved successfully:', response.data);
         setNewType(false);
         setEditingIndex(-1);
         getvalues()
       })
       .catch(error => {
+        toast.error("Error saving data", {
+          position: toast.POSITION.TOP_RIGHT
+        });
         console.error('Error saving data:', error);
         getvalues()
       });
@@ -59,11 +73,17 @@ function PropertyType() {
   
     axios.put(`http://localhost:8086/api/metadata/property/update/${updatedData.id}`, updatedData)
       .then(response => {
+        toast.success("Data updated successfully", {
+          position: toast.POSITION.TOP_RIGHT
+        });
         console.log('Data updated successfully:', response.data);
         setEditingIndex(-1);
         getvalues()
       })
       .catch(error => {
+        toast.error("Error updating data", {
+          position: toast.POSITION.TOP_RIGHT
+        });
         console.error('Error updating data:', error);
       });
   };
@@ -74,11 +94,16 @@ function PropertyType() {
     axios.delete(`http://localhost:8086/api/metadata/property/delete/${garageIdToDelete}`)
       .then(response => {
         console.log('Data deleted successfully:', response.data);
-        
+        toast.success("Data deleted successfully", {
+          position: toast.POSITION.TOP_RIGHT
+        });
         const updatedMetadata = metadata.filter((item, i) => i !== index);
         setMetadata(updatedMetadata);
       })
       .catch(error => {
+        toast.error("Error deleting data", {
+          position: toast.POSITION.TOP_RIGHT
+        });
         console.error('Error deleting data:', error);
       });
   };
@@ -126,6 +151,7 @@ function PropertyType() {
           ))}
         </tbody>
       </table>
+      <ToastContainer/>
     </div>
   );
 }

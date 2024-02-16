@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 function FrontLot() {
   const [metadata, setMetadata] = useState([]);
@@ -35,12 +37,18 @@ function FrontLot() {
     
     axios.post('http://localhost:8086/api/metadata/frontlot/add', newData)
       .then(response => {
+        toast.success("Data saved successfully", {
+          position: toast.POSITION.TOP_RIGHT
+        });
         console.log('Data saved successfully:', response.data);
         setNewType(false);
         setEditingIndex(-1);
         getvalues()
       })
       .catch(error => {
+        toast.error("Error saving data", {
+          position: toast.POSITION.TOP_RIGHT
+        });
         console.error('Error saving data:', error);
         getvalues()
       });
@@ -59,11 +67,17 @@ function FrontLot() {
   
     axios.put(`http://localhost:8086/api/metadata/frontlot/update/${updatedData.id}`, updatedData)
       .then(response => {
+        toast.success("Data updated successfully", {
+          position: toast.POSITION.TOP_RIGHT
+        });
         console.log('Data updated successfully:', response.data);
         setEditingIndex(-1);
         getvalues()
       })
       .catch(error => {
+        toast.error("Error updating data", {
+          position: toast.POSITION.TOP_RIGHT
+        });
         console.error('Error updating data:', error);
       });
   };
@@ -73,12 +87,18 @@ function FrontLot() {
     const garageIdToDelete = metadata[index].id; 
     axios.delete(`http://localhost:8086/api/metadata/frontlot/delete/${garageIdToDelete}`)
       .then(response => {
+        toast.success("Data deleted successfully", {
+          position: toast.POSITION.TOP_RIGHT
+        });
         console.log('Data deleted successfully:', response.data);
         
         const updatedMetadata = metadata.filter((item, i) => i !== index);
         setMetadata(updatedMetadata);
       })
       .catch(error => {
+        toast.error("Error deleting data", {
+          position: toast.POSITION.TOP_RIGHT
+        });
         console.error('Error deleting data:', error);
       });
   };
@@ -126,6 +146,7 @@ function FrontLot() {
           ))}
         </tbody>
       </table>
+      <ToastContainer/>
     </div>
   );
 }
