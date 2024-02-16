@@ -114,11 +114,11 @@ function FrontLot() {
               <td className='w-50'>
                 {editingIndex === index ? (
                   newType ? <button  className="btn btn-success" onClick={() => handleNewData(index)}>Add Data</button> :
-                  <button className="btn btn-success" onClick={() => handleSave(index)}>Save</button>
+                  <button className="btn btn-success btn-sm" onClick={() => handleSave(index)}>Save</button>
                 ) : (
                   <>
-                    <button className="btn btn-primary" onClick={() => handleEdit(index)}>Edit</button>
-                    <button className="btn btn-danger" onClick={() => handleDelete(index)}>Delete</button>
+                    <button className="btn btn-primary btn-sm" style={{marginRight:"10px"}} onClick={() => handleEdit(index)}>Edit</button>
+                    <button className="btn btn-danger btn-sm" onClick={() => handleDelete(index)}>Delete</button>
                   </>
                 )}
               </td>
