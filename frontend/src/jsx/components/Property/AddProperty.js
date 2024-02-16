@@ -675,11 +675,107 @@ const AddProperty = () => {
                       onChange={handleInputChange}
                     />
                   </div>
+
+                  <div className=" d-flex justify-content-end mt-3">
+                    <button className="btn btn-secondary">Add New Property</button>
+                  </div>
              
                   <hr className="my-4" />
 
+                 
+
+   <div className="mb-3 col-6" style={{ overflowX: "auto" }}>
+                    <label className="form-label">
+                      Deposit with Agreement/Offer
+                    </label>
+                    <div className="d-flex align-items-center">
+                      <button className="btn btn-outline-primary me-2">
+                        Price
+                      </button>
+                      <button className="btn btn-outline-primary me-2">
+                        Days
+                      </button>
+                      <button className="btn btn-outline-primary me-2">
+                        Percentage
+                      </button>
+                    </div>
+                    <input
+                      type="range"
+                      className="form-range mt-3"
+                      min="0"
+                      max="10000"
+                      step="100"
+                    />
+                  </div>
+
+                  <div className="mb-3 col-6" style={{ overflowX: "auto" }}>
+                    <label className="form-label">Deposit structure 2</label>
+                    <div className="d-flex align-items-center">
+                      <button className="btn btn-outline-primary me-2">
+                        Price
+                      </button>
+                      <button className="btn btn-outline-primary me-2">
+                        Days
+                      </button>
+                      <button className="btn btn-outline-primary me-2">
+                        Percentage
+                      </button>
+                    </div>
+                    <input
+                      type="range"
+                      className="form-range"
+                      min="0"
+                      max="10000"
+                      step="100"
+                    />
+                  </div>
+
+                  <div className="mb-3 col-6" style={{ overflowX: "auto" }}>
+                    <label className="form-label">Deposit structure 1</label>
+                    <div className="d-flex align-items-center">
+                      <button className="btn btn-outline-primary me-2">
+                        Price
+                      </button>
+                      <button className="btn btn-outline-primary me-2">
+                        Days
+                      </button>
+                      <button className="btn btn-outline-primary me-2">
+                        Percentage
+                      </button>
+                    </div>
+                    <input
+                      type="range"
+                      className="form-range"
+                      min="0"
+                      max="10000"
+                      step="100"
+                    />
+                  </div>
+
+                  <div className="mb-3 col-6" style={{ overflowX: "auto" }}>
+                    <label className="form-label">Deposit structure 3</label>
+                    <div className="d-flex align-items-center">
+                      <button className="btn btn-outline-primary me-2">
+                        Price
+                      </button>
+                      <button className="btn btn-outline-primary me-2">
+                        Days
+                      </button>
+                      <button className="btn btn-outline-primary me-2">
+                        Percentage
+                      </button>
+                    </div>
+                    <input
+                      type="range"
+                      className="form-range"
+                      min="0"
+                      max="10000"
+                      step="100"
+                    />
+                  </div>
+
                   <div className="mb-3 col-sm-6">
-                    <label className="form-label">Address</label>
+                    <label className="form-label">Developer Address</label>
                     <input
                       type="text"
                       className="form-control"
