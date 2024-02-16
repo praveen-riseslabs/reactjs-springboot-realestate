@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import Select from "react-select";
 import { useForm } from "react-hook-form";
 import * as XLSX from "xlsx";
+import axios from "axios";
 
 const ProjectType = [
   { value: "1", label: "For Rent" },
@@ -131,8 +132,16 @@ const AddProperty = () => {
 
   const { handleSubmit } = useForm();
 
-  const onSubmit = (data) => {
+  const onSubmit = async(data) => {
     console.log(userProperty);
+    try {
+      // Send a POST request to your API endpoint
+      const response = await axios.post("http://localhost:8086/api/public/project-details/create", userProperty);
+      console.log("Data sent to backend successfully");
+      // Optionally, you can handle the response from the server here
+    } catch (error) {
+      console.error("Error sending data to backend:", error);
+    }
   };
 
   const handleFileChange = (e) => {
@@ -145,7 +154,7 @@ const AddProperty = () => {
 
     try {
       const fileReader = new FileReader();
-      fileReader.onload = (e) => {
+      fileReader.onload = async(e) => {
         const data = new Uint8Array(e.target.result);
         const workbook = XLSX.read(data, { type: 'array' });
         const sheetName = workbook.SheetNames[0];
@@ -161,14 +170,17 @@ const AddProperty = () => {
           return obj;
         });
         console.log(objectsArray)
+
+        const response = await axios.post("http://localhost:8086/api/public/project-details/upload-customers-data", objectsArray);
+        console.log("Excel data sent to backend successfully");
        
-        // axios.post('YOUR_BACKEND_ENDPOINT', objectsArray)
-        // .then(response => {
-        //   console.log('Data sent to backend successfully');
-        // })
-        // .catch(error => {
-        //   console.error('Error sending data to backend:', error);
-        // })
+        axios.post('http://localhost:8086/api/public/project-details/upload-customers-data', objectsArray)
+        .then(response => {
+          console.log('Data sent to backend successfully');
+        })
+        .catch(error => {
+          console.error('Error sending data to backend:', error);
+        })
       };
       fileReader.readAsArrayBuffer(file);
     } catch (error) {
