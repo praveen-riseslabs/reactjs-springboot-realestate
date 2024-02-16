@@ -3,18 +3,20 @@ import axios from "axios";
 import "react-toastify/dist/ReactToastify.css";
 
 const PropertyList = () => {
-  let [list, setData] = useState([]);
-//   let [loading, setLoading] = useState(false);
+  const [list, setList] = useState([]);
 
-  const getValues = async ()=>{
-    // let res = await axios.get('http://localhost:8086/api/public/project-details/create')
-    // setData(res.data)
-}
-// console.log(details)
-useEffect(()=>{
-    getValues();
-},[])
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await axios.get('http://localhost:8086/api/public/project-details/get-all-projects');
+        setList(response.data);
+      } catch (error) {
+        console.error('Error fetching data:', error);
+      }
+    };
 
+    fetchData();
+  }, []);
 
   return (
     <div className="container mt-5 ms-2">
@@ -23,32 +25,29 @@ useEffect(()=>{
           <thead>
             <tr>
               <th scope="col">S.No</th>
-              <th scope="col">projectName</th>
-              <th scope="col">projectType</th>
-              <th scope="col">projectClosingYear</th>
-              <th scope="col">price</th>
+              <th scope="col">Project Name</th>
+              <th scope="col">Project Type</th>
+              <th scope="col">Project Closing Year</th>
+              <th scope="col">Price</th>
             </tr>
           </thead>
-         
-             <tbody>
-                {list.map((obj, index) => {
-                  return (
-                    <tr key={index}>
-                      <td>{index + 1}</td>
-                      <td>{obj.projectName}</td>
-                      <td>{obj.projectType}</td>
-                      <td>{obj.projectClosingYear}</td>
-                      <td>{obj.price}</td>
-                      
-                    </tr>
-                  );
-                })}
-              </tbody>
+          <tbody>
+            {list.map((obj, index) => {
+              return (
+                <tr key={index}>
+                  <td>{index + 1}</td>
+                  <td>{obj.projectName}</td>
+                  <td>{obj.propertyType}</td>
+                  <td>{obj.projectClosingYear}</td>
+                  <td>{obj.price}</td>
+                </tr>
+              );
+            })}
+          </tbody>
         </table>
       </div>
     </div>
   );
 };
-
 
 export default PropertyList;
