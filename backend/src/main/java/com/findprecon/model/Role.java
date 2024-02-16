@@ -1,7 +1,7 @@
 package com.findprecon.model;
 
 import lombok.Getter;
-import lombok.RequiredArgsConstructor;
+
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 
 import java.security.Permission;
