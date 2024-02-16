@@ -2,13 +2,16 @@ package com.findprecon.model;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
-import java.util.*;
-import java.util.stream.Collectors;
+import java.util.Collection;
+import java.util.UUID;
 
-import com.findprecon.dto.RegisterDTO;
-import com.findprecon.dto.UserDTO;
 import io.swagger.v3.oas.annotations.media.Schema;
-import jakarta.persistence.*;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
@@ -18,7 +21,6 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 @Data
@@ -28,7 +30,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 @Builder
 @Table(name="Registration")
 public class RegistrationModel implements UserDetails {
-	
+
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO, generator="UUID")
 	@Column(nullable=false,updatable=false)
@@ -47,20 +49,16 @@ public class RegistrationModel implements UserDetails {
 	private String password;
 	@Column(name="reset_password_token")
 	private String resetPasswordToken;
-	
+
 	private final String createdAt = LocalDateTime.now()
 			.format(DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm:ss"));
 
-	@Enumerated(EnumType.STRING)
 	private Role role;
 
 	@Override
 	public Collection<? extends GrantedAuthority> getAuthorities() {
-
-		return role.getAuthorities();
-
+		return null;
 	}
-
 
 	@Override
 	public String getUsername() {
