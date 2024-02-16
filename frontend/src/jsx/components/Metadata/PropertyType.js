@@ -1,5 +1,4 @@
-import React, { useState } from 'react';
-// import './style.scss'
+import React, { useState, useEffect } from 'react';
 
 function PropertyType() {
   const [metadata, setMetadata] = useState([
@@ -7,24 +6,24 @@ function PropertyType() {
     { id: 2, type: 'Type 2' },
     { id: 3, type: 'Type 3' }
   ]);
-  const [editingIndex, setEditingIndex] = useState(-1); // Initially no row is being edited
+  const [editingIndex, setEditingIndex] = useState(-1);
+  const [newType, setNewType] = useState('');
 
   const handleAddRow = () => {
-    setMetadata([...metadata, { id: metadata.length + 1, type: '' }]);
+    const newMetadata = [...metadata, { id: metadata.length + 1, type: '' }];
+    setMetadata(newMetadata);
+    setEditingIndex(newMetadata.length - 1); // Start editing the newly added row
   };
 
   const handleEdit = (index) => {
-    // Set the editingIndex to the index of the row being edited
     setEditingIndex(index);
   };
 
   const handleSave = (index) => {
-    // Reset editingIndex when "Save" button is clicked
     setEditingIndex(-1);
   };
 
   const handleDelete = (index) => {
-    // Delete the item and update IDs of remaining items
     const updatedMetadata = metadata.filter((item, i) => i !== index).map((item, i) => ({ ...item, id: i + 1 }));
     setMetadata(updatedMetadata);
   };
@@ -53,9 +52,9 @@ function PropertyType() {
               <td className='text-center w-40 '>
                 {editingIndex === index ? (
                   <input type="text" value={item.type} onChange={(e) => handleChange(index, 'type', e)} className="form-control text-center"   />
-                  ) : (
+                ) : (
                   item.type
-                  )}
+                )}
               </td>
               <td className='w-50'>
                 {editingIndex === index ? (
