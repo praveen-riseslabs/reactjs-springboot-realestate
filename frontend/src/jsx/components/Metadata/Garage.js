@@ -1,32 +1,110 @@
-import React, { useState } from 'react';
-// import './style.scss'
+import React, { useState, useEffect } from 'react';
+import axios from 'axios';
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faPenToSquare,faTrash } from '@fortawesome/free-solid-svg-icons';
 
 function Garage() {
-  const [metadata, setMetadata] = useState([
-    { id: 1, type: 'Type 1' },
-    { id: 2, type: 'Type 2' },
-    { id: 3, type: 'Type 3' }
-  ]);
-  const [editingIndex, setEditingIndex] = useState(-1); // Initially no row is being edited
+  const [metadata, setMetadata] = useState([]);
+  const [editingIndex, setEditingIndex] = useState(-1);
+  const [newType, setNewType] = useState(false);
+
+
+  const getvalues = () => {
+    axios.get('http://localhost:8086/api/metadata/garage/all')
+    .then(response => {
+      setMetadata(response.data);
+    })
+    .catch(error => {
+      toast.error("Error fetching data", {
+        position: toast.POSITION.TOP_RIGHT
+      });
+      console.error('Error fetching data:', error);
+    });
+  }
+
+  useEffect(() => {
+    getvalues()
+  }, []);
 
   const handleAddRow = () => {
-    setMetadata([...metadata, { id: metadata.length + 1, type: '' }]);
+    const newMetadata = [...metadata, { type: '' }];
+    setMetadata(newMetadata);
+    setEditingIndex(newMetadata.length - 1);
+    setNewType(true)
   };
 
+  const handleNewData = (index) => {
+    const newData = {
+      garage: metadata[index].type // Only send the 'type' field to the backend
+    };
+    
+    axios.post('http://localhost:8086/api/metadata/garage/add', newData)
+      .then(response => {
+        toast.success("Data saved successfully", {
+          position: toast.POSITION.TOP_RIGHT
+        });
+        console.log('Data saved successfully:', response.data);
+        setNewType(false);
+        setEditingIndex(-1);
+        getvalues()
+      })
+      .catch(error => {
+        toast.error("Error saving data", {
+          position: toast.POSITION.TOP_RIGHT
+        });
+        console.error('Error saving data:', error);
+        getvalues()
+      });
+  };
+
+
   const handleEdit = (index) => {
-    // Set the editingIndex to the index of the row being edited
     setEditingIndex(index);
   };
 
   const handleSave = (index) => {
-    // Reset editingIndex when "Save" button is clicked
-    setEditingIndex(-1);
+    const updatedData = {
+      id: metadata[index].id,
+      garage: metadata[index].type
+    };
+  
+    axios.put(`http://localhost:8086/api/metadata/garage/update/${updatedData.id}`, updatedData)
+      .then(response => {
+        toast.success("Data updated successfully", {
+          position: toast.POSITION.TOP_RIGHT
+        });
+        console.log('Data updated successfully:', response.data);
+        setEditingIndex(-1);
+        getvalues()
+      })
+      .catch(error => {
+        toast.error("Error updating data", {
+          position: toast.POSITION.TOP_RIGHT
+        });
+        console.error('Error updating data:', error);
+      });
   };
+  
 
   const handleDelete = (index) => {
-    // Delete the item and update IDs of remaining items
-    const updatedMetadata = metadata.filter((item, i) => i !== index).map((item, i) => ({ ...item, id: i + 1 }));
-    setMetadata(updatedMetadata);
+    const garageIdToDelete = metadata[index].id; 
+    axios.delete(`http://localhost:8086/api/metadata/garage/delete/${garageIdToDelete}`)
+      .then(response => {
+        console.log('Data deleted successfully:', response.data);
+        toast.success("Data deleted successfully", {
+          position: toast.POSITION.TOP_RIGHT
+        });
+        const updatedMetadata = metadata.filter((item, i) => i !== index);
+        setMetadata(updatedMetadata);
+      })
+      .catch(error => {
+        toast.error("Error deleting data", {
+          position: toast.POSITION.TOP_RIGHT
+        });
+        console.error('Error deleting data:', error);
+      });
   };
 
   const handleChange = (index, field, e) => {
@@ -41,38 +119,41 @@ function Garage() {
       <table className="table">
         <thead>
           <tr>
-            <th className='w-10 text-center'>ID</th>
-            <th className='text-center w-40'>Garage</th>
+            <th className='w-10 text-center'>S.No</th>
+            <th className='text-center w-40'>garage</th>
             <th className='w-50'>Action</th>
           </tr>
         </thead>
         <tbody>
           {metadata.map((item, index) => (
             <tr key={index}>
-              <td className='w-10 text-center'>{item.id}</td>
+              <td className='w-10 text-center'>{index + 1}</td>
               <td className='text-center w-40 '>
                 {editingIndex === index ? (
                   <input type="text" value={item.type} onChange={(e) => handleChange(index, 'type', e)} className="form-control text-center"   />
-                  ) : (
-                  item.type
-                  )}
+                ) : (
+                  item.garage
+                )}
               </td>
               <td className='w-50'>
                 {editingIndex === index ? (
-                  <button className="btn btn-success btn-sm" onClick={() => handleSave(index)}>Save</button>
+                  newType ? <button  className="btn btn-success btn-sm" onClick={() => handleNewData(index)}>Add Data</button> :
+                  <button className="btn btn-success" onClick={() => handleSave(index)}>Save</button>
                 ) : (
                   <>
-                    <button className="btn btn-primary btn-sm" style={{marginRight:"10px"}} onClick={() => handleEdit(index)}>Edit</button>
-                    <button className="btn btn-danger btn-sm" onClick={() => handleDelete(index)}>Delete</button>
-                  </>
+                  <FontAwesomeIcon icon={faPenToSquare} className="  fa-lg m-1 " onClick={() => handleEdit(index)} /> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                  <FontAwesomeIcon icon={faTrash} className="text-danger  fa-lg m-1 " onClick={() => handleDelete(index)} />
+                 </>
                 )}
               </td>
             </tr>
           ))}
         </tbody>
       </table>
+      <ToastContainer/>
     </div>
   );
 }
+
 
 export default Garage

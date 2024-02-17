@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faPenToSquare,faTrash } from '@fortawesome/free-solid-svg-icons';
 
 function PropertyType() {
   const [metadata, setMetadata] = useState([]);
@@ -12,9 +14,6 @@ function PropertyType() {
   const getvalues = () => {
     axios.get('http://localhost:8086/api/metadata/property/all')
     .then(response => {
-      toast.success("Data saved successfully", {
-        position: toast.POSITION.TOP_RIGHT
-      });
       setMetadata(response.data);
     })
     .catch(error => {
@@ -142,9 +141,9 @@ function PropertyType() {
                   <button className="btn btn-success" onClick={() => handleSave(index)}>Save</button>
                 ) : (
                   <>
-                    <button className="btn btn-primary btn-sm" style={{marginRight:"10px"}} onClick={() => handleEdit(index)}>Edit</button>
-                    <button className="btn btn-danger btn-sm" onClick={() => handleDelete(index)}>Delete</button>
-                  </>
+                  <FontAwesomeIcon icon={faPenToSquare} className="  fa-lg m-1 " onClick={() => handleEdit(index)} /> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                  <FontAwesomeIcon icon={faTrash} className="text-danger  fa-lg m-1 " onClick={() => handleDelete(index)} />
+                 </>
                 )}
               </td>
             </tr>

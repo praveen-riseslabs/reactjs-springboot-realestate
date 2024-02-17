@@ -124,12 +124,12 @@ import EmptyPage from "./components/Dashboard/EmptyPage";
 //Scroll To Top
 import ScrollToTop from './layouts/ScrollToTop';
 import PropertyType from "./components/Metadata/PropertyType";
-import PropertyArea from "./components/Metadata/PropertyArea";
 import Garage from "./components/Metadata/Garage";
 import FrontLot from "./components/Metadata/FrontLot";
 import Bedrooms from "./components/Metadata/Bedrooms";
-import Basement from "./components/Metadata/Basement";
+import Bathrooms from "./components/Metadata/Bathrooms";
 import BasementType from "./components/Metadata/BasementType";
+import Status1 from "./components/Metadata/Status1";
 
 
 
@@ -153,12 +153,12 @@ const Markup = () => {
 
     // Metadata
 	  { url: 'property-type', component: <PropertyType/> },
-	  { url: 'property-area', component: <PropertyArea/> },
+	  { url: 'status', component: <Status1/> },
 	  { url: 'garage', component: <Garage/> },
 	  { url: 'front-lot', component: <FrontLot/> },
 	  { url: 'bedrooms', component: <Bedrooms/> },
 	  { url: 'basement-type', component: <BasementType/> },
-	  { url: 'basement', component: <Basement/> },
+	  { url: 'bathrooms', component: <Bathrooms/> },
 
     
     //property    

@@ -44,16 +44,16 @@ export const MenuList = [
                 to:'property-type',
             },
             {
-                title:'Property Area',
-                to:'property-area',
-            },
-            {
                 title:'Front Lot',
                 to:'front-lot',
             },
             {
                 title:'Bedrooms',
                 to:'bedrooms',
+            },
+            {
+                title:'Bathrooms',
+                to:'bathrooms',
             },
             {
                 title:'Garage',
@@ -64,9 +64,10 @@ export const MenuList = [
                 to:'basement-type',
             },
             {
-                title:'Basement',
-                to:'basement',
+                title:'Status',
+                to:'status',
             },
+           
         ]
     },
     {

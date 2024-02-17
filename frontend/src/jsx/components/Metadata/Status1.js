@@ -1,3 +1,4 @@
+
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { ToastContainer, toast } from "react-toastify";
@@ -5,16 +6,16 @@ import "react-toastify/dist/ReactToastify.css";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPenToSquare,faTrash } from '@fortawesome/free-solid-svg-icons';
 
+function Status1() {
 
 
-function FrontLot() {
   const [metadata, setMetadata] = useState([]);
   const [editingIndex, setEditingIndex] = useState(-1);
   const [newType, setNewType] = useState(false);
 
 
   const getvalues = () => {
-    axios.get('http://localhost:8086/api/metadata/frontlot/all')
+    axios.get('http://localhost:8086/api/metadata/status/all')
     .then(response => {
       setMetadata(response.data);
     })
@@ -39,10 +40,10 @@ function FrontLot() {
 
   const handleNewData = (index) => {
     const newData = {
-      frontLot: metadata[index].type // Only send the 'type' field to the backend
+        status: metadata[index].type // Only send the 'type' field to the backend
     };
     
-    axios.post('http://localhost:8086/api/metadata/frontlot/add', newData)
+    axios.post('http://localhost:8086/api/metadata/status/add', newData)
       .then(response => {
         toast.success("Data saved successfully", {
           position: toast.POSITION.TOP_RIGHT
@@ -69,10 +70,10 @@ function FrontLot() {
   const handleSave = (index) => {
     const updatedData = {
       id: metadata[index].id,
-      frontLot: metadata[index].type
+      status: metadata[index].type
     };
   
-    axios.put(`http://localhost:8086/api/metadata/frontlot/update/${updatedData.id}`, updatedData)
+    axios.put(`http://localhost:8086/api/metadata/status/update/${updatedData.id}`, updatedData)
       .then(response => {
         toast.success("Data updated successfully", {
           position: toast.POSITION.TOP_RIGHT
@@ -92,13 +93,12 @@ function FrontLot() {
 
   const handleDelete = (index) => {
     const garageIdToDelete = metadata[index].id; 
-    axios.delete(`http://localhost:8086/api/metadata/frontlot/delete/${garageIdToDelete}`)
+    axios.delete(`http://localhost:8086/api/metadata/status/delete/${garageIdToDelete}`)
       .then(response => {
+        console.log('Data deleted successfully:', response.data);
         toast.success("Data deleted successfully", {
           position: toast.POSITION.TOP_RIGHT
         });
-        console.log('Data deleted successfully:', response.data);
-        
         const updatedMetadata = metadata.filter((item, i) => i !== index);
         setMetadata(updatedMetadata);
       })
@@ -123,7 +123,7 @@ function FrontLot() {
         <thead>
           <tr>
             <th className='w-10 text-center'>S.No</th>
-            <th className='text-center w-40'>Front Lot</th>
+            <th className='text-center w-40'>Status</th>
             <th className='w-50'>Action</th>
           </tr>
         </thead>
@@ -135,18 +135,18 @@ function FrontLot() {
                 {editingIndex === index ? (
                   <input type="text" value={item.type} onChange={(e) => handleChange(index, 'type', e)} className="form-control text-center"   />
                 ) : (
-                  item.frontLot
+                  item.status
                 )}
               </td>
               <td className='w-50'>
                 {editingIndex === index ? (
-                  newType ? <button  className="btn btn-success" onClick={() => handleNewData(index)}>Add Data</button> :
-                  <button className="btn btn-success btn-sm" onClick={() => handleSave(index)}>Save</button>
+                  newType ? <button  className="btn btn-success btn-sm" onClick={() => handleNewData(index)}>Add Data</button> :
+                  <button className="btn btn-success" onClick={() => handleSave(index)}>Save</button>
                 ) : (
                   <>
-                   <FontAwesomeIcon icon={faPenToSquare} className="  fa-lg m-1 " onClick={() => handleEdit(index)} /> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                   <FontAwesomeIcon icon={faTrash} className="text-danger  fa-lg m-1 " onClick={() => handleDelete(index)} />
-                  </>
+                  <FontAwesomeIcon icon={faPenToSquare} className="  fa-lg m-1 " onClick={() => handleEdit(index)} /> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                  <FontAwesomeIcon icon={faTrash} className="text-danger  fa-lg m-1 " onClick={() => handleDelete(index)} />
+                 </>
                 )}
               </td>
             </tr>
@@ -158,4 +158,4 @@ function FrontLot() {
   );
 }
 
-export default FrontLot
+export default Status1;
