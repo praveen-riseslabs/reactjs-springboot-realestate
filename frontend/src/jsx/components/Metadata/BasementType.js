@@ -12,6 +12,7 @@ function BasementType() {
   const [text, setText] = useState("");
 
   const getvalues = () => {
+    setNewType(false);
     axios.get("http://localhost:8086/api/metadata/basement/all")
       .then((response) => {
         setMetadata(response.data);
@@ -29,13 +30,16 @@ function BasementType() {
   }, []);
 
   const handleAddRow = () => {
-    const newMetadata = [...metadata, { type: "" }];
-    setMetadata(newMetadata);
-    setEditingIndex(newMetadata.length - 1);
-    setNewType(true);
+    if(!newType) {
+      const newMetadata = [...metadata, { type: "" }];
+      setMetadata(newMetadata);
+      setEditingIndex(newMetadata.length - 1);
+      setNewType(true);
+    }
   };
 
   const handleNewData = (index) => {
+    setNewType(false);
     setText('')
     const newData = {
       basementField: (metadata[index]?.type || "").trim(),
@@ -73,6 +77,7 @@ function BasementType() {
   };
 
   const handleSave = (index) => {
+    setNewType(false);
     const currentValue = metadata[index].basementField;
     const updatedData = {
       id: metadata[index].id,
@@ -102,6 +107,7 @@ function BasementType() {
   };
 
   const handleDelete = (index) => {
+    setNewType(false);
     const garageIdToDelete = metadata[index].id;
     axios.delete(`http://localhost:8086/api/metadata/delete/basement/${garageIdToDelete}`)
       .then((response) => {
