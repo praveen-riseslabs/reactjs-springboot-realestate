@@ -1,62 +1,10 @@
-import React, { useState } from "react";
+import React, { useState, useEffect  } from "react";
 import Select from "react-select";
 import { useForm } from "react-hook-form";
 import * as XLSX from "xlsx";
 import axios from "axios";
 
-const propertyType = [
-  { value: "1", label: "For Rent" },
-  { value: "2", label: "For Sale" },
-  { value: "3", label: "TOWNHOMES" },
-  { value: "4", label: "DETACHED" },
-  { value: "5", label: "SEMIDETACHED" },
-];
 
-const Status = [
-  { value: "1", label: "Active" },
-  { value: "2", label: "Inactive" },
-];
-const options1 = [
-  { value: "1", label: "1" },
-  { value: "2", label: "2" },
-  { value: "3", label: "3" },
-  { value: "4", label: "4" },
-  { value: "5", label: "5" },
-  { value: "6", label: "6" },
-];
-
-
-const bedrooms = [
-  { value: "1", label: "1" },
-  { value: "2", label: "2" },
-  { value: "3", label: "3" },
-  { value: "4", label: "4" },
-  { value: "5", label: "5" },
-  { value: "6", label: "6" },
-];
-
-const garages = [
-  { value: "0", label: "0" },
-  { value: "1", label: "1" },
-  { value: "2", label: "2" },
-  { value: "3", label: "3" },
-  { value: "4", label: "4" },
-];
-
-const bathrooms = [
-  { value: "1", label: "1" },
-  { value: "2", label: "2" },
-];
-
-const basements = [
-  { value: "0", label: "0" },
-  { value: "1", label: "1" },
-];
-
-const basements_type = [
-  { value: "1", label: "unfurnished" },
-  { value: "2", label: "furnished" },
-];
 
 const AddProperty = () => {
   const [userProperty, setUserProperty] = useState({
@@ -99,6 +47,14 @@ const AddProperty = () => {
   });
 
   const [file, setFile] = useState(null);
+  const [statusOptions, setStatusOptions] = useState([]);
+  const [propertyTypeOptions, setPropertyTypeOptions] = useState([]);
+  const [garageOptions, setgarageOptions] = useState([]);
+  const [frontLotOptions, setfrontLotOptions] = useState([]);
+  const [bedRoomsOptions, setbedRoomsOptions] = useState([]);
+  const [bathRoomsOptions, setbathRoomsOptions] = useState([]);
+  const [basementTypeOptions, setbasementTypeOptions] = useState([]);
+
 
   const handleInputChange = (e) => {
     const name = e.target.name;
@@ -167,6 +123,36 @@ const AddProperty = () => {
     }
   };
 
+  
+  const fetchData = async () => {
+    try {
+      const [statusResponse, propertyTypeResponse,garageResponse,frontLotResponse,bedRoomsResponse,bathRoomsResponse,basementTypeResponse ] = await axios.all([
+        axios.get("http://localhost:8086/api/metadata/status/all"),
+        axios.get("http://localhost:8086/api/metadata/property/all"),
+        axios.get("http://localhost:8086/api/metadata/garage/all"),
+        axios.get("http://localhost:8086/api/metadata/frontlot/all"),
+        axios.get("http://localhost:8086/api/metadata/bedroom/all"),
+        axios.get("http://localhost:8086/api/metadata/bathroom/all"),
+        axios.get("http://localhost:8086/api/metadata/basement/all")
+      ]);
+
+      setStatusOptions(statusResponse.data.map(item => ({ value: item.id, label: item.status })));
+      setPropertyTypeOptions(propertyTypeResponse.data.map(item => ({ value: item.id, label: item.propertyField })));
+      setgarageOptions(garageResponse.data.map(item => ({ value: item.id, label: item.garage })));
+      setfrontLotOptions(frontLotResponse.data.map(item => ({ value: item.id, label: item.frontLot })));
+      setbedRoomsOptions(bedRoomsResponse.data.map(item => ({ value: item.id, label: item.numberOfBedrooms })));
+      setbathRoomsOptions(bathRoomsResponse.data.map(item => ({ value: item.id, label: item.numberOfBathrooms })));
+      setbasementTypeOptions(basementTypeResponse.data.map(item => ({ value: item.id, label: item.basementField })));
+    } catch (error) {
+      console.error("Error fetching data:", error);
+    }
+  };
+
+
+  useEffect(() => {
+    fetchData();
+  }, []);
+
   return (
     <>
       <div className="row property">
@@ -195,10 +181,10 @@ const AddProperty = () => {
                   <div className="mb-3 col-6">
                     <label className="form-label">Property Type</label>
                     <Select
-                      options={propertyType}
+                      options={propertyTypeOptions}
                       className="custom-react-select"
                       isSearchable={true}
-                      value={propertyType.find(
+                      value={propertyTypeOptions.find(
                         (option) => option.value === userProperty.propertyType
                       )}
                       onChange={(selectedOption) =>
@@ -262,12 +248,10 @@ const AddProperty = () => {
                   <div className="mb-3 col-6">
                     <label className="form-label">Status</label>
                     <Select
-                      options={Status}
+                      options={statusOptions}
                       className="custom-react-select"
                       isSearchable={false}
-                      value={Status.find(
-                        (option) => option.value === userProperty.status
-                      )}
+                      value={statusOptions.find(option => option.value === userProperty.status)}
                       onChange={(selectedOption) =>
                         setUserProperty({
                           ...userProperty,
@@ -385,16 +369,20 @@ const AddProperty = () => {
                       required
                     />
                   </div>
-
-                  <div className="mb-3 col-6">
-                    <label className="form-label">Front Lot Size</label>
-                    <input
-                      type="number"
-                      className="form-control"
-                      placeholder="Enter Front Lot size"
-                      name="frontLotSize"
-                      value={userProperty.frontLotSize}
-                      onChange={handleInputChange}
+                
+                   <div className="mb-3 col-6">
+                   <label className="form-label">Front Lot Size</label>
+                    <Select
+                      options={frontLotOptions}
+                      className="custom-react-select"
+                      isSearchable={false}
+                      value={frontLotOptions.find(option => option.value === userProperty.frontLotSize)}
+                      onChange={(selectedOption) =>
+                        setUserProperty({
+                          ...userProperty,
+                          frontLotSize: selectedOption.value,
+                        })
+                      }
                       required
                     />
                   </div>
@@ -411,17 +399,14 @@ const AddProperty = () => {
                       required
                     />
                   </div>
-
-                  {/* <div className="mb-3 col-6">
+                
+                  <div className="mb-3 col-6">
                     <label className="form-label">Bedrooms</label>
                     <Select
-                      options={options1}
-                      defaultValue={options1[0]}
+                      options={bedRoomsOptions} 
                       className="custom-react-select"
                       isSearchable={false}
-                      value={bedrooms.find(
-                        (option) => option.value === userProperty.bedrooms
-                      )}
+                      value={bedRoomsOptions.find( (option) => option.value === userProperty.bedrooms )}
                       onChange={(selectedOption) =>
                         setUserProperty({
                           ...userProperty,
@@ -431,56 +416,14 @@ const AddProperty = () => {
                       required
                     />
                   </div>
-
+  
                   <div className="mb-3 col-6">
                     <label className="form-label">Garage</label>
                     <Select
-                      options={options1}
-                      defaultValue={options1[0]}
+                      options={garageOptions} 
                       className="custom-react-select"
                       isSearchable={false}
-                      value={garages.find(
-                        (option) => option.value === userProperty.garage
-                      )}
-                      onChange={(selectedOption) =>
-                        setUserProperty({
-                          ...userProperty,
-                          garage: selectedOption.value,
-                        })
-                      }
-                      required
-                    />
-                  </div> */}
-                  <div className="mb-3 col-6">
-                    <label className="form-label">Bedrooms</label>
-                    <Select
-                      options={bedrooms} // Use bedrooms array here
-                      defaultValue={bedrooms[0]} // Assuming you want to default to the first option
-                      className="custom-react-select"
-                      isSearchable={false}
-                      value={bedrooms.find(
-                        (option) => option.value === userProperty.bedrooms
-                      )}
-                      onChange={(selectedOption) =>
-                        setUserProperty({
-                          ...userProperty,
-                          bedrooms: selectedOption.value,
-                        })
-                      }
-                      required
-                    />
-                  </div>
-
-                  <div className="mb-3 col-6">
-                    <label className="form-label">Garage</label>
-                    <Select
-                      options={garages} // Use garages array here
-                      defaultValue={garages[0]} // Assuming you want to default to the first option
-                      className="custom-react-select"
-                      isSearchable={false}
-                      value={garages.find(
-                        (option) => option.value === userProperty.garage
-                      )}
+                      value={garageOptions.find( (option) => option.value === userProperty.garage )}
                       onChange={(selectedOption) =>
                         setUserProperty({
                           ...userProperty,
@@ -490,17 +433,14 @@ const AddProperty = () => {
                       required
                     />
                   </div>
-
+                 
                   <div className="mb-3 col-6">
                     <label className="form-label">Bathrooms</label>
                     <Select
-                      options={options1}
-                      defaultValue={options1[0]}
+                      options={bathRoomsOptions}
                       className="custom-react-select"
                       isSearchable={false}
-                      value={bathrooms.find(
-                        (option) => option.value === userProperty.bathrooms
-                      )}
+                      value={bathRoomsOptions.find( (option) => option.value === userProperty.bathrooms )}
                       onChange={(selectedOption) =>
                         setUserProperty({
                           ...userProperty,
@@ -512,34 +452,24 @@ const AddProperty = () => {
                   </div>
 
                   <div className="mb-3 col-6">
-                    <label className="form-label">Basement </label>
-                    <Select
-                      options={options1}
-                      defaultValue={options1[0]}
-                      className="custom-react-select"
-                      isSearchable={false}
-                      value={basements.find(
-                        (option) => option.value === userProperty.basement
-                      )}
-                      onChange={(selectedOption) =>
-                        setUserProperty({
-                          ...userProperty,
-                          basement: selectedOption.value,
-                        })
-                      }
+                    <label className="form-label">Basement</label>
+                    <input
+                      type="text"
+                      className="form-control"
+                      name="basement"
+                      value={userProperty.basement}
+                      onChange={handleInputChange}
                       required
                     />
                   </div>
+                 
                   <div className="mb-3 col-6">
                     <label className="form-label">Basement Type</label>
                     <Select
-                      options={basements_type}
-                      defaultValue={basements_type[1]}
+                      options={basementTypeOptions}
                       className="custom-react-select"
                       isSearchable={false}
-                      value={basements_type.find(
-                        (option) => option.value === userProperty.basementType
-                      )}
+                      value={basementTypeOptions.find((option) => option.value === userProperty.basementType )}
                       onChange={(selectedOption) =>
                         setUserProperty({
                           ...userProperty,
@@ -825,6 +755,7 @@ const AddProperty = () => {
                       </button>
                     </div>
                   </div>
+
 
                   <div className=" d-flex justify-content-center">
                     <button className="btn btn-primary">Submit</button>
