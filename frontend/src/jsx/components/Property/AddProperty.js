@@ -4,7 +4,7 @@ import { useForm } from "react-hook-form";
 import * as XLSX from "xlsx";
 import axios from "axios";
 
-const ProjectType = [
+const propertyType = [
   { value: "1", label: "For Rent" },
   { value: "2", label: "For Sale" },
   { value: "3", label: "TOWNHOMES" },
@@ -129,7 +129,7 @@ const AddProperty = () => {
     setFile(selectedFile);
   };
 
-  const handleUpload = async () => {
+  const handleUpload = async (file) => {
     if (!file) return;
 
     try {
@@ -151,16 +151,15 @@ const AddProperty = () => {
         });
         console.log(objectsArray);
 
-        // const response = await axios.post("http://localhost:8086/api/public/project-details/upload-customers-data", objectsArray);
-        // console.log("Excel data sent to backend successfully");
+      
 
-        // axios.post('http://localhost:8086/api/public/project-details/upload-customers-data', objectsArray)
-        // .then(response => {
-        //   console.log('Data sent to backend successfully');
-        // })
-        // .catch(error => {
-        //   console.error('Error sending data to backend:', error);
-        // })
+        axios.post('http://localhost:8086/api/public/project-details/upload-customers-data', objectsArray)
+        .then(response => {
+          console.log('Excel sheet Data sent to backend successfully');
+        })
+        .catch(error => {
+          console.error('Error sending data to backend:', error);
+        })
       };
       fileReader.readAsArrayBuffer(file);
     } catch (error) {
@@ -196,16 +195,16 @@ const AddProperty = () => {
                   <div className="mb-3 col-6">
                     <label className="form-label">Property Type</label>
                     <Select
-                      options={ProjectType}
+                      options={propertyType}
                       className="custom-react-select"
                       isSearchable={true}
-                      value={ProjectType.find(
+                      value={propertyType.find(
                         (option) => option.value === userProperty.propertyType
                       )}
                       onChange={(selectedOption) =>
                         setUserProperty({
                           ...userProperty,
-                          ProjectType: selectedOption.value,
+                          propertyType: selectedOption.value,
                         })
                       }
                       required
