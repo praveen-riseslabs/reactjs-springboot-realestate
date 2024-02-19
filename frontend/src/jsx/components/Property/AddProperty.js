@@ -10,16 +10,8 @@ const ProjectType = [
   { value: "3", label: "TOWNHOMES" },
   { value: "4", label: "DETACHED" },
   { value: "5", label: "SEMIDETACHED" },
-  
 ];
-const beds = [
-  { value: "1", label: "1" },
-  { value: "2", label: "2" },
-  { value: "3", label: "3" },
-  { value: "4", label: "4" },
-  { value: "5", label: "5" },
-  { value: "6", label: "6" },
-];
+
 const Status = [
   { value: "1", label: "Active" },
   { value: "2", label: "Inactive" },
@@ -32,24 +24,7 @@ const options1 = [
   { value: "5", label: "5" },
   { value: "6", label: "6" },
 ];
-const options2 = [
-  { value: "1", label: "Blue Sky" },
-  { value: "2", label: "Zephyr" },
-  { value: "3", label: "Premiere" },
-];
 
-const inputBlog = [
-  { title: "Emergency Exit", id: "label123" },
-  { title: "CCTV", id: "label124" },
-  { title: "Free Wi-Fi", id: "label125" },
-  { title: "Free Parking In The Area", id: "label126" },
-  { title: "Air Conditioning", id: "label127" },
-  { title: "Security Guard", id: "label128" },
-  { title: "Terrace", id: "label129" },
-  { title: "Laundry Service", id: "label130" },
-  { title: "Elevator Lift", id: "label131" },
-  { title: "Balcony", id: "label132" },
-];
 
 const bedrooms = [
   { value: "1", label: "1" },
@@ -142,14 +117,12 @@ const AddProperty = () => {
         "http://localhost:8086/api/public/project-details/create",
         userProperty
       );
-      console.log("Data sent to backend successfully");
+      console.log("Data sent to backend successfully", response.data);
       // Optionally, you can handle the response from the server here
     } catch (error) {
       console.error("Error sending data to backend:", error);
     }
   };
-
- 
 
   const handleFileChange = (e) => {
     const selectedFile = e.target.files[0];
@@ -205,7 +178,6 @@ const AddProperty = () => {
             </div>
 
             <div className="card-body">
-            
               <form className="row g-3" onSubmit={handleSubmit(onSubmit)}>
                 <div className="row">
                   <div className="mb-3 col-6">
@@ -279,7 +251,7 @@ const AddProperty = () => {
                   <div className="mb-3 col-6">
                     <label className="form-label">Project Closing year</label>
                     <input
-                      type="text"
+                      type="number"
                       className="form-control"
                       name="propClosingYear"
                       value={userProperty.propClosingYear}
@@ -310,7 +282,7 @@ const AddProperty = () => {
                   <div className="mb-3 col-6">
                     <label className="form-label">Comission</label>
                     <input
-                      type="text"
+                      type="number"
                       className="form-control"
                       name="comission"
                       value={userProperty.comission}
@@ -358,7 +330,7 @@ const AddProperty = () => {
                   <div className="mb-3 col-6">
                     <label className="form-label">Sales Office Telephone</label>
                     <input
-                      type="number"
+                      type="text"
                       className="form-control"
                       name="salesOfficeTelephone"
                       value={userProperty.salesOfficeTelephone}
@@ -382,7 +354,7 @@ const AddProperty = () => {
                   <div className="mb-3 col-6">
                     <label className="form-label">Model cost</label>
                     <input
-                      type="text"
+                      type="number"
                       className="form-control"
                       name="modelCost"
                       value={userProperty.modelCost}
@@ -394,7 +366,7 @@ const AddProperty = () => {
                   <div className="mb-3 col-6">
                     <label className="form-label">Model size</label>
                     <input
-                      type="text"
+                      type="number"
                       className="form-control"
                       name="modelSize"
                       value={userProperty.modelSize}
@@ -406,7 +378,7 @@ const AddProperty = () => {
                   <div className="mb-3 col-6">
                     <label className="form-label">Story</label>
                     <input
-                      type="text"
+                      type="number"
                       className="form-control"
                       name="story"
                       value={userProperty.story}
@@ -418,7 +390,7 @@ const AddProperty = () => {
                   <div className="mb-3 col-6">
                     <label className="form-label">Front Lot Size</label>
                     <input
-                      type="text"
+                      type="number"
                       className="form-control"
                       placeholder="Enter Front Lot size"
                       name="frontLotSize"
@@ -431,7 +403,7 @@ const AddProperty = () => {
                   <div className="mb-3 col-6">
                     <label className="form-label">Lot Depth</label>
                     <input
-                      type="text"
+                      type="number"
                       className="form-control"
                       placeholder="Enter Front Lot size"
                       name="lotDepth"
@@ -481,45 +453,44 @@ const AddProperty = () => {
                     />
                   </div> */}
                   <div className="mb-3 col-6">
-  <label className="form-label">Bedrooms</label>
-  <Select
-    options={bedrooms} // Use bedrooms array here
-    defaultValue={bedrooms[0]} // Assuming you want to default to the first option
-    className="custom-react-select"
-    isSearchable={false}
-    value={bedrooms.find(
-      (option) => option.value === userProperty.bedrooms
-    )}
-    onChange={(selectedOption) =>
-      setUserProperty({
-        ...userProperty,
-        bedrooms: selectedOption.value,
-      })
-    }
-    required
-  />
-</div>
+                    <label className="form-label">Bedrooms</label>
+                    <Select
+                      options={bedrooms} // Use bedrooms array here
+                      defaultValue={bedrooms[0]} // Assuming you want to default to the first option
+                      className="custom-react-select"
+                      isSearchable={false}
+                      value={bedrooms.find(
+                        (option) => option.value === userProperty.bedrooms
+                      )}
+                      onChange={(selectedOption) =>
+                        setUserProperty({
+                          ...userProperty,
+                          bedrooms: selectedOption.value,
+                        })
+                      }
+                      required
+                    />
+                  </div>
 
-<div className="mb-3 col-6">
-  <label className="form-label">Garage</label>
-  <Select
-    options={garages} // Use garages array here
-    defaultValue={garages[0]} // Assuming you want to default to the first option
-    className="custom-react-select"
-    isSearchable={false}
-    value={garages.find(
-      (option) => option.value === userProperty.garage
-    )}
-    onChange={(selectedOption) =>
-      setUserProperty({
-        ...userProperty,
-        garage: selectedOption.value,
-      })
-    }
-    required
-  />
-</div>
-
+                  <div className="mb-3 col-6">
+                    <label className="form-label">Garage</label>
+                    <Select
+                      options={garages} // Use garages array here
+                      defaultValue={garages[0]} // Assuming you want to default to the first option
+                      className="custom-react-select"
+                      isSearchable={false}
+                      value={garages.find(
+                        (option) => option.value === userProperty.garage
+                      )}
+                      onChange={(selectedOption) =>
+                        setUserProperty({
+                          ...userProperty,
+                          garage: selectedOption.value,
+                        })
+                      }
+                      required
+                    />
+                  </div>
 
                   <div className="mb-3 col-6">
                     <label className="form-label">Bathrooms</label>
@@ -631,7 +602,7 @@ const AddProperty = () => {
                   <div className="mb-3 col-6">
                     <label className="form-label">Total Deposit</label>
                     <input
-                      type="text"
+                      type="number"
                       className="form-control"
                       name="totalDeposit"
                       value={userProperty.totalDeposit}
@@ -655,7 +626,7 @@ const AddProperty = () => {
                   <div className="mb-3 col-6">
                     <label className="form-label">Development Charges</label>
                     <input
-                      type="text"
+                      type="number"
                       className="form-control"
                       name="developmentCharges"
                       value={userProperty.developmentCharges}
@@ -667,7 +638,7 @@ const AddProperty = () => {
                   <div className="mb-3 col-6">
                     <label className="form-label">Maintainance freehold</label>
                     <input
-                      type="text"
+                      type="number"
                       className="form-control"
                       name="maintainanceFreehold"
                       value={userProperty.maintainanceFreehold}
@@ -705,7 +676,7 @@ const AddProperty = () => {
                   <div className="mb-3 col-6">
                     <label className="form-label">DHRE SPECIAL INCENTIVE</label>
                     <input
-                      type="text"
+                      type="number"
                       className="form-control"
                       name="dhreSpecialIncentive"
                       value={userProperty.dhreSpecialIncentive}
@@ -717,7 +688,7 @@ const AddProperty = () => {
                   <div className="mb-3 col-6">
                     <label className="form-label">Website Link</label>
                     <input
-                      type="text"
+                      type="url"
                       className="form-control"
                       name="websiteLink"
                       value={userProperty.websiteLink}
