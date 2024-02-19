@@ -8,10 +8,12 @@ const PropertyList = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get('http://localhost:8086/api/public/project-details/get-all-projects');
+        const response = await axios.get(
+          "http://localhost:8086/api/public/project-details/get-all-projects"
+        );
         setList(response.data);
       } catch (error) {
-        console.error('Error fetching data:', error);
+        console.error("Error fetching data:", error);
       }
     };
 
@@ -38,8 +40,8 @@ const PropertyList = () => {
                   <td>{index + 1}</td>
                   <td>{obj.projectName}</td>
                   <td>{obj.propertyType}</td>
-                  <td>{obj.projectClosingYear}</td>
-                  <td>{obj.price}</td>
+                  <td>{obj.propClosingYear}</td>
+                  <td>{obj.totalDeposit}</td>
                 </tr>
               );
             })}

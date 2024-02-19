@@ -7,6 +7,10 @@ import axios from "axios";
 const ProjectType = [
   { value: "1", label: "For Rent" },
   { value: "2", label: "For Sale" },
+  { value: "3", label: "TOWNHOMES" },
+  { value: "4", label: "DETACHED" },
+  { value: "5", label: "SEMIDETACHED" },
+  
 ];
 const beds = [
   { value: "1", label: "1" },
@@ -85,8 +89,8 @@ const AddProperty = () => {
     propertyType: "",
     propertyArea: "",
     developer: "",
-    propertyClosing: "",
-    projectClosingYear: "",
+    propClosing: "",
+    propClosingYear: "",
     status: "",
     comission: "",
     commissionPayment: "",
@@ -121,7 +125,6 @@ const AddProperty = () => {
 
   const [file, setFile] = useState(null);
 
-
   const handleInputChange = (e) => {
     const name = e.target.name;
     const value = e.target.value;
@@ -132,17 +135,21 @@ const AddProperty = () => {
 
   const { handleSubmit } = useForm();
 
-  const onSubmit = async(data) => {
+  const onSubmit = async (data) => {
     console.log(userProperty);
     try {
-      // Send a POST request to your API endpoint
-      const response = await axios.post("http://localhost:8086/api/public/project-details/create", userProperty);
+      const response = await axios.post(
+        "http://localhost:8086/api/public/project-details/create",
+        userProperty
+      );
       console.log("Data sent to backend successfully");
       // Optionally, you can handle the response from the server here
     } catch (error) {
       console.error("Error sending data to backend:", error);
     }
   };
+
+ 
 
   const handleFileChange = (e) => {
     const selectedFile = e.target.files[0];
@@ -154,37 +161,37 @@ const AddProperty = () => {
 
     try {
       const fileReader = new FileReader();
-      fileReader.onload = async(e) => {
+      fileReader.onload = async (e) => {
         const data = new Uint8Array(e.target.result);
-        const workbook = XLSX.read(data, { type: 'array' });
+        const workbook = XLSX.read(data, { type: "array" });
         const sheetName = workbook.SheetNames[0];
         const sheet = workbook.Sheets[sheetName];
         const jsonData = XLSX.utils.sheet_to_json(sheet, { header: 1 });
 
         // Assuming your Excel sheet has headers and you want to convert each row into an object
-        const objectsArray = jsonData.slice(1).map(row => {
+        const objectsArray = jsonData.slice(1).map((row) => {
           const obj = {};
           jsonData[0].forEach((header, index) => {
             obj[header] = row[index];
           });
           return obj;
         });
-        console.log(objectsArray)
+        console.log(objectsArray);
 
-        const response = await axios.post("http://localhost:8086/api/public/project-details/upload-customers-data", objectsArray);
-        console.log("Excel data sent to backend successfully");
-       
-        axios.post('http://localhost:8086/api/public/project-details/upload-customers-data', objectsArray)
-        .then(response => {
-          console.log('Data sent to backend successfully');
-        })
-        .catch(error => {
-          console.error('Error sending data to backend:', error);
-        })
+        // const response = await axios.post("http://localhost:8086/api/public/project-details/upload-customers-data", objectsArray);
+        // console.log("Excel data sent to backend successfully");
+
+        // axios.post('http://localhost:8086/api/public/project-details/upload-customers-data', objectsArray)
+        // .then(response => {
+        //   console.log('Data sent to backend successfully');
+        // })
+        // .catch(error => {
+        //   console.error('Error sending data to backend:', error);
+        // })
       };
       fileReader.readAsArrayBuffer(file);
     } catch (error) {
-      console.error('Error reading file:', error);
+      console.error("Error reading file:", error);
     }
   };
 
@@ -198,6 +205,7 @@ const AddProperty = () => {
             </div>
 
             <div className="card-body">
+            
               <form className="row g-3" onSubmit={handleSubmit(onSubmit)}>
                 <div className="row">
                   <div className="mb-3 col-6">
@@ -206,10 +214,10 @@ const AddProperty = () => {
                       type="text"
                       className="form-control"
                       placeholder="Enter Project Name"
-                      required=""
                       name="projectName"
                       value={userProperty.projectName}
                       onChange={handleInputChange}
+                      required
                     />
                   </div>
 
@@ -228,6 +236,7 @@ const AddProperty = () => {
                           ProjectType: selectedOption.value,
                         })
                       }
+                      required
                     />
                   </div>
 
@@ -236,10 +245,10 @@ const AddProperty = () => {
                     <input
                       type="text"
                       className="form-control"
-                      required=""
                       name="propertyArea"
                       value={userProperty.propertyArea}
                       onChange={handleInputChange}
+                      required
                     />
                   </div>
 
@@ -248,10 +257,10 @@ const AddProperty = () => {
                     <input
                       type="text"
                       className="form-control"
-                      required=""
                       name="developer"
                       value={userProperty.developer}
                       onChange={handleInputChange}
+                      required
                     />
                   </div>
 
@@ -260,10 +269,10 @@ const AddProperty = () => {
                     <input
                       type="text"
                       className="form-control"
-                      required=""
-                      name="propertyClosing"
-                      value={userProperty.propertyClosing}
+                      name="propClosing"
+                      value={userProperty.propClosing}
                       onChange={handleInputChange}
+                      required
                     />
                   </div>
 
@@ -272,10 +281,10 @@ const AddProperty = () => {
                     <input
                       type="text"
                       className="form-control"
-                      required=""
-                      name="projectClosingYear"
-                      value={userProperty.projectClosingYear}
+                      name="propClosingYear"
+                      value={userProperty.propClosingYear}
                       onChange={handleInputChange}
+                      required
                     />
                   </div>
 
@@ -294,6 +303,7 @@ const AddProperty = () => {
                           status: selectedOption.value,
                         })
                       }
+                      required
                     />
                   </div>
 
@@ -302,10 +312,10 @@ const AddProperty = () => {
                     <input
                       type="text"
                       className="form-control"
-                      required=""
                       name="comission"
                       value={userProperty.comission}
                       onChange={handleInputChange}
+                      required
                     />
                   </div>
 
@@ -314,10 +324,10 @@ const AddProperty = () => {
                     <input
                       type="text"
                       className="form-control"
-                      required=""
                       name="commissionPayment"
                       value={userProperty.commissionPayment}
                       onChange={handleInputChange}
+                      required
                     />
                   </div>
 
@@ -326,10 +336,10 @@ const AddProperty = () => {
                     <input
                       type="email"
                       className="form-control"
-                      required=""
                       name="developerEmail"
                       value={userProperty.developerEmail}
                       onChange={handleInputChange}
+                      required
                     />
                   </div>
 
@@ -338,10 +348,10 @@ const AddProperty = () => {
                     <input
                       type="text"
                       className="form-control"
-                      required=""
                       name="salesRepresentatives"
                       value={userProperty.salesRepresentatives}
                       onChange={handleInputChange}
+                      required
                     />
                   </div>
 
@@ -350,23 +360,22 @@ const AddProperty = () => {
                     <input
                       type="number"
                       className="form-control"
-                      required=""
                       name="salesOfficeTelephone"
                       value={userProperty.salesOfficeTelephone}
                       onChange={handleInputChange}
+                      required
                     />
                   </div>
-
 
                   <div className="mb-3 col-6">
                     <label className="form-label">Model Name</label>
                     <input
                       type="text"
                       className="form-control"
-                      required=""
                       name="modelName"
                       value={userProperty.modelName}
                       onChange={handleInputChange}
+                      required
                     />
                   </div>
 
@@ -375,10 +384,10 @@ const AddProperty = () => {
                     <input
                       type="text"
                       className="form-control"
-                      required=""
                       name="modelCost"
                       value={userProperty.modelCost}
                       onChange={handleInputChange}
+                      required
                     />
                   </div>
 
@@ -387,10 +396,10 @@ const AddProperty = () => {
                     <input
                       type="text"
                       className="form-control"
-                      required=""
                       name="modelSize"
                       value={userProperty.modelSize}
                       onChange={handleInputChange}
+                      required
                     />
                   </div>
 
@@ -399,10 +408,10 @@ const AddProperty = () => {
                     <input
                       type="text"
                       className="form-control"
-                      required=""
                       name="story"
                       value={userProperty.story}
                       onChange={handleInputChange}
+                      required
                     />
                   </div>
 
@@ -412,10 +421,10 @@ const AddProperty = () => {
                       type="text"
                       className="form-control"
                       placeholder="Enter Front Lot size"
-                      required=""
                       name="frontLotSize"
                       value={userProperty.frontLotSize}
                       onChange={handleInputChange}
+                      required
                     />
                   </div>
 
@@ -425,29 +434,30 @@ const AddProperty = () => {
                       type="text"
                       className="form-control"
                       placeholder="Enter Front Lot size"
-                      required=""
                       name="lotDepth"
                       value={userProperty.lotDepth}
                       onChange={handleInputChange}
+                      required
                     />
                   </div>
 
-                  <div className="mb-3 col-6">
+                  {/* <div className="mb-3 col-6">
                     <label className="form-label">Bedrooms</label>
                     <Select
                       options={options1}
                       defaultValue={options1[0]}
                       className="custom-react-select"
                       isSearchable={false}
-                      value={ProjectType.find(
-                        (option) => option.value === userProperty.propertyType
+                      value={bedrooms.find(
+                        (option) => option.value === userProperty.bedrooms
                       )}
                       onChange={(selectedOption) =>
                         setUserProperty({
                           ...userProperty,
-                          propertyType: selectedOption.value,
+                          bedrooms: selectedOption.value,
                         })
                       }
+                      required
                     />
                   </div>
 
@@ -467,8 +477,49 @@ const AddProperty = () => {
                           garage: selectedOption.value,
                         })
                       }
+                      required
                     />
-                  </div>
+                  </div> */}
+                  <div className="mb-3 col-6">
+  <label className="form-label">Bedrooms</label>
+  <Select
+    options={bedrooms} // Use bedrooms array here
+    defaultValue={bedrooms[0]} // Assuming you want to default to the first option
+    className="custom-react-select"
+    isSearchable={false}
+    value={bedrooms.find(
+      (option) => option.value === userProperty.bedrooms
+    )}
+    onChange={(selectedOption) =>
+      setUserProperty({
+        ...userProperty,
+        bedrooms: selectedOption.value,
+      })
+    }
+    required
+  />
+</div>
+
+<div className="mb-3 col-6">
+  <label className="form-label">Garage</label>
+  <Select
+    options={garages} // Use garages array here
+    defaultValue={garages[0]} // Assuming you want to default to the first option
+    className="custom-react-select"
+    isSearchable={false}
+    value={garages.find(
+      (option) => option.value === userProperty.garage
+    )}
+    onChange={(selectedOption) =>
+      setUserProperty({
+        ...userProperty,
+        garage: selectedOption.value,
+      })
+    }
+    required
+  />
+</div>
+
 
                   <div className="mb-3 col-6">
                     <label className="form-label">Bathrooms</label>
@@ -486,6 +537,7 @@ const AddProperty = () => {
                           bathrooms: selectedOption.value,
                         })
                       }
+                      required
                     />
                   </div>
 
@@ -505,6 +557,7 @@ const AddProperty = () => {
                           basement: selectedOption.value,
                         })
                       }
+                      required
                     />
                   </div>
                   <div className="mb-3 col-6">
@@ -523,6 +576,7 @@ const AddProperty = () => {
                           basementType: selectedOption.value,
                         })
                       }
+                      required
                     />
                   </div>
 
@@ -531,10 +585,10 @@ const AddProperty = () => {
                     <input
                       type="text"
                       className="form-control"
-                      required=""
                       name="inclusion"
                       value={userProperty.inclusion}
                       onChange={handleInputChange}
+                      required
                     />
                   </div>
 
@@ -543,10 +597,10 @@ const AddProperty = () => {
                     <input
                       type="text"
                       className="form-control"
-                      required=""
                       name="addOn"
                       value={userProperty.addOn}
                       onChange={handleInputChange}
+                      required
                     />
                   </div>
 
@@ -555,22 +609,22 @@ const AddProperty = () => {
                     <input
                       type="text"
                       className="form-control"
-                      required=""
                       name="intersection"
                       value={userProperty.intersection}
                       onChange={handleInputChange}
+                      required
                     />
                   </div>
 
                   <div className="mb-3 col-6">
                     <label className="form-label">Project Phase</label>
                     <input
-                      type="text"
+                      type="number"
                       className="form-control"
-                      required=""
                       name="projectPhase"
                       value={userProperty.projectPhase}
                       onChange={handleInputChange}
+                      required
                     />
                   </div>
 
@@ -579,10 +633,10 @@ const AddProperty = () => {
                     <input
                       type="text"
                       className="form-control"
-                      required=""
                       name="totalDeposit"
                       value={userProperty.totalDeposit}
                       onChange={handleInputChange}
+                      required
                     />
                   </div>
 
@@ -591,10 +645,10 @@ const AddProperty = () => {
                     <input
                       type="text"
                       className="form-control"
-                      required=""
                       name="depositSubmission"
                       value={userProperty.depositSubmission}
                       onChange={handleInputChange}
+                      required
                     />
                   </div>
 
@@ -603,10 +657,10 @@ const AddProperty = () => {
                     <input
                       type="text"
                       className="form-control"
-                      required=""
                       name="developmentCharges"
                       value={userProperty.developmentCharges}
                       onChange={handleInputChange}
+                      required
                     />
                   </div>
 
@@ -615,10 +669,10 @@ const AddProperty = () => {
                     <input
                       type="text"
                       className="form-control"
-                      required=""
                       name="maintainanceFreehold"
                       value={userProperty.maintainanceFreehold}
                       onChange={handleInputChange}
+                      required
                     />
                   </div>
 
@@ -627,40 +681,36 @@ const AddProperty = () => {
                     <input
                       type="text"
                       className="form-control"
-                      required=""
                       name="maintainanceAmount"
                       value={userProperty.maintainanceAmount}
                       onChange={handleInputChange}
+                      required
                     />
                   </div>
 
-                
-
                   <div className="mb-3 col-6">
                     <label className="form-label">
-                    Developer Special Incentive
+                      Developer Special Incentive
                     </label>
                     <input
                       type="text"
                       className="form-control"
-                      required=""
                       name="developerSpecialIncentive"
                       value={userProperty.developerSpecialIncentive}
                       onChange={handleInputChange}
+                      required
                     />
                   </div>
 
                   <div className="mb-3 col-6">
-                    <label className="form-label">
-                    DHRE SPECIAL INCENTIVE
-                    </label>
+                    <label className="form-label">DHRE SPECIAL INCENTIVE</label>
                     <input
                       type="text"
                       className="form-control"
-                      required=""
                       name="dhreSpecialIncentive"
                       value={userProperty.dhreSpecialIncentive}
                       onChange={handleInputChange}
+                      required
                     />
                   </div>
 
@@ -669,22 +719,22 @@ const AddProperty = () => {
                     <input
                       type="text"
                       className="form-control"
-                      required=""
                       name="websiteLink"
                       value={userProperty.websiteLink}
                       onChange={handleInputChange}
+                      required
                     />
                   </div>
 
                   <div className=" d-flex justify-content-end mt-3">
-                    <button className="btn btn-secondary">Add New Property</button>
+                    <button className="btn btn-secondary">
+                      Add New Property
+                    </button>
                   </div>
-             
+
                   <hr className="my-4" />
 
-                 
-
-   <div className="mb-3 col-6" style={{ overflowX: "auto" }}>
+                  <div className="mb-3 col-6" style={{ overflowX: "auto" }}>
                     <label className="form-label">
                       Deposit with Agreement/Offer
                     </label>
@@ -786,13 +836,23 @@ const AddProperty = () => {
                     />
                   </div>
 
-               
-
                   <div className="mb-3 col-6 ">
-                    <label className="form-label">Upload Excel Sheet</label><br/>
+                    <label className="form-label">Upload Excel Sheet</label>
+                    <br />
                     <div className="d-flex align-items-center">
-                    <input type="file" accept=".xlsx, .xls"  name="excel_sheet" className="form-control" onChange={handleFileChange} />
-                    <button className="bg-gray p-2 m-2 border-0 " onClick={handleUpload}>Upload</button>
+                      <input
+                        type="file"
+                        accept=".xlsx, .xls"
+                        name="excel_sheet"
+                        className="form-control"
+                        onChange={handleFileChange}
+                      />
+                      <button
+                        className="bg-gray p-2 m-2 border-0 "
+                        onClick={handleUpload}
+                      >
+                        Upload
+                      </button>
                     </div>
                   </div>
 
