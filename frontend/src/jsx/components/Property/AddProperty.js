@@ -85,37 +85,42 @@ const AddProperty = () => {
     setFile(selectedFile);
   };
 
-  const handleUpload = async (file) => {
+  const handleUpload = async () => {
     if (!file) return;
-
+  
     try {
       const fileReader = new FileReader();
       fileReader.onload = async (e) => {
-        const data = new Uint8Array(e.target.result);
-        const workbook = XLSX.read(data, { type: "array" });
-        const sheetName = workbook.SheetNames[0];
-        const sheet = workbook.Sheets[sheetName];
-        const jsonData = XLSX.utils.sheet_to_json(sheet, { header: 1 });
-
-        // Assuming your Excel sheet has headers and you want to convert each row into an object
-        const objectsArray = jsonData.slice(1).map((row) => {
-          const obj = {};
-          jsonData[0].forEach((header, index) => {
-            obj[header] = row[index];
+        try {
+          const data = new Uint8Array(e.target.result);
+          const workbook = XLSX.read(data, { type: "array" });
+          const sheetName = workbook.SheetNames[0];
+          const sheet = workbook.Sheets[sheetName];
+          const jsonData = XLSX.utils.sheet_to_json(sheet, { header: 1 });
+  
+          const objectsArray = jsonData.slice(1).map((row) => {
+            const obj = {};
+            jsonData[0].forEach((header, index) => {
+              obj[header] = row[index];
+            });
+            return obj;
           });
-          return obj;
-        });
-        console.log(objectsArray);
-
-      
-
-        axios.post('http://localhost:8086/api/public/project-details/upload-customers-data', objectsArray)
-        .then(response => {
-          console.log('Excel sheet Data sent to backend successfully');
-        })
-        .catch(error => {
-          console.error('Error sending data to backend:', error);
-        })
+          console.log("Objects array:", objectsArray);
+  
+          axios
+            .post(
+              "http://localhost:8086/api/public/project-details/upload-customers-data",
+              objectsArray
+            )
+            .then((response) => {
+              console.log("Excel sheet Data sent to backend successfully");
+            })
+            .catch((error) => {
+              console.error("Error sending data to backend:", error);
+            });
+        } catch (error) {
+          console.error("Error processing file data:", error);
+        }
       };
       fileReader.readAsArrayBuffer(file);
     } catch (error) {
