@@ -13,41 +13,41 @@ const AddProperty = () => {
     propertyArea: "",
     developer: "",
     propClosing: "",
-    propClosingYear: "",
+    propClosingYear: 0,
     status: "",
-    comission: "",
+    comission: 0,
     commissionPayment: "",
     developerEmail: "",
     salesRepresentatives: "",
     salesOfficeTelephone: "",
     modelName: "",
     modelCost: "",
-    modelSize: "",
-    story: "",
-    frontLotSize: "",
-    lotDepth: "",
-    bedrooms: "",
-    garage: "",
-    bathrooms: "",
+    modelSize: 0,
+    story: 0,
+    frontLotSize: 0,
+    lotDepth: 0,
+    bedrooms: 0,
+    garage: 0,
+    bathrooms: 0,
     basement: "",
     basementType: "",
     inclusion: "",
     addOn: "",
     intersection: "",
-    projectPhase: "",
-    totalDeposit: "",
+    projectPhase: 0,
+    totalDeposit: 0,
     depositSubmission: "",
-    developmentCharges: "",
-    maintainanceFreehold: "",
+    developmentCharges: 0,
+    maintainanceFreehold: 0,
     maintainanceAmount: "",
     developerSpecialIncentive: "",
-    dhreSpecialIncentive: "",
+    dhreSpecialIncentive: 0,
     websiteLink: "",
     address: "",
   });
 
   const [file, setFile] = useState(null);
-  const [statusOptions, setStatusOptions] = useState([]);
+  const [statusOptions, setstatusOptions] = useState([]);
   const [propertyTypeOptions, setPropertyTypeOptions] = useState([]);
   const [garageOptions, setgarageOptions] = useState([]);
   const [frontLotOptions, setfrontLotOptions] = useState([]);
@@ -136,13 +136,13 @@ const AddProperty = () => {
         axios.get("http://localhost:8086/api/metadata/basement/all")
       ]);
 
-      setStatusOptions(statusResponse.data.map(item => ({ value: item.id, label: item.status })));
-      setPropertyTypeOptions(propertyTypeResponse.data.map(item => ({ value: item.id, label: item.propertyField })));
-      setgarageOptions(garageResponse.data.map(item => ({ value: item.id, label: item.garage })));
-      setfrontLotOptions(frontLotResponse.data.map(item => ({ value: item.id, label: item.frontLot })));
-      setbedRoomsOptions(bedRoomsResponse.data.map(item => ({ value: item.id, label: item.numberOfBedrooms })));
-      setbathRoomsOptions(bathRoomsResponse.data.map(item => ({ value: item.id, label: item.numberOfBathrooms })));
-      setbasementTypeOptions(basementTypeResponse.data.map(item => ({ value: item.id, label: item.basementField })));
+      setstatusOptions(statusResponse.data.map(item => ({ value: item.name, label: item.status })));
+      setPropertyTypeOptions(propertyTypeResponse.data.map(item => ({ value: item.name, label: item.propertyField })));
+      setgarageOptions(garageResponse.data.map(item => ({ value: item.name, label: item.garage })));
+      setfrontLotOptions(frontLotResponse.data.map(item => ({ value: item.name, label: item.frontLot })));
+      setbedRoomsOptions(bedRoomsResponse.data.map(item => ({ value: item.name, label: item.numberOfBedrooms })));
+      setbathRoomsOptions(bathRoomsResponse.data.map(item => ({ value: item.name, label: item.numberOfBathrooms })));
+      setbasementTypeOptions(basementTypeResponse.data.map(item => ({ value: item.name, label: item.basementField })));
     } catch (error) {
       console.error("Error fetching data:", error);
     }
@@ -246,7 +246,7 @@ const AddProperty = () => {
                   </div>
 
                   <div className="mb-3 col-6">
-                    <label className="form-label">Status</label>
+                    <label className="form-label">status</label>
                     <Select
                       options={statusOptions}
                       className="custom-react-select"
@@ -736,7 +736,14 @@ const AddProperty = () => {
                     />
                   </div>
 
-                  <div className="mb-3 col-6 ">
+               
+
+                  {/* <div className=" d-flex justify-content-center">
+                    <button className="btn btn-primary">Submit</button>
+                  </div>
+                </div>
+              </form> */}
+              <div className="mb-3 col-6 ">
                     <label className="form-label">Upload Excel Sheet</label>
                     <br />
                     <div className="d-flex align-items-center">
@@ -755,6 +762,7 @@ const AddProperty = () => {
                       </button>
                     </div>
                   </div>
+
 
 
                   <div className=" d-flex justify-content-center">

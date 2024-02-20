@@ -74,7 +74,7 @@ public class ExcelUploadService {
                                 projectData.setPropClosingYear((int) cell.getNumericCellValue());
                                 break;
                             case 6:
-                                projectData.setStatusValididty(cell.getStringCellValue());
+                                projectData.setStatus(cell.getStringCellValue());
                                 break;
                             case 7:
                                 if (cell.getCellType() == CellType.NUMERIC) {
@@ -98,7 +98,7 @@ public class ExcelUploadService {
                                 projectData.setAddress(cell.getStringCellValue());
                                 break;
                             case 12:
-                                projectData.setSalesOfficeTelePhone(cell.getStringCellValue());
+                                projectData.setSalesOfficeTelephone(cell.getStringCellValue());
                                 break;
                             case 13:
                                 projectData.setModelName(cell.getStringCellValue());
@@ -113,7 +113,7 @@ public class ExcelUploadService {
                                 projectData.setStory((int) cell.getNumericCellValue());
                                 break;
                             case 17:
-                                projectData.setForntLotSize((int) cell.getNumericCellValue());
+                                projectData.setFrontLotSize((int) cell.getNumericCellValue());
                                 break;
                             case 18:
                                 projectData.setLotDepth((int) cell.getNumericCellValue());
@@ -122,7 +122,7 @@ public class ExcelUploadService {
                                 projectData.setBedrooms((int) cell.getNumericCellValue());
                                 break;
                             case 20:
-                                projectData.setBathroomSize((float) cell.getNumericCellValue());
+                                projectData.setBathrooms((float) cell.getNumericCellValue());
                                 break;
                             case 21:
                                 projectData.setGarage((int) cell.getNumericCellValue());
@@ -134,7 +134,7 @@ public class ExcelUploadService {
                                 projectData.setBasementType(cell.getStringCellValue());
                                 break;
                             case 24:
-                                projectData.setInculsion(cell.getStringCellValue());
+                                projectData.setInclusion(cell.getStringCellValue());
                                 break;
                             case 25:
                                 projectData.setAddOn( cell.getStringCellValue());
@@ -155,13 +155,13 @@ public class ExcelUploadService {
                                 projectData.setDevelopmentCharges((long) cell.getNumericCellValue());
                                 break;
                             case 31:
-                                projectData.setMaintananceFreeHold((int) cell.getNumericCellValue());
+                                projectData.setMaintainanceFreehold((int) cell.getNumericCellValue());
                                 break;
                             case 32:
-                                projectData.setMaintananceAmount(cell.getStringCellValue());
+                                projectData.setMaintainanceAmount(cell.getStringCellValue());
                                 break;
                             case 33:
-                                projectData.setDeveloperSpecial(cell.getStringCellValue());
+                                projectData.setDeveloperSpecialIncentive(cell.getStringCellValue());
                                 break;
 //                            case 34:
 //                                customer.setDhreSpcialIncentive((long) cell.getNumericCellValue());
