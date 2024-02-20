@@ -136,13 +136,13 @@ const AddProperty = () => {
         axios.get("http://localhost:8086/api/metadata/basement/all")
       ]);
 
-      setstatusOptions(statusResponse.data.map(item => ({ value: item.name, label: item.status })));
-      setPropertyTypeOptions(propertyTypeResponse.data.map(item => ({ value: item.name, label: item.propertyField })));
-      setgarageOptions(garageResponse.data.map(item => ({ value: item.name, label: item.garage })));
-      setfrontLotOptions(frontLotResponse.data.map(item => ({ value: item.name, label: item.frontLot })));
-      setbedRoomsOptions(bedRoomsResponse.data.map(item => ({ value: item.name, label: item.numberOfBedrooms })));
-      setbathRoomsOptions(bathRoomsResponse.data.map(item => ({ value: item.name, label: item.numberOfBathrooms })));
-      setbasementTypeOptions(basementTypeResponse.data.map(item => ({ value: item.name, label: item.basementField })));
+      setstatusOptions(statusResponse.data.map(item => ({ value: item.status, label: item.status })));
+      setPropertyTypeOptions(propertyTypeResponse.data.map(item => ({ value: item.propertyField, label: item.propertyField })));
+      setgarageOptions(garageResponse.data.map(item => ({ value: item.garage, label: item.garage })));
+      setfrontLotOptions(frontLotResponse.data.map(item => ({ value: item.frontLot, label: item.frontLot })));
+      setbedRoomsOptions(bedRoomsResponse.data.map(item => ({ value: item.numberOfBedrooms, label: item.numberOfBedrooms })));
+      setbathRoomsOptions(bathRoomsResponse.data.map(item => ({ value: item.numberOfBathrooms, label: item.numberOfBathrooms })));
+      setbasementTypeOptions(basementTypeResponse.data.map(item => ({ value: item.basementField, label: item.basementField })));
     } catch (error) {
       console.error("Error fetching data:", error);
     }
