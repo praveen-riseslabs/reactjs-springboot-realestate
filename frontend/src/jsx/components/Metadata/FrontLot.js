@@ -62,7 +62,13 @@ function FrontLot() {
       return;
     }
     
-
+    let f = checkUnique(newData.frontLot)
+    if(f>0){
+      toast.error("value already exsit", {
+        position: toast.POSITION.TOP_RIGHT,
+      });
+    }
+    else{
     axios.post("http://localhost:8086/api/metadata/frontlot/add", newData)
       .then((response) => {
         toast.success("Data saved successfully", {
@@ -81,7 +87,9 @@ function FrontLot() {
         console.error("Error saving data:", error);
         getvalues();
       });
+    }
   };
+  
 
   const handleEdit = (index) => {
     setNewType(false);
@@ -113,6 +121,13 @@ function FrontLot() {
       updatedData.frontLot = currentValue;
     }
 
+    let f = checkUnique(updatedData.frontLot)
+    if(f>0){
+      toast.error("value already exsit", {
+        position: toast.POSITION.TOP_RIGHT,
+      });
+    }else{
+
     axios.put(`http://localhost:8086/api/metadata/frontlot/update/${updatedData.id}`, updatedData )
       .then((response) => {
         toast.success("Data updated successfully", {
@@ -129,6 +144,7 @@ function FrontLot() {
         });
         console.error("Error updating data:", error);
       });
+    }
   };
 
   const handleDelete = (index) => {
@@ -157,7 +173,15 @@ function FrontLot() {
       });
   };
   
-  
+  const checkUnique = (val)=>{
+    let flag = 0
+    metadata.map((item)=>{
+      if(item.frontLot == val){
+        flag++
+      }
+    })
+    return flag
+  }
 
   const handleChange = (index, field, e) => {
     const updatedMetadata = [...metadata];
