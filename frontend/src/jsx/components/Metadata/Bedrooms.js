@@ -46,8 +46,8 @@ function Bedrooms() {
       numberOfBedrooms: (metadata[index]?.type || "").trim(),
     };
 
-    if (parseFloat(newData.numberOfBedrooms) < 0) {
-      toast.error("Negative numbers are not allowed", {
+    if (parseFloat(newData.numberOfBedrooms) < 0 || newData.numberOfBedrooms.length > 3) {
+      toast.error("Please enter a realistic number between 0 to 999", {
         position: toast.POSITION.TOP_RIGHT,
       });
       return;
@@ -59,6 +59,12 @@ function Bedrooms() {
       });
       return;
     }
+    let f = checkUnique(newData.numberOfBedrooms)
+    if(f>0){
+      toast.error("value already exsit", {
+        position: toast.POSITION.TOP_RIGHT,
+      });
+    }else{
 
     axios.post("http://localhost:8086/api/metadata/bedroom/add", newData)
       .then((response) => {
@@ -77,6 +83,7 @@ function Bedrooms() {
         console.error("Error saving data:", error);
         getvalues();
       });
+    }
   };
 
   const handleEdit = (index) => {
@@ -105,8 +112,8 @@ function Bedrooms() {
       return; 
     }
 
-    if (parseFloat(updatedData.numberOfBedrooms) < 0) {
-      toast.error("Negative numbers are not allowed", {
+    if (parseFloat(updatedData.numberOfBedrooms) < 0 || updatedData.numberOfBedrooms.length > 3) {
+      toast.error("Please enter a realistic number between 0 to 999", {
         position: toast.POSITION.TOP_RIGHT,
       });
       return; 
@@ -115,6 +122,13 @@ function Bedrooms() {
     if (!updatedData.numberOfBedrooms) {
       updatedData.numberOfBedrooms = currentValue;
     }
+
+    let f = checkUnique(updatedData.numberOfBedrooms)
+    if(f>0){
+      toast.error("value already exsit", {
+        position: toast.POSITION.TOP_RIGHT,
+      });
+    }else{
 
     axios.put(`http://localhost:8086/api/metadata/bedroom/update/${updatedData.id}`, updatedData )
       .then((response) => {
@@ -132,6 +146,7 @@ function Bedrooms() {
         });
         console.error("Error updating data:", error);
       });
+    }
   };
 
   const handleDelete = (index) => {
@@ -167,9 +182,19 @@ function Bedrooms() {
     setMetadata(updatedMetadata);
   };
 
+  const checkUnique = (val)=>{
+    let flag = 0
+    metadata.map((item)=>{
+      if(item.numberOfBedrooms == val){
+        flag++
+      }
+    })
+    return flag
+  }
+
   return (
     <div>
-      <button className="btn btn-secondary mb-3" onClick={handleAddRow}>Add Type</button>
+      <button className="btn btn-secondary mb-3" onClick={handleAddRow}>Add Bedrooms</button>
       <table className="table">
         <thead>
           <tr>

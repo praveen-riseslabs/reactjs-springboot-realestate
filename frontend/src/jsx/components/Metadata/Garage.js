@@ -46,8 +46,8 @@ function Garage() {
       garage: (metadata[index]?.type || "").trim(),
     };
 
-    if (parseFloat(newData.garage) < 0) {
-      toast.error("Negative numbers are not allowed", {
+    if (parseFloat(newData.garage) < 0 || newData.garage.length > 3) {
+      toast.error("Please enter a realistic number between 0 to 999", {
         position: toast.POSITION.TOP_RIGHT,
       });
       return;
@@ -59,6 +59,13 @@ function Garage() {
       });
       return;
     }
+
+    let f = checkUnique(newData.garage)
+    if(f>0){
+      toast.error("value already exsit", {
+        position: toast.POSITION.TOP_RIGHT,
+      });
+    }else{
 
     axios.post("http://localhost:8086/api/metadata/garage/add", newData)
       .then((response) => {
@@ -77,6 +84,7 @@ function Garage() {
         console.error("Error saving data:", error);
         getvalues();
       });
+    }
   };
 
   const handleEdit = (index) => {
@@ -98,8 +106,8 @@ function Garage() {
       garage: (metadata[index]?.type || "").trim(),
     };
 
-    if (parseFloat(updatedData.garage) < 0) {
-      toast.error("Negative numbers are not allowed", {
+    if (parseFloat(updatedData.garage) < 0 || updatedData.garage.length > 3) {
+      toast.error("Please enter a realistic number between 0 to 999", {
         position: toast.POSITION.TOP_RIGHT,
       });
       return; 
@@ -108,6 +116,13 @@ function Garage() {
     if (!updatedData.garage) {
       updatedData.garage = currentValue;
     }
+
+    let f = checkUnique(updatedData.garage)
+    if(f>0){
+      toast.error("value already exsit", {
+        position: toast.POSITION.TOP_RIGHT,
+      });
+    }else{
 
     axios.put(`http://localhost:8086/api/metadata/garage/update/${updatedData.id}`, updatedData )
       .then((response) => {
@@ -125,6 +140,7 @@ function Garage() {
         });
         console.error("Error updating data:", error);
       });
+    }
   };
 
   const handleDelete = (index) => {
@@ -160,9 +176,19 @@ function Garage() {
     setMetadata(updatedMetadata);
   };
 
+  const checkUnique = (val)=>{
+    let flag = 0
+    metadata.map((item)=>{
+      if(item.garage == val){
+        flag++
+      }
+    })
+    return flag
+  }
+
   return (
     <div>
-      <button className="btn btn-secondary mb-3" onClick={handleAddRow}>Add Type</button>
+      <button className="btn btn-secondary mb-3" onClick={handleAddRow}>Add Garage</button>
       <table className="table">
         <thead>
           <tr>

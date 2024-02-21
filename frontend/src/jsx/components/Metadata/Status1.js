@@ -53,6 +53,14 @@ function Status1() {
       return;
     }
 
+    const isDuplicate = metadata.some(item => item.status === newData.status);
+    if (isDuplicate) {
+      toast.error("Value already exists, Enter new value", {
+        position: toast.POSITION.TOP_RIGHT,
+      });
+      return;
+    }
+
     axios.post("http://localhost:8086/api/metadata/status/add", newData)
       .then((response) => {
         toast.success("Data saved successfully", {
@@ -93,6 +101,14 @@ function Status1() {
 
     if (!updatedData.status) {
       updatedData.status = currentValue;
+    }
+
+    const isDuplicate = metadata.some(item => item.status === updatedData.status);
+    if (isDuplicate) {
+      toast.error("Value already exists, Enter new value", {
+        position: toast.POSITION.TOP_RIGHT,
+      });
+      return;
     }
 
     axios.put(`http://localhost:8086/api/metadata/status/update/${updatedData.id}`, updatedData )
@@ -158,7 +174,7 @@ function Status1() {
 
   return (
     <div>
-      <button className="btn btn-secondary mb-3" onClick={handleAddRow}>Add Type</button>
+      <button className="btn btn-secondary mb-3" onClick={handleAddRow}>Add Status</button>
       <table className="table">
         <thead>
           <tr>

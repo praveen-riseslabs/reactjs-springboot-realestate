@@ -46,8 +46,8 @@ function Bathrooms() {
         numberOfBathrooms: (metadata[index]?.type || "").trim(),
     };
 
-    if (parseFloat(newData.numberOfBathrooms) < 0) {
-      toast.error("Negative numbers are not allowed", {
+    if (parseFloat(newData.numberOfBathrooms) < 0 || newData.numberOfBathrooms.length > 3) {
+      toast.error("Please enter a realistic number between 0 to 999", {
         position: toast.POSITION.TOP_RIGHT,
       });
       return;
@@ -60,6 +60,13 @@ function Bathrooms() {
       return;
     }
 
+    let f = checkUnique(newData.numberOfBathrooms)
+    if(f>0){
+      toast.error("value already exsit", {
+        position: toast.POSITION.TOP_RIGHT,
+      });
+    }
+    else{
     axios.post("http://localhost:8086/api/metadata/bathroom/add", newData)
       .then((response) => {
         toast.success("Data saved successfully", {
@@ -77,6 +84,7 @@ function Bathrooms() {
         console.error("Error saving data:", error);
         getvalues();
       });
+    }
   };
 
   const handleEdit = (index) => {
@@ -98,8 +106,8 @@ function Bathrooms() {
       numberOfBathrooms: (metadata[index]?.type || "").trim(), // Trim whitespace if type exists
     };
 
-    if (parseFloat(updatedData.numberOfBathrooms) < 0) {
-      toast.error("Negative numbers are not allowed", {
+    if (parseFloat(updatedData.numberOfBathrooms) < 0 || updatedData.numberOfBathrooms.length > 3) {
+      toast.error("Please enter a realistic number between 0 to 999", {
         position: toast.POSITION.TOP_RIGHT,
       });
       return; 
@@ -108,6 +116,13 @@ function Bathrooms() {
     if (!updatedData.numberOfBathrooms) {
       updatedData.numberOfBathrooms = currentValue;
     }
+
+    let f = checkUnique(updatedData.numberOfBathrooms)
+    if(f>0){
+      toast.error("value already exsit", {
+        position: toast.POSITION.TOP_RIGHT,
+      });
+    }else{
 
     axios.put(`http://localhost:8086/api/metadata/bathroom/update/${updatedData.id}`, updatedData )
       .then((response) => {
@@ -125,6 +140,7 @@ function Bathrooms() {
         });
         console.error("Error updating data:", error);
       });
+    }
   };
 
   const handleDelete = (index) => {
@@ -160,9 +176,19 @@ function Bathrooms() {
     setMetadata(updatedMetadata);
   };
 
+  const checkUnique = (val)=>{
+    let flag = 0
+    metadata.map((item)=>{
+      if(item.numberOfBathrooms == val){
+        flag++
+      }
+    })
+    return flag
+  }
+
   return (
     <div>
-      <button className="btn btn-secondary mb-3" onClick={handleAddRow}>Add Type</button>
+      <button className="btn btn-secondary mb-3" onClick={handleAddRow}>Add Bathrooms</button>
       <table className="table">
         <thead>
           <tr>

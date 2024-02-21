@@ -48,8 +48,8 @@ function FrontLot() {
     };
 
     // Validate if frontLot is a negative number
-  if (parseFloat(newData.frontLot) < 0) {
-    toast.error("Negative numbers are not allowed", {
+  if (parseFloat(newData.frontLot) < 0 || newData.frontLot.length > 3) {
+    toast.error("Please enter a realistic number between 0 to 999",{
       position: toast.POSITION.TOP_RIGHT,
     });
     return;
@@ -110,8 +110,8 @@ function FrontLot() {
       frontLot: (metadata[index]?.type || "").trim(), // Trim whitespace if type exists
     };
 
-  if (parseFloat(updatedData.frontLot) < 0) {
-    toast.error("Negative numbers are not allowed", {
+  if (parseFloat(updatedData.frontLot) < 0 || updatedData.frontLot.length > 3) {
+    toast.error("Please enter a realistic number between 0 to 999", {
       position: toast.POSITION.TOP_RIGHT,
     });
     return; 
@@ -192,7 +192,7 @@ function FrontLot() {
 
   return (
     <div>
-      <button className="btn btn-secondary mb-3" onClick={handleAddRow}>Add Type</button>
+      <button className="btn btn-secondary mb-3" onClick={handleAddRow}>Add FrontLot</button>
       <table className="table">
         <thead>
           <tr>

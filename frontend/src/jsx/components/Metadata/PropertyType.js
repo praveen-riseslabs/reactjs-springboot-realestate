@@ -52,6 +52,14 @@ function PropertyType() {
       return;
     }
 
+    const isDuplicate = metadata.some(item => item.propertyField === newData.propertyField);
+    if (isDuplicate) {
+      toast.error("Value already exists, Enter new value", {
+        position: toast.POSITION.TOP_RIGHT,
+      });
+      return;
+    }
+
     axios.post("http://localhost:8086/api/metadata/property/add", newData)
       .then((response) => {
         toast.success("Data saved successfully", {
@@ -93,6 +101,14 @@ function PropertyType() {
 
     if (!updatedData.propertyField) {
       updatedData.propertyField = currentValue;
+    }
+
+    const isDuplicate = metadata.some(item => item.propertyField === updatedData.propertyField);
+    if (isDuplicate) {
+      toast.error("Value already exists, Enter new value", {
+        position: toast.POSITION.TOP_RIGHT,
+      });
+      return;
     }
 
     axios.put(`http://localhost:8086/api/metadata/property/update/${updatedData.id}`, updatedData )
@@ -159,7 +175,7 @@ function PropertyType() {
 
   return (
     <div>
-      <button className="btn btn-secondary mb-3" onClick={handleAddRow}>Add Type</button>
+      <button className="btn btn-secondary mb-3" onClick={handleAddRow}>Add PropertyType</button>
       <table className="table">
         <thead>
           <tr>

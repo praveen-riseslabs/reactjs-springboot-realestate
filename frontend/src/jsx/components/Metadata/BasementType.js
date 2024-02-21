@@ -53,6 +53,14 @@ function BasementType() {
       return;
     }
 
+    const isDuplicate = metadata.some(item => item.basementField === newData.basementField);
+    if (isDuplicate) {
+      toast.error("Value already exists, Enter new value", {
+        position: toast.POSITION.TOP_RIGHT,
+      });
+      return;
+    }
+
     axios.post("http://localhost:8086/api/metadata/create/basement", newData)
       .then((response) => {
         toast.success("Data saved successfully", {
@@ -93,6 +101,14 @@ function BasementType() {
 
     if (!updatedData.basementField) {
       updatedData.basementField = currentValue;
+    }
+
+    const isDuplicate = metadata.some(item => item.basementField === updatedData.basementField);
+    if (isDuplicate) {
+      toast.error("Value already exists, Enter new value", {
+        position: toast.POSITION.TOP_RIGHT,
+      });
+      return;
     }
 
     axios.put(`http://localhost:8086/api/metadata/update/basement/${updatedData.id}`, updatedData )
@@ -158,7 +174,7 @@ function BasementType() {
 
   return (
     <div>
-      <button className="btn btn-secondary mb-3" onClick={handleAddRow}>Add Type</button>
+      <button className="btn btn-secondary mb-3" onClick={handleAddRow}>Add BasementType</button>
       <table className="table">
         <thead>
           <tr>
