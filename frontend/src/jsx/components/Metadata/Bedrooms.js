@@ -10,6 +10,8 @@ function Bedrooms() {
   const [editingIndex, setEditingIndex] = useState(-1);
   const [newType, setNewType] = useState(false);
   const [text, setText] = useState("");
+  const [showDeleteModal, setShowDeleteModal] = useState(false);
+  const [deleteIndex, setDeleteIndex] = useState(-1);
 
   const getvalues = () => {
     setNewType(false);
@@ -39,11 +41,17 @@ function Bedrooms() {
   };
 
   const handleNewData = (index) => {
-    setNewType(false);
     setText('')
     const newData = {
       numberOfBedrooms: (metadata[index]?.type || "").trim(),
     };
+
+    if (parseFloat(newData.numberOfBedrooms) < 0) {
+      toast.error("Negative numbers are not allowed", {
+        position: toast.POSITION.TOP_RIGHT,
+      });
+      return;
+    }
 
     if (!newData.numberOfBedrooms) {
       toast.error("Text is required", {
@@ -72,8 +80,14 @@ function Bedrooms() {
   };
 
   const handleEdit = (index) => {
+    setNewType(false);
     setText(metadata[index].numberOfBedrooms);
     setEditingIndex(index);
+  };
+
+  const handleCancelEdit = () => {
+    setText('');
+    setEditingIndex(-1);
   };
 
   const handleSave = (index) => {
@@ -83,6 +97,20 @@ function Bedrooms() {
       id: metadata[index].id,
       numberOfBedrooms: (metadata[index]?.type || "").trim(), // Trim whitespace if type exists
     };
+
+    if (parseFloat(updatedData.numberOfBedrooms) < 0) {
+      toast.error("Negative numbers are not allowed", {
+        position: toast.POSITION.TOP_RIGHT,
+      });
+      return; 
+    }
+
+    if (parseFloat(updatedData.numberOfBedrooms) < 0) {
+      toast.error("Negative numbers are not allowed", {
+        position: toast.POSITION.TOP_RIGHT,
+      });
+      return; 
+    }
 
     if (!updatedData.numberOfBedrooms) {
       updatedData.numberOfBedrooms = currentValue;
@@ -108,14 +136,20 @@ function Bedrooms() {
 
   const handleDelete = (index) => {
     setNewType(false);
-    const garageIdToDelete = metadata[index].id;
+    setDeleteIndex(index);
+    setShowDeleteModal(true);
+  };
+
+  const handleConfirmDelete = () => {
+    setShowDeleteModal(false);
+    const garageIdToDelete = metadata[deleteIndex].id;
     axios.delete(`http://localhost:8086/api/metadata/bedroom/delete/${garageIdToDelete}`)
       .then((response) => {
         console.log("Data deleted successfully:", response.data);
         toast.success("Data deleted successfully", {
           position: toast.POSITION.TOP_RIGHT,
         });
-        const updatedMetadata = metadata.filter((item, i) => i !== index);
+        const updatedMetadata = metadata.filter((item, i) => i !== deleteIndex);
         setMetadata(updatedMetadata);
       })
       .catch((error) => {
@@ -164,7 +198,10 @@ function Bedrooms() {
                     <FontAwesomeIcon className="text-danger  fa-lg mt-2 ms-3" onClick={()=>getvalues()} icon={faCircleXmark} />
                     </>
                   ) : (
-                    <button className="btn btn-success" onClick={() => handleSave(index)}>  Save</button> )
+                    <>
+                    <button className="btn btn-success" onClick={() => handleSave(index)}>Save</button>
+                    <button className="btn btn-secondary ms-2" onClick={() => handleCancelEdit()}>Cancel</button>
+                  </> )
                 ) : (
                   <>
                     <FontAwesomeIcon icon={faPenToSquare} className="  fa-lg m-1 "onClick={() => handleEdit(index)}/>{" "}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
@@ -176,6 +213,27 @@ function Bedrooms() {
           ))}
         </tbody>
       </table>
+
+      <div className="modal" tabIndex="-1" role="dialog" style={{ display: showDeleteModal ? 'block' : 'none' }}>
+        <div className="modal-dialog" role="document">
+          <div className="modal-content">
+            <div className="modal-header">
+              <h5 className="modal-title">Confirm Deletion</h5>
+              <button type="button" className="close p-2" onClick={() => setShowDeleteModal(false)} style={{fontSize: "2rem", border:'none'  }}>
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div className="modal-body">
+              Are you sure you want to delete this item?
+            </div>
+            <div className="modal-footer">
+              <button type="button" className="btn btn-secondary" onClick={() => setShowDeleteModal(false)}>Cancel</button>
+              <button type="button" className="btn btn-danger" onClick={() => handleConfirmDelete()}>Delete</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
       <ToastContainer />
     </div>
   );
