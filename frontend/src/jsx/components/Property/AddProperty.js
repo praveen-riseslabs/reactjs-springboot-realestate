@@ -1,7 +1,7 @@
 import React, { useState, useEffect  } from "react";
 import Select from "react-select";
 import { useForm } from "react-hook-form";
-import * as XLSX from "xlsx";
+// import * as XLSX from "xlsx";
 import axios from "axios";
 
 
@@ -54,6 +54,8 @@ const AddProperty = () => {
   const [bedRoomsOptions, setbedRoomsOptions] = useState([]);
   const [bathRoomsOptions, setbathRoomsOptions] = useState([]);
   const [basementTypeOptions, setbasementTypeOptions] = useState([]);
+
+  const [rangeValue, setRangeValue] = useState(0);
 
 
   const handleInputChange = (e) => {
@@ -139,6 +141,19 @@ const AddProperty = () => {
     fetchData();
   }, []);
 
+  const calculateValues = () => {
+    const price = rangeValue * 10;
+    const days = rangeValue / 10;
+    const percentage = rangeValue / 100;
+    return { price, days, percentage};
+  }
+
+  const handleRangeChange = (e) => {
+    setRangeValue(parseInt(e.target.value));
+  };
+
+  const { price, days, percentage} = calculateValues();
+
   return (
     <>
       <div className="row property">
@@ -188,6 +203,7 @@ const AddProperty = () => {
                     <input
                       type="text"
                       className="form-control"
+                      placeholder="Enter Property Area"
                       name="propertyArea"
                       value={userProperty.propertyArea}
                       onChange={handleInputChange}
@@ -200,6 +216,7 @@ const AddProperty = () => {
                     <input
                       type="text"
                       className="form-control"
+                      placeholder="Developer"
                       name="developer"
                       value={userProperty.developer}
                       onChange={handleInputChange}
@@ -212,6 +229,7 @@ const AddProperty = () => {
                     <input
                       type="text"
                       className="form-control"
+                      placeholder="Enter Property Closing"
                       name="propClosing"
                       value={userProperty.propClosing}
                       onChange={handleInputChange}
@@ -224,6 +242,7 @@ const AddProperty = () => {
                     <input
                       type="number"
                       className="form-control"
+                      placeholder="Enter Closing Year"
                       name="propClosingYear"
                       value={userProperty.propClosingYear}
                       onChange={handleInputChange}
@@ -253,6 +272,7 @@ const AddProperty = () => {
                     <input
                       type="number"
                       className="form-control"
+                      placeholder="Enter Comission"
                       name="comission"
                       value={userProperty.comission}
                       onChange={handleInputChange}
@@ -265,6 +285,7 @@ const AddProperty = () => {
                     <input
                       type="text"
                       className="form-control"
+                      placeholder="Enter Comission Payement"
                       name="commissionPayment"
                       value={userProperty.commissionPayment}
                       onChange={handleInputChange}
@@ -277,6 +298,7 @@ const AddProperty = () => {
                     <input
                       type="email"
                       className="form-control"
+                      placeholder="Enter Email"
                       name="developerEmail"
                       value={userProperty.developerEmail}
                       onChange={handleInputChange}
@@ -289,6 +311,7 @@ const AddProperty = () => {
                     <input
                       type="text"
                       className="form-control"
+                      placeholder="Enter Sales Representative"
                       name="salesRepresentatives"
                       value={userProperty.salesRepresentatives}
                       onChange={handleInputChange}
@@ -301,6 +324,7 @@ const AddProperty = () => {
                     <input
                       type="text"
                       className="form-control"
+                      placeholder="Enter Phone Number"
                       name="salesOfficeTelephone"
                       value={userProperty.salesOfficeTelephone}
                       onChange={handleInputChange}
@@ -313,6 +337,7 @@ const AddProperty = () => {
                     <input
                       type="text"
                       className="form-control"
+                      placeholder="Enter Model Name"
                       name="modelName"
                       value={userProperty.modelName}
                       onChange={handleInputChange}
@@ -325,6 +350,7 @@ const AddProperty = () => {
                     <input
                       type="number"
                       className="form-control"
+                      placeholder="Enter Model Cost"
                       name="modelCost"
                       value={userProperty.modelCost}
                       onChange={handleInputChange}
@@ -337,6 +363,7 @@ const AddProperty = () => {
                     <input
                       type="number"
                       className="form-control"
+                      placeholder="Enter Model Size"
                       name="modelSize"
                       value={userProperty.modelSize}
                       onChange={handleInputChange}
@@ -349,6 +376,7 @@ const AddProperty = () => {
                     <input
                       type="number"
                       className="form-control"
+                      placeholder="Enter Story"
                       name="story"
                       value={userProperty.story}
                       onChange={handleInputChange}
@@ -361,6 +389,7 @@ const AddProperty = () => {
                     <Select
                       options={frontLotOptions}
                       className="custom-react-select"
+                      placeholder = "Enter Front Lot"
                       isSearchable={false}
                       value={frontLotOptions.find(option => option.value === userProperty.frontLotSize)}
                       onChange={(selectedOption) =>
@@ -391,6 +420,7 @@ const AddProperty = () => {
                     <Select
                       options={bedRoomsOptions} 
                       className="custom-react-select"
+                      placeholder = "Enter Bedrooms"
                       isSearchable={false}
                       value={bedRoomsOptions.find( (option) => option.value === userProperty.bedrooms )}
                       onChange={(selectedOption) =>
@@ -408,6 +438,7 @@ const AddProperty = () => {
                     <Select
                       options={garageOptions} 
                       className="custom-react-select"
+                      placeholder = "Enter Garage"
                       isSearchable={false}
                       value={garageOptions.find( (option) => option.value === userProperty.garage )}
                       onChange={(selectedOption) =>
@@ -425,6 +456,7 @@ const AddProperty = () => {
                     <Select
                       options={bathRoomsOptions}
                       className="custom-react-select"
+                      placeholder = "Enter Bathrooms"
                       isSearchable={false}
                       value={bathRoomsOptions.find( (option) => option.value === userProperty.bathrooms )}
                       onChange={(selectedOption) =>
@@ -442,6 +474,7 @@ const AddProperty = () => {
                     <input
                       type="text"
                       className="form-control"
+                      placeholder="Enter Basement"
                       name="basement"
                       value={userProperty.basement}
                       onChange={handleInputChange}
@@ -454,6 +487,7 @@ const AddProperty = () => {
                     <Select
                       options={basementTypeOptions}
                       className="custom-react-select"
+                      placeholder= "Enter Basement Type"
                       isSearchable={false}
                       value={basementTypeOptions.find((option) => option.value === userProperty.basementType )}
                       onChange={(selectedOption) =>
@@ -471,6 +505,7 @@ const AddProperty = () => {
                     <input
                       type="text"
                       className="form-control"
+                      placeholder="Enter Inclusion"
                       name="inclusion"
                       value={userProperty.inclusion}
                       onChange={handleInputChange}
@@ -483,6 +518,7 @@ const AddProperty = () => {
                     <input
                       type="text"
                       className="form-control"
+                      placeholder="Enter Add on"
                       name="addOn"
                       value={userProperty.addOn}
                       onChange={handleInputChange}
@@ -495,6 +531,7 @@ const AddProperty = () => {
                     <input
                       type="text"
                       className="form-control"
+                      placeholder="Enter Intersection"
                       name="intersection"
                       value={userProperty.intersection}
                       onChange={handleInputChange}
@@ -507,6 +544,7 @@ const AddProperty = () => {
                     <input
                       type="number"
                       className="form-control"
+                      placeholder="Enter Project Phase"
                       name="projectPhase"
                       value={userProperty.projectPhase}
                       onChange={handleInputChange}
@@ -519,6 +557,7 @@ const AddProperty = () => {
                     <input
                       type="number"
                       className="form-control"
+                      placeholder="Eneter Total Deposit"
                       name="totalDeposit"
                       value={userProperty.totalDeposit}
                       onChange={handleInputChange}
@@ -531,6 +570,7 @@ const AddProperty = () => {
                     <input
                       type="text"
                       className="form-control"
+                      placeholder="Enter Deposit Submission"
                       name="depositSubmission"
                       value={userProperty.depositSubmission}
                       onChange={handleInputChange}
@@ -543,6 +583,7 @@ const AddProperty = () => {
                     <input
                       type="number"
                       className="form-control"
+                      placeholder="Enter Development Charges"
                       name="developmentCharges"
                       value={userProperty.developmentCharges}
                       onChange={handleInputChange}
@@ -555,6 +596,7 @@ const AddProperty = () => {
                     <input
                       type="number"
                       className="form-control"
+                      placeholder="Enter Maintainance Freehold"
                       name="maintainanceFreehold"
                       value={userProperty.maintainanceFreehold}
                       onChange={handleInputChange}
@@ -567,6 +609,7 @@ const AddProperty = () => {
                     <input
                       type="text"
                       className="form-control"
+                      placeholder="Enter Maintainance amount"
                       name="maintainanceAmount"
                       value={userProperty.maintainanceAmount}
                       onChange={handleInputChange}
@@ -581,6 +624,7 @@ const AddProperty = () => {
                     <input
                       type="text"
                       className="form-control"
+                      placeholder="Enter Developer Incentive"
                       name="developerSpecialIncentive"
                       value={userProperty.developerSpecialIncentive}
                       onChange={handleInputChange}
@@ -593,6 +637,7 @@ const AddProperty = () => {
                     <input
                       type="number"
                       className="form-control"
+                      placeholder="Enter DHRE Incentive"
                       name="dhreSpecialIncentive"
                       value={userProperty.dhreSpecialIncentive}
                       onChange={handleInputChange}
@@ -605,6 +650,7 @@ const AddProperty = () => {
                     <input
                       type="url"
                       className="form-control"
+                      placeholder="Enter Website Link"
                       name="websiteLink"
                       value={userProperty.websiteLink}
                       onChange={handleInputChange}
@@ -626,13 +672,13 @@ const AddProperty = () => {
                     </label>
                     <div className="d-flex align-items-center">
                       <button className="btn btn-outline-primary me-2">
-                        Price
+                        Price :{price}
                       </button>
                       <button className="btn btn-outline-primary me-2">
-                        Days
+                        Days : {days}
                       </button>
                       <button className="btn btn-outline-primary me-2">
-                        Percentage
+                        Percentage : {percentage}%
                       </button>
                     </div>
                     <input
@@ -641,6 +687,8 @@ const AddProperty = () => {
                       min="0"
                       max="10000"
                       step="100"
+                      value={rangeValue}
+                      onChange={handleRangeChange}
                     />
                   </div>
 
@@ -648,13 +696,13 @@ const AddProperty = () => {
                     <label className="form-label">Deposit structure 2</label>
                     <div className="d-flex align-items-center">
                       <button className="btn btn-outline-primary me-2">
-                        Price
+                        Price: {price}
                       </button>
                       <button className="btn btn-outline-primary me-2">
-                        Days
+                        Days: {days}
                       </button>
                       <button className="btn btn-outline-primary me-2">
-                        Percentage
+                        Percentage: {percentage}%
                       </button>
                     </div>
                     <input
@@ -663,6 +711,8 @@ const AddProperty = () => {
                       min="0"
                       max="10000"
                       step="100"
+                      value={rangeValue}
+                      onChange={handleRangeChange}
                     />
                   </div>
 
@@ -670,13 +720,13 @@ const AddProperty = () => {
                     <label className="form-label">Deposit structure 1</label>
                     <div className="d-flex align-items-center">
                       <button className="btn btn-outline-primary me-2">
-                        Price
+                        Price: {price}
                       </button>
                       <button className="btn btn-outline-primary me-2">
-                        Days
+                        Days: {days}
                       </button>
                       <button className="btn btn-outline-primary me-2">
-                        Percentage
+                        Percentage: {percentage}%
                       </button>
                     </div>
                     <input
@@ -685,6 +735,8 @@ const AddProperty = () => {
                       min="0"
                       max="10000"
                       step="100"
+                      value={rangeValue}
+                      onChange={handleRangeChange}
                     />
                   </div>
 
@@ -692,13 +744,13 @@ const AddProperty = () => {
                     <label className="form-label">Deposit structure 3</label>
                     <div className="d-flex align-items-center">
                       <button className="btn btn-outline-primary me-2">
-                        Price
+                        Price: {price}
                       </button>
                       <button className="btn btn-outline-primary me-2">
-                        Days
+                        Days: {days}
                       </button>
                       <button className="btn btn-outline-primary me-2">
-                        Percentage
+                        Percentage: {percentage}%
                       </button>
                     </div>
                     <input
@@ -707,6 +759,8 @@ const AddProperty = () => {
                       min="0"
                       max="10000"
                       step="100"
+                      value={rangeValue}
+                      onChange={handleRangeChange}
                     />
                   </div>
 
