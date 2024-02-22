@@ -157,7 +157,7 @@ function PropertyType() {
 
  const handleChange = (index, field, e) => {
   const inputValue = e.target.value;
-  const regex = /^$|^[A-Za-z]+$/;
+  const regex = /^$|^[A-Za-z\s]+$/;
   
   if (!regex.test(inputValue)) {
     toast.error("Type text should only contain alphabets", {

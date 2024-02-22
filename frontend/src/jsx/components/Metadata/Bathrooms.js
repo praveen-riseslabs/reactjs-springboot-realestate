@@ -43,10 +43,10 @@ function Bathrooms() {
   const handleNewData = (index) => {
     setText('')
     const newData = {
-        numberOfBathrooms: (metadata[index]?.type || "").trim(),
+        numberOfBathrooms:  parseFloat((metadata[index]?.type || "").trim()),
     };
 
-    if (parseFloat(newData.numberOfBathrooms) < 0 || newData.numberOfBathrooms.length > 3) {
+    if (isNaN(newData.numberOfBathrooms) || newData.numberOfBathrooms < 0 || newData.numberOfBathrooms > 999) {
       toast.error("Please enter a realistic number between 0 to 999", {
         position: toast.POSITION.TOP_RIGHT,
       });
@@ -174,12 +174,13 @@ function Bathrooms() {
     updatedMetadata[index][field] = e.target.value;
     setText(e.target.value);
     setMetadata(updatedMetadata);
+    console.log("Number of Bathrooms:", metadata[index].numberOfBathrooms);
   };
 
   const checkUnique = (val)=>{
     let flag = 0
-    metadata.map((item)=>{
-      if(item.numberOfBathrooms == val){
+    metadata.forEach((item)=>{
+      if(item.numberOfBathrooms === val){
         flag++
       }
     })
@@ -204,7 +205,13 @@ function Bathrooms() {
 
               <td className="text-center w-40 ">
                 {editingIndex === index ? (
-                  <input type="text" value={text} onChange={(e) => handleChange(index, "type", e)} className="form-control text-center" placeholder="Enter Numeric value"/>
+                  <input
+                    type="number" // Change input type to "number"
+                    value={text}
+                    onChange={(e) => handleChange(index, "type", e)}
+                    className="form-control text-center"
+                    placeholder="Enter Numeric value"
+                  />
                 ) : (
                   <span>{metadata[index].numberOfBathrooms}</span>
                 )}

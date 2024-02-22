@@ -175,12 +175,12 @@ function FrontLot() {
   
   const checkUnique = (val)=>{
     let flag = 0
-    metadata.map((item)=>{
-      if(item.frontLot == val){
+    metadata.forEach((item)=>{
+      if(item.frontLot === val){
         flag++
       }
     })
-    return flag
+    return flag;
   }
 
   const handleChange = (index, field, e) => {

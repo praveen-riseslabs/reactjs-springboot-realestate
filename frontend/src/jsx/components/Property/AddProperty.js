@@ -167,7 +167,7 @@ const AddProperty = () => {
               <form className="row g-3" onSubmit={handleSubmit(onSubmit)}>
                 <div className="row">
                   <div className="mb-3 col-6">
-                    <label className="form-label">Project Name</label>
+                    <label className="form-label">Project Name <span className="text-danger">*</span></label>
                     <input
                       type="text"
                       className="form-control"
@@ -180,7 +180,7 @@ const AddProperty = () => {
                   </div>
 
                   <div className="mb-3 col-6">
-                    <label className="form-label">Property Type</label>
+                    <label className="form-label">Property Type <span className="text-danger">*</span></label>
                     <Select
                       options={propertyTypeOptions}
                       className="custom-react-select"
@@ -199,7 +199,7 @@ const AddProperty = () => {
                   </div>
 
                   <div className="mb-3 col-6">
-                    <label className="form-label">Property Area</label>
+                    <label className="form-label">Property Area <span className="text-danger">*</span></label>
                     <input
                       type="text"
                       className="form-control"
@@ -212,7 +212,7 @@ const AddProperty = () => {
                   </div>
 
                   <div className="mb-3 col-6">
-                    <label className="form-label">Developer</label>
+                    <label className="form-label">Developer <span className="text-danger">*</span></label>
                     <input
                       type="text"
                       className="form-control"
@@ -225,7 +225,7 @@ const AddProperty = () => {
                   </div>
 
                   <div className="mb-3 col-6">
-                    <label className="form-label">Property Closing</label>
+                    <label className="form-label">Property Closing <span className="text-danger">*</span></label>
                     <input
                       type="text"
                       className="form-control"
@@ -238,7 +238,7 @@ const AddProperty = () => {
                   </div>
 
                   <div className="mb-3 col-6">
-                    <label className="form-label">Project Closing year</label>
+                    <label className="form-label">Project Closing year <span className="text-danger">*</span></label>
                     <input
                       type="number"
                       className="form-control"
@@ -251,7 +251,7 @@ const AddProperty = () => {
                   </div>
 
                   <div className="mb-3 col-6">
-                    <label className="form-label">status</label>
+                    <label className="form-label">status <span className="text-danger">*</span></label>
                     <Select
                       options={statusOptions}
                       className="custom-react-select"
@@ -268,7 +268,7 @@ const AddProperty = () => {
                   </div>
 
                   <div className="mb-3 col-6">
-                    <label className="form-label">Comission</label>
+                    <label className="form-label">Comission <span className="text-danger">*</span></label>
                     <input
                       type="number"
                       className="form-control"
@@ -281,7 +281,7 @@ const AddProperty = () => {
                   </div>
 
                   <div className="mb-3 col-6">
-                    <label className="form-label">Comission Payment</label>
+                    <label className="form-label">Comission Payment <span className="text-danger">*</span></label>
                     <input
                       type="text"
                       className="form-control"
@@ -294,7 +294,7 @@ const AddProperty = () => {
                   </div>
 
                   <div className="mb-3 col-6">
-                    <label className="form-label">Developer Email</label>
+                    <label className="form-label">Developer Email <span className="text-danger">*</span></label>
                     <input
                       type="email"
                       className="form-control"
@@ -307,7 +307,7 @@ const AddProperty = () => {
                   </div>
 
                   <div className="mb-3 col-6">
-                    <label className="form-label">Sales Representative</label>
+                    <label className="form-label">Sales Representative <span className="text-danger">*</span></label>
                     <input
                       type="text"
                       className="form-control"
@@ -320,7 +320,7 @@ const AddProperty = () => {
                   </div>
 
                   <div className="mb-3 col-6">
-                    <label className="form-label">Sales Office Telephone</label>
+                    <label className="form-label">Sales Office Telephone <span className="text-danger">*</span></label>
                     <input
                       type="text"
                       className="form-control"
@@ -333,7 +333,7 @@ const AddProperty = () => {
                   </div>
 
                   <div className="mb-3 col-6">
-                    <label className="form-label">Model Name</label>
+                    <label className="form-label">Model Name <span className="text-danger">*</span></label>
                     <input
                       type="text"
                       className="form-control"
@@ -346,7 +346,7 @@ const AddProperty = () => {
                   </div>
 
                   <div className="mb-3 col-6">
-                    <label className="form-label">Model cost</label>
+                    <label className="form-label">Model cost <span className="text-danger">*</span></label>
                     <input
                       type="number"
                       className="form-control"
@@ -359,7 +359,7 @@ const AddProperty = () => {
                   </div>
 
                   <div className="mb-3 col-6">
-                    <label className="form-label">Model size</label>
+                    <label className="form-label">Model size <span className="text-danger">*</span></label>
                     <input
                       type="number"
                       className="form-control"
@@ -372,7 +372,7 @@ const AddProperty = () => {
                   </div>
 
                   <div className="mb-3 col-6">
-                    <label className="form-label">Story</label>
+                    <label className="form-label">Story <span className="text-danger">*</span></label>
                     <input
                       type="number"
                       className="form-control"
@@ -385,7 +385,7 @@ const AddProperty = () => {
                   </div>
                 
                    <div className="mb-3 col-6">
-                   <label className="form-label">Front Lot Size</label>
+                   <label className="form-label">Front Lot Size <span className="text-danger">*</span></label>
                     <Select
                       options={frontLotOptions}
                       className="custom-react-select"
@@ -403,7 +403,7 @@ const AddProperty = () => {
                   </div>
 
                   <div className="mb-3 col-6">
-                    <label className="form-label">Lot Depth</label>
+                    <label className="form-label">Lot Depth <span className="text-danger">*</span></label>
                     <input
                       type="number"
                       className="form-control"
@@ -416,7 +416,7 @@ const AddProperty = () => {
                   </div>
                 
                   <div className="mb-3 col-6">
-                    <label className="form-label">Bedrooms</label>
+                    <label className="form-label">Bedrooms <span className="text-danger">*</span></label>
                     <Select
                       options={bedRoomsOptions} 
                       className="custom-react-select"
@@ -434,7 +434,7 @@ const AddProperty = () => {
                   </div>
   
                   <div className="mb-3 col-6">
-                    <label className="form-label">Garage</label>
+                    <label className="form-label">Garage <span className="text-danger">*</span></label>
                     <Select
                       options={garageOptions} 
                       className="custom-react-select"
@@ -452,7 +452,7 @@ const AddProperty = () => {
                   </div>
                  
                   <div className="mb-3 col-6">
-                    <label className="form-label">Bathrooms</label>
+                    <label className="form-label">Bathrooms <span className="text-danger">*</span></label>
                     <Select
                       options={bathRoomsOptions}
                       className="custom-react-select"
@@ -470,7 +470,7 @@ const AddProperty = () => {
                   </div>
 
                   <div className="mb-3 col-6">
-                    <label className="form-label">Basement</label>
+                    <label className="form-label">Basement <span className="text-danger">*</span></label>
                     <input
                       type="text"
                       className="form-control"
@@ -483,7 +483,7 @@ const AddProperty = () => {
                   </div>
                  
                   <div className="mb-3 col-6">
-                    <label className="form-label">Basement Type</label>
+                    <label className="form-label">Basement Type <span className="text-danger">*</span></label>
                     <Select
                       options={basementTypeOptions}
                       className="custom-react-select"
@@ -501,7 +501,7 @@ const AddProperty = () => {
                   </div>
 
                   <div className="mb-3 col-6">
-                    <label className="form-label">Inclusion</label>
+                    <label className="form-label">Inclusion <span className="text-danger">*</span></label>
                     <input
                       type="text"
                       className="form-control"
@@ -514,7 +514,7 @@ const AddProperty = () => {
                   </div>
 
                   <div className="mb-3 col-6">
-                    <label className="form-label">Add on</label>
+                    <label className="form-label">Add on <span className="text-danger">*</span></label>
                     <input
                       type="text"
                       className="form-control"
@@ -527,7 +527,7 @@ const AddProperty = () => {
                   </div>
 
                   <div className="mb-3 col-6">
-                    <label className="form-label">Intersection</label>
+                    <label className="form-label">Intersection <span className="text-danger">*</span></label>
                     <input
                       type="text"
                       className="form-control"
@@ -540,7 +540,7 @@ const AddProperty = () => {
                   </div>
 
                   <div className="mb-3 col-6">
-                    <label className="form-label">Project Phase</label>
+                    <label className="form-label">Project Phase <span className="text-danger">*</span></label>
                     <input
                       type="number"
                       className="form-control"
@@ -553,7 +553,7 @@ const AddProperty = () => {
                   </div>
 
                   <div className="mb-3 col-6">
-                    <label className="form-label">Total Deposit</label>
+                    <label className="form-label">Total Deposit <span className="text-danger">*</span></label>
                     <input
                       type="number"
                       className="form-control"
@@ -566,7 +566,7 @@ const AddProperty = () => {
                   </div>
 
                   <div className="mb-3 col-6">
-                    <label className="form-label">Deposit Submission</label>
+                    <label className="form-label">Deposit Submission <span className="text-danger">*</span></label>
                     <input
                       type="text"
                       className="form-control"
@@ -579,7 +579,7 @@ const AddProperty = () => {
                   </div>
 
                   <div className="mb-3 col-6">
-                    <label className="form-label">Development Charges</label>
+                    <label className="form-label">Development Charges <span className="text-danger">*</span></label>
                     <input
                       type="number"
                       className="form-control"
@@ -592,7 +592,7 @@ const AddProperty = () => {
                   </div>
 
                   <div className="mb-3 col-6">
-                    <label className="form-label">Maintainance freehold</label>
+                    <label className="form-label">Maintainance freehold <span className="text-danger">*</span></label>
                     <input
                       type="number"
                       className="form-control"
@@ -605,7 +605,7 @@ const AddProperty = () => {
                   </div>
 
                   <div className="mb-3 col-6">
-                    <label className="form-label">Maintainance amount</label>
+                    <label className="form-label">Maintainance amount <span className="text-danger">*</span></label>
                     <input
                       type="text"
                       className="form-control"
@@ -620,6 +620,7 @@ const AddProperty = () => {
                   <div className="mb-3 col-6">
                     <label className="form-label">
                       Developer Special Incentive
+                      <span className="text-danger">*</span>
                     </label>
                     <input
                       type="text"
@@ -633,7 +634,7 @@ const AddProperty = () => {
                   </div>
 
                   <div className="mb-3 col-6">
-                    <label className="form-label">DHRE SPECIAL INCENTIVE</label>
+                    <label className="form-label">DHRE SPECIAL INCENTIVE <span className="text-danger">*</span></label>
                     <input
                       type="number"
                       className="form-control"
@@ -646,7 +647,7 @@ const AddProperty = () => {
                   </div>
 
                   <div className="mb-3 col-6">
-                    <label className="form-label">Website Link</label>
+                    <label className="form-label">Website Link <span className="text-danger">*</span></label>
                     <input
                       type="url"
                       className="form-control"
@@ -669,6 +670,7 @@ const AddProperty = () => {
                   <div className="mb-3 col-6" style={{ overflowX: "auto" }}>
                     <label className="form-label">
                       Deposit with Agreement/Offer
+                      <span className="text-danger">*</span>
                     </label>
                     <div className="d-flex align-items-center">
                       <button className="btn btn-outline-primary me-2">
@@ -693,7 +695,7 @@ const AddProperty = () => {
                   </div>
 
                   <div className="mb-3 col-6" style={{ overflowX: "auto" }}>
-                    <label className="form-label">Deposit structure 2</label>
+                    <label className="form-label">Deposit structure 2 <span className="text-danger">*</span></label>
                     <div className="d-flex align-items-center">
                       <button className="btn btn-outline-primary me-2">
                         Price: {price}
@@ -717,7 +719,7 @@ const AddProperty = () => {
                   </div>
 
                   <div className="mb-3 col-6" style={{ overflowX: "auto" }}>
-                    <label className="form-label">Deposit structure 1</label>
+                    <label className="form-label">Deposit structure 1 <span className="text-danger">*</span></label>
                     <div className="d-flex align-items-center">
                       <button className="btn btn-outline-primary me-2">
                         Price: {price}
@@ -741,7 +743,7 @@ const AddProperty = () => {
                   </div>
 
                   <div className="mb-3 col-6" style={{ overflowX: "auto" }}>
-                    <label className="form-label">Deposit structure 3</label>
+                    <label className="form-label">Deposit structure 3 <span className="text-danger">*</span></label>
                     <div className="d-flex align-items-center">
                       <button className="btn btn-outline-primary me-2">
                         Price: {price}
@@ -765,7 +767,7 @@ const AddProperty = () => {
                   </div>
 
                   <div className="mb-3 col-sm-6">
-                    <label className="form-label">Developer Address</label>
+                    <label className="form-label">Developer Address <span className="text-danger">*</span></label>
                     <input
                       type="text"
                       className="form-control"
@@ -776,15 +778,14 @@ const AddProperty = () => {
                     />
                   </div>
 
-               
-
-                  {/* <div className=" d-flex justify-content-center">
+                  <div className=" d-flex justify-content-center">
                     <button className="btn btn-primary">Submit</button>
                   </div>
                 </div>
-              </form> */}
+              </form>
+
               <div className="mb-3 col-6 ">
-                    <label className="form-label">Upload Excel Sheet</label>
+                    <label className="form-label">Upload Excel Sheet <span className="text-danger">*</span></label>
                     <br />
                     <div className="d-flex align-items-center">
                       <input
@@ -802,14 +803,6 @@ const AddProperty = () => {
                       </button>
                     </div>
                   </div>
-
-
-
-                  <div className=" d-flex justify-content-center">
-                    <button className="btn btn-primary">Submit</button>
-                  </div>
-                </div>
-              </form>
             </div>
           </div>
         </div>
