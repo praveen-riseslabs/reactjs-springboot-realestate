@@ -1,6 +1,8 @@
 package com.findprecon.model.metadata;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.Max;
+import jakarta.validation.constraints.Min;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -12,7 +14,15 @@ import java.util.UUID;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-@Table(name="front_lot")
+@Table(
+        name="front_lot",
+        uniqueConstraints = {
+                @UniqueConstraint(
+                        name = "frontLot",
+                        columnNames = "frontLot"
+                )
+        }
+)
 public class FrontLotModel {
 
     @Id
@@ -20,5 +30,7 @@ public class FrontLotModel {
     @Column(nullable=false,updatable=false)
     private UUID id;
 
+    @Min(value = 0, message = "Front Lot cannot be negative")
+    @Max(value = 1000, message = "Front Lot cannot be greater than 1000")
     private int frontLot;
 }

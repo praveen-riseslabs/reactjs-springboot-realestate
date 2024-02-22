@@ -3,6 +3,7 @@ package com.findprecon.controller.metadataAPIs;
 import com.findprecon.dto.Response.ApiResponse;
 import com.findprecon.dto.metadataDtos.FrontLotDto;
 import com.findprecon.service.metadataService.FrontLotService;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -21,7 +22,7 @@ public class FrontLotController {
     private FrontLotService frontLotService;
 
     @PostMapping("/frontlot/add")
-    public ResponseEntity<Map<String, Object>> createFrontLot(@RequestBody FrontLotDto frontLotDto){
+    public ResponseEntity<Map<String, Object>> createFrontLot(@Valid @RequestBody FrontLotDto frontLotDto){
 
         FrontLotDto addFrontLot = this.frontLotService.addFrontLot(frontLotDto);
 

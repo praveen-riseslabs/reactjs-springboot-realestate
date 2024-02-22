@@ -12,7 +12,16 @@ import java.util.UUID;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-@Table(name="property_type")
+@Table
+        (
+                name="property_type",
+                uniqueConstraints = {
+                        @UniqueConstraint(
+                                name = "propertyField",
+                                columnNames = "propertyField"
+                        )
+                }
+        )
 public class PropertyTypeModel {
 
     @Id

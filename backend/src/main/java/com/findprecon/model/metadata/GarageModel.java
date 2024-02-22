@@ -12,7 +12,16 @@ import java.util.UUID;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-@Table(name="garage")
+@Table
+        (
+                name="garage",
+                uniqueConstraints = {
+                @UniqueConstraint(
+                        name = "garage",
+                        columnNames = "garage"
+                )
+        }
+        )
 public class GarageModel {
 
     @Id

@@ -13,7 +13,16 @@ import java.util.UUID;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-@Table(name="basement_type")
+@Table
+        (
+        name="basement_type",
+                uniqueConstraints = {
+                        @UniqueConstraint(
+                                name = "basementField",
+                                columnNames = "basementField"
+                        )
+                }
+        )
 public class BasementTypeModel {
 
     @Id

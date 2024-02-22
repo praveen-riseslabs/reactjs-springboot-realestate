@@ -12,7 +12,16 @@ import java.util.UUID;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-@Table(name="status")
+@Table
+        (
+                name="status",
+                uniqueConstraints = {
+                        @UniqueConstraint(
+                                name = "status",
+                                columnNames = "status"
+                        )
+                }
+        )
 public class StatusModel {
 
     @Id
