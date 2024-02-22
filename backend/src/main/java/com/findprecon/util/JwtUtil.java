@@ -18,7 +18,7 @@ import java.util.function.Function;
 public class JwtUtil {
 
     public static final String SECRET = "5367566B59703373367639792F423F4528482B4D6251655468576D5A71347437";
-    public static final long JWT_TOKEN_VALIDITY = 5 * 60 * 60;
+    public static final long JWT_TOKEN_VALIDITY = 20 * 60;
     public String extractUsername(String token) {
         return extractClaim(token, Claims::getSubject);
     }
