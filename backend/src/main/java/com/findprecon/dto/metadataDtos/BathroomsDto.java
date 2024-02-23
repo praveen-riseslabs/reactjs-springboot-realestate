@@ -13,5 +13,5 @@ public class BathroomsDto {
 
     private UUID id;
 
-    private int numberOfBathrooms;
+    private float numberOfBathrooms;
 }
