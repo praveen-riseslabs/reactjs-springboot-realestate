@@ -13,15 +13,6 @@ import java.util.UUID;
 @NoArgsConstructor
 @AllArgsConstructor
 @Table
-        (
-                name="bedroom",
-                uniqueConstraints = {
-                        @UniqueConstraint(
-                                name = "numberOfBedrooms",
-                                columnNames = "numberOfBedrooms"
-                        )
-                }
-        )
 public class BedroomsModel {
 
     @Id
@@ -29,5 +20,6 @@ public class BedroomsModel {
     @Column(nullable=false,updatable=false)
     private UUID id;
 
+    @Column(unique = true)
     private int numberOfBedrooms;
 }

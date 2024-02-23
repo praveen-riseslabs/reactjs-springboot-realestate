@@ -26,12 +26,21 @@ public class BedroomsController {
 
         BedroomsDto addBedrooms = this.bedroomsService.addBedrooms(bedroomsDto);
 
-        Map<String, Object> response = new HashMap<>();
-        response.put("message", "Basement field: " +bedroomsDto.getNumberOfBedrooms() + " added!!");
-        response.put("status", true);
-        response.put("statusCode", HttpStatus.CREATED.value());
+        try {
+            Map<String, Object> response = new HashMap<>();
+            response.put("message", "Bedroom field: " + bedroomsDto.getNumberOfBedrooms() + " added!!");
+            response.put("status", true);
+            response.put("statusCode", HttpStatus.CREATED.value());
 
-        return ResponseEntity.status(HttpStatus.CREATED).body(response);
+            return ResponseEntity.status(HttpStatus.CREATED).body(response);
+        }catch(Exception e){
+            Map<String, Object> response = new HashMap<>();
+            response.put("message", "Bathroom field: " + bedroomsDto.getNumberOfBedrooms() + " already exists!!");
+            response.put("status", false);
+            response.put("statusCode", HttpStatus.BAD_REQUEST.value());
+
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(response);
+        }
 
     }
 
@@ -40,24 +49,42 @@ public class BedroomsController {
 
         BedroomsDto updatedBedrooms = this.bedroomsService.updateBedrooms(bedroomsDto,bedroomId);
 
-        Map<String, Object> response = new HashMap<>();
-        response.put("message", "Basement field: " + bedroomsDto.getNumberOfBedrooms() + " Updated !");
-        response.put("status", true);
-        response.put("statusCode", HttpStatus.CREATED.value());
+        try {
+            Map<String, Object> response = new HashMap<>();
+            response.put("message", "Bedroom field: " + bedroomsDto.getNumberOfBedrooms() + " Updated !");
+            response.put("status", true);
+            response.put("statusCode", HttpStatus.CREATED.value());
 
-        return ResponseEntity.status(HttpStatus.CREATED).body(response);
+            return ResponseEntity.status(HttpStatus.CREATED).body(response);
+        }catch(Exception e){
+            Map<String, Object> response = new HashMap<>();
+            response.put("message", "Bathroom field: " + bedroomsDto.getNumberOfBedrooms() + " already exists!!");
+            response.put("status", false);
+            response.put("statusCode", HttpStatus.BAD_REQUEST.value());
+
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(response);
+        }
     }
 
     @DeleteMapping("/bedroom/delete/{bedroomId}")
     public ResponseEntity<Map<String, Object>> deleteBedroom(@PathVariable UUID bedroomId){
         this.bedroomsService.deleteBedroom(bedroomId);
 
-        Map<String, Object> response = new HashMap<>();
-        response.put("message", "Basement type deleted successfully");
-        response.put("status", true);
-        response.put("statusCode", HttpStatus.CREATED.value());
+        try {
+            Map<String, Object> response = new HashMap<>();
+            response.put("message", "Basement type deleted successfully");
+            response.put("status", true);
+            response.put("statusCode", HttpStatus.CREATED.value());
 
-        return ResponseEntity.status(HttpStatus.CREATED).body(response);
+            return ResponseEntity.status(HttpStatus.CREATED).body(response);
+        }catch(Exception e){
+            Map<String, Object> response = new HashMap<>();
+            response.put("message", "Bathroom field:   unable to delete!!");
+            response.put("status", false);
+            response.put("statusCode", HttpStatus.BAD_REQUEST.value());
+
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(response);
+        }
 
     }
 

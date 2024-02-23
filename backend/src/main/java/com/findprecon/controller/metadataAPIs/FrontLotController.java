@@ -26,12 +26,21 @@ public class FrontLotController {
 
         FrontLotDto addFrontLot = this.frontLotService.addFrontLot(frontLotDto);
 
-        Map<String, Object> response = new HashMap<>();
-        response.put("message", "FrontLot field: " + frontLotDto.getFrontLot() + " added!!");
-        response.put("status", true);
-        response.put("statusCode", HttpStatus.CREATED.value());
+        try {
+            Map<String, Object> response = new HashMap<>();
+            response.put("message", "FrontLot field: " + frontLotDto.getFrontLot() + " added!!");
+            response.put("status", true);
+            response.put("statusCode", HttpStatus.CREATED.value());
 
-        return ResponseEntity.status(HttpStatus.CREATED).body(response);
+            return ResponseEntity.status(HttpStatus.CREATED).body(response);
+        }catch(Exception e){
+            Map<String, Object> response = new HashMap<>();
+            response.put("message", "FrontLot field: " + frontLotDto.getFrontLot() + " already exists!!");
+            response.put("status", false);
+            response.put("statusCode", HttpStatus.BAD_REQUEST.value());
+
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(response);
+        }
 
     }
 
@@ -40,25 +49,43 @@ public class FrontLotController {
 
         FrontLotDto updatedFrontLot = this.frontLotService.updateFrontLot(frontLotDto,frontLotId);
 
-        Map<String, Object> response = new HashMap<>();
-        response.put("message", "FrontLot field: " + frontLotDto.getFrontLot() + " Updated !");
-        response.put("status", true);
-        response.put("statusCode", HttpStatus.CREATED.value());
+        try {
+            Map<String, Object> response = new HashMap<>();
+            response.put("message", "FrontLot field: " + frontLotDto.getFrontLot() + " Updated !");
+            response.put("status", true);
+            response.put("statusCode", HttpStatus.CREATED.value());
 
-        return ResponseEntity.status(HttpStatus.CREATED).body( response);
+            return ResponseEntity.status(HttpStatus.CREATED).body(response);
+        }catch(Exception e){
+            Map<String, Object> response = new HashMap<>();
+            response.put("message", "FrontLot field: " + frontLotDto.getFrontLot() + " already exists!!");
+            response.put("status", false);
+            response.put("statusCode", HttpStatus.BAD_REQUEST.value());
+
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(response);
+        }
     }
 
     @DeleteMapping("/frontlot/delete/{frontLotId}")
     public ResponseEntity<Map<String, Object>> deleteFrontLot(@PathVariable UUID frontLotId){
         this.frontLotService.deleteFrontLot(frontLotId);
 
+        try {
 
-        Map<String, Object> response = new HashMap<>();
-        response.put("message", "FrontLot type deleted successfully");
-        response.put("status", true);
-        response.put("statusCode", HttpStatus.CREATED.value());
+            Map<String, Object> response = new HashMap<>();
+            response.put("message", "FrontLot type deleted successfully");
+            response.put("status", true);
+            response.put("statusCode", HttpStatus.CREATED.value());
 
-        return ResponseEntity.status(HttpStatus.CREATED).body(response);
+            return ResponseEntity.status(HttpStatus.CREATED).body(response);
+        }catch(Exception e){
+            Map<String, Object> response = new HashMap<>();
+            response.put("message", "FrontLot field: unable to delete!!");
+            response.put("status", false);
+            response.put("statusCode", HttpStatus.BAD_REQUEST.value());
+
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(response);
+        }
 
     }
 

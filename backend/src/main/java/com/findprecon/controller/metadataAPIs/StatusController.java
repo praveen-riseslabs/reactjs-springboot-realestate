@@ -24,12 +24,21 @@ public class StatusController {
 
         StatusDto addStatus = this.statusService.createStatus(statusDto);
 
-        Map<String, Object> response = new HashMap<>();
-        response.put("message", "Basement field: " + statusDto.getStatus() + " added!!");
-        response.put("status", true);
-        response.put("statusCode", HttpStatus.CREATED.value());
+        try {
+            Map<String, Object> response = new HashMap<>();
+            response.put("message", "Status field: " + statusDto.getStatus() + " added!!");
+            response.put("status", true);
+            response.put("statusCode", HttpStatus.CREATED.value());
 
-        return ResponseEntity.status(HttpStatus.CREATED).body(response);
+            return ResponseEntity.status(HttpStatus.CREATED).body(response);
+        }catch(Exception e) {
+            Map<String, Object> response = new HashMap<>();
+            response.put("message", "Status field: " + statusDto.getStatus() + " already exists!!");
+            response.put("status", false);
+            response.put("statusCode", HttpStatus.BAD_REQUEST.value());
+
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(response);
+        }
 
     }
 
@@ -39,12 +48,21 @@ public class StatusController {
 
         StatusDto updatedStatus = this.statusService.updateStatus(statusDto, statusId);
 
-        Map<String, Object> response = new HashMap<>();
-        response.put("message", "Status: " + updatedStatus.getStatus() + " Updated!");
-        response.put("status", true);
-        response.put("statusCode", HttpStatus.CREATED.value());
+        try {
+            Map<String, Object> response = new HashMap<>();
+            response.put("message", "Status: " + updatedStatus.getStatus() + " Updated!");
+            response.put("status", true);
+            response.put("statusCode", HttpStatus.CREATED.value());
 
-        return ResponseEntity.status(HttpStatus.CREATED).body(response);
+            return ResponseEntity.status(HttpStatus.CREATED).body(response);
+        }catch(Exception e) {
+            Map<String, Object> response = new HashMap<>();
+            response.put("message", "Status field: " + statusDto.getStatus() + " already exists!!");
+            response.put("status", false);
+            response.put("statusCode", HttpStatus.BAD_REQUEST.value());
+
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(response);
+        }
     }
 
 
@@ -54,12 +72,21 @@ public class StatusController {
         this.statusService.deleteStatus(statusId);
 
 
-        Map<String, Object> response = new HashMap<>();
-        response.put("message", "Basement type deleted successfully");
-        response.put("status", true);
-        response.put("statusCode", HttpStatus.CREATED.value());
+        try {
+            Map<String, Object> response = new HashMap<>();
+            response.put("message", "Basement type deleted successfully");
+            response.put("status", true);
+            response.put("statusCode", HttpStatus.CREATED.value());
 
-        return ResponseEntity.status(HttpStatus.CREATED).body(response);
+            return ResponseEntity.status(HttpStatus.CREATED).body(response);
+        }catch(Exception e) {
+            Map<String, Object> response = new HashMap<>();
+            response.put("message", "Status field: unable to delete!!");
+            response.put("status", false);
+            response.put("statusCode", HttpStatus.BAD_REQUEST.value());
+
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(response);
+        }
 
     }
 

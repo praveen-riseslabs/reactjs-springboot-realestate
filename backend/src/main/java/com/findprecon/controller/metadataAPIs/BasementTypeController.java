@@ -24,36 +24,65 @@ public class BasementTypeController {
     public ResponseEntity<Map<String, Object>> createBasement(@RequestBody BasementTypeDto basementTypeDto){
         BasementTypeDto createdBasementDto = this.basementTypeService.createBasementType(basementTypeDto);
 
-        Map<String, Object> response = new HashMap<>();
-        response.put("message", "Basement field: " + basementTypeDto.getBasementField() + " added!!");
-        response.put("status", true);
-        response.put("statusCode", HttpStatus.CREATED.value());
+      try{
+          Map<String, Object> response = new HashMap<>();
+          response.put("message", "Basement field: " + basementTypeDto.getBasementField() + " added!!");
+          response.put("status", true);
+          response.put("statusCode", HttpStatus.CREATED.value());
 
-        return ResponseEntity.status(HttpStatus.CREATED).body(response);
+          return ResponseEntity.status(HttpStatus.CREATED).body(response);
+
+      }catch (Exception e){
+          Map<String, Object> response = new HashMap<>();
+          response.put("message", "Basement field: " + basementTypeDto.getBasementField() + " already exists !!");
+          response.put("status", false);
+          response.put("statusCode", HttpStatus.BAD_REQUEST.value());
+
+          return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(response);
+
+      }
     }
 
     @PutMapping("/update/basement/{basementId}")
     public ResponseEntity<Map<String, Object>> updateBasement(@RequestBody BasementTypeDto basementTypeDto, @PathVariable("basementId") UUID basementId){
         BasementTypeDto updatedBasementDto = this.basementTypeService.updateBasementType(basementTypeDto, basementId);
+        try {
+            Map<String, Object> response = new HashMap<>();
+            response.put("message", "Basement field: " + basementTypeDto.getBasementField() + " updated!!");
+            response.put("status", true);
+            response.put("statusCode", HttpStatus.CREATED.value());
 
-        Map<String, Object> response = new HashMap<>();
-        response.put("message", "Basement field: " + basementTypeDto.getBasementField() + " updated!!");
-        response.put("status", true);
-        response.put("statusCode", HttpStatus.CREATED.value());
+            return ResponseEntity.status(HttpStatus.CREATED).body(response);
+        }catch (Exception e){
 
-        return ResponseEntity.status(HttpStatus.CREATED).body(response);
+            Map<String, Object> response = new HashMap<>();
+            response.put("message", "Basement field: " + basementTypeDto.getBasementField() + " already exists!!");
+            response.put("status", false);
+            response.put("statusCode", HttpStatus.BAD_REQUEST.value());
+
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(response);
+        }
     }
 
     @DeleteMapping("/delete/basement/{basementId}")
     public ResponseEntity<Map<String, Object>> deleteBasementType(@PathVariable UUID basementId){
         this.basementTypeService.deleteBasementType(basementId);
 
-        Map<String, Object> response = new HashMap<>();
-        response.put("message", "Basement type deleted successfully");
-        response.put("status", true);
-        response.put("statusCode", HttpStatus.OK.value());
+        try {
+            Map<String, Object> response = new HashMap<>();
+            response.put("message", "Basement type deleted successfully");
+            response.put("status", true);
+            response.put("statusCode", HttpStatus.OK.value());
 
-        return ResponseEntity.status(HttpStatus.OK).body(response);
+            return ResponseEntity.status(HttpStatus.OK).body(response);
+        }catch(Exception e){
+            Map<String, Object> response = new HashMap<>();
+            response.put("message", "Basement field unable to delete!!");
+            response.put("status", false);
+            response.put("statusCode", HttpStatus.BAD_REQUEST.value());
+
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(response);
+        }
     }
 
 

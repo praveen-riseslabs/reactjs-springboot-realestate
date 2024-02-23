@@ -13,15 +13,6 @@ import java.util.UUID;
 @NoArgsConstructor
 @AllArgsConstructor
 @Table
-        (
-                name="status",
-                uniqueConstraints = {
-                        @UniqueConstraint(
-                                name = "status",
-                                columnNames = "status"
-                        )
-                }
-        )
 public class StatusModel {
 
     @Id
@@ -29,5 +20,6 @@ public class StatusModel {
     @Column(nullable=false,updatable=false)
     private UUID id;
 
+    @Column(unique = true)
     private String status;
 }
