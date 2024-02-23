@@ -29,5 +29,5 @@ public class BathroomsModel {
     @Column(nullable=false,updatable=false)
     private UUID id;
 
-    private int numberOfBathrooms;
+    private float numberOfBathrooms;
 }
