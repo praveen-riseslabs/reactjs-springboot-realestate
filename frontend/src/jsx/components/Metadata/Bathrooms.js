@@ -45,6 +45,8 @@ function Bathrooms() {
     const newData = {
         numberOfBathrooms:  parseFloat((metadata[index]?.type || "").trim()),
     };
+    // console.log((metadata[index]?.type || "").trim());
+    console.log(parseFloat((metadata[index]?.type)));
 
     if (isNaN(newData.numberOfBathrooms) || newData.numberOfBathrooms < 0 || newData.numberOfBathrooms > 999) {
       toast.error("Please enter a realistic number between 0 to 999", {
@@ -106,7 +108,7 @@ function Bathrooms() {
       numberOfBathrooms: (metadata[index]?.type || "").trim(), // Trim whitespace if type exists
     };
 
-    if (parseFloat(updatedData.numberOfBathrooms) < 0 || updatedData.numberOfBathrooms.length > 3) {
+    if (isNaN(updatedData.numberOfBathrooms) || updatedData.numberOfBathrooms < 0 || updatedData.numberOfBathrooms > 999) {
       toast.error("Please enter a realistic number between 0 to 999", {
         position: toast.POSITION.TOP_RIGHT,
       });
@@ -172,6 +174,7 @@ function Bathrooms() {
   const handleChange = (index, field, e) => {
     const updatedMetadata = [...metadata];
     updatedMetadata[index][field] = e.target.value;
+    console.log(updatedMetadata, index, field,e);
     setText(e.target.value);
     setMetadata(updatedMetadata);
     console.log("Number of Bathrooms:", metadata[index].numberOfBathrooms);
