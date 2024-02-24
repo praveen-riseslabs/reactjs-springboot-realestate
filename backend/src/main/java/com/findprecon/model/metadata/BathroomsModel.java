@@ -19,7 +19,8 @@ public class BathroomsModel {
     @GeneratedValue(strategy= GenerationType.AUTO, generator="UUID")
     @Column(nullable=false,updatable=false)
     private UUID id;
-
+    
     @Column(unique = true)
-    private int numberOfBathrooms;
+    private float numberOfBathrooms;
+
 }
