@@ -406,8 +406,7 @@ const PropertyList = () => {
                                             <div className="dz-meta">
                                                 <BasicDetail beds={property.bedrooms}  bath={property.bathrooms}  area={property.modelSize}/>      
                                             </div>
-                                            <p>
-                                                There are many variations of passages of Lorem Ipsum available, but the majority have. There are many variations of passages of Lorem Ipsum available, but the majority have.</p>
+                                            <p>{property.inclusion}</p>
                                             <hr />
                                                                                     
                                             <button
