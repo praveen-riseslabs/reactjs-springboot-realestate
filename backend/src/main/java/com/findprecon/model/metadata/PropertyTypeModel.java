@@ -13,15 +13,6 @@ import java.util.UUID;
 @NoArgsConstructor
 @AllArgsConstructor
 @Table
-        (
-                name="property_type",
-                uniqueConstraints = {
-                        @UniqueConstraint(
-                                name = "propertyField",
-                                columnNames = "propertyField"
-                        )
-                }
-        )
 public class PropertyTypeModel {
 
     @Id
@@ -29,5 +20,6 @@ public class PropertyTypeModel {
     @Column(nullable=false,updatable=false)
     private UUID id;
 
+    @Column(unique = true)
     private String propertyField;
 }

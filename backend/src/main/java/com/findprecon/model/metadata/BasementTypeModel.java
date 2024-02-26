@@ -14,15 +14,6 @@ import java.util.UUID;
 @NoArgsConstructor
 @AllArgsConstructor
 @Table
-        (
-        name="basement_type",
-                uniqueConstraints = {
-                        @UniqueConstraint(
-                                name = "basementField",
-                                columnNames = "basementField"
-                        )
-                }
-        )
 public class BasementTypeModel {
 
     @Id
@@ -30,6 +21,7 @@ public class BasementTypeModel {
     @Column(nullable=false,updatable=false)
     private UUID id;
 
+    @Column(unique = true)
     private String basementField;
 
 }

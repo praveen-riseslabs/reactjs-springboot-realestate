@@ -14,15 +14,7 @@ import java.util.UUID;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-@Table(
-        name="front_lot",
-        uniqueConstraints = {
-                @UniqueConstraint(
-                        name = "frontLot",
-                        columnNames = "frontLot"
-                )
-        }
-)
+@Table
 public class FrontLotModel {
 
     @Id
@@ -32,5 +24,6 @@ public class FrontLotModel {
 
     @Min(value = 0, message = "Front Lot cannot be negative")
     @Max(value = 1000, message = "Front Lot cannot be greater than 1000")
+    @Column(unique = true)
     private int frontLot;
 }

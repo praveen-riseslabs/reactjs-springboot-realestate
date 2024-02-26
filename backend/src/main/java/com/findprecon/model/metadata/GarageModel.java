@@ -13,15 +13,6 @@ import java.util.UUID;
 @NoArgsConstructor
 @AllArgsConstructor
 @Table
-        (
-                name="garage",
-                uniqueConstraints = {
-                @UniqueConstraint(
-                        name = "garage",
-                        columnNames = "garage"
-                )
-        }
-        )
 public class GarageModel {
 
     @Id
@@ -29,5 +20,6 @@ public class GarageModel {
     @Column(nullable=false,updatable=false)
     private UUID id;
 
+    @Column(unique = true)
     private int garage;
 }

@@ -13,21 +13,14 @@ import java.util.UUID;
 @NoArgsConstructor
 @AllArgsConstructor
 @Table
-        (
-                name="bathroom",
-                uniqueConstraints = {
-                        @UniqueConstraint(
-                                name = "numberOfBathrooms",
-                                columnNames = "numberOfBathrooms"
-                        )
-                }
-        )
 public class BathroomsModel {
 
     @Id
     @GeneratedValue(strategy= GenerationType.AUTO, generator="UUID")
     @Column(nullable=false,updatable=false)
     private UUID id;
-
+    
+    @Column(unique = true)
     private float numberOfBathrooms;
+
 }
