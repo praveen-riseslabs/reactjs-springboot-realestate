@@ -1,65 +1,11 @@
-// import React, { useState, useEffect } from "react";
-// import axios from "axios";
-// import "react-toastify/dist/ReactToastify.css";
-
-// const PropertyList = () => {
-//   const [list, setList] = useState([]);
-
-//   useEffect(() => {
-//     const fetchData = async () => {
-//       try {
-//         const response = await axios.get(
-//           "http://localhost:8086/api/public/project-details/get-all-projects"
-//         );
-//         setList(response.data);
-//       } catch (error) {
-//         console.error("Error fetching data:", error);
-//       }
-//     };
-
-//     fetchData();
-//   }, []);
-
-//   return (
-//     <div className="container mt-5 ms-2">
-//       <div className="table-responsive">
-//         <table className="table">
-//           <thead>
-//             <tr>
-//               <th scope="col">S.No</th>
-//               <th scope="col">Project Name</th>
-//               <th scope="col">Project Type</th>
-//               <th scope="col">Project Closing Year</th>
-//               <th scope="col">Price</th>
-//             </tr>
-//           </thead>
-//           <tbody>
-//             {list.map((obj, index) => {
-//               return (
-//                 <tr key={index}>
-//                   <td>{index + 1}</td>
-//                   <td>{obj.projectName}</td>
-//                   <td>{obj.propertyType}</td>
-//                   <td>{obj.propClosingYear}</td>
-//                   <td>{obj.totalDeposit}</td>
-//                 </tr>
-//               );
-//             })}
-//           </tbody>
-//         </table>
-//       </div>
-//     </div>
-//   );
-// };
-
-// export default PropertyList;
-
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Select from 'react-select';
 import {Link} from 'react-router-dom';
 import { Tab, Nav, Collapse } from 'react-bootstrap';
 import {RangeSlider} from 'rsuite';
 import 'rsuite/dist/rsuite.min.css';
+import axios from 'axios';
+
 
 import ModalVideo from 'react-modal-video';
 import '../../../../node_modules/react-modal-video/scss/modal-video.scss';
@@ -77,29 +23,29 @@ import avat3 from '../../../images/avatar/3.jpg';
 import avat4 from '../../../images/avatar/4.jpg';
 import DemoSlider from './DemoSlider';
 
-const location = [
-    { value: '1', label: 'Select Location' },
-    { value: '2', label: 'London' },
-    { value: '3', label: 'Paris' },
-    { value: '4', label: 'California' },
-    { value: '5', label: 'Indonesia' },
-    { value: '5', label: 'Iraq' },
-]
+// const location = [
+//     { value: '1', label: 'Select Location' },
+//     { value: '2', label: 'London' },
+//     { value: '3', label: 'Paris' },
+//     { value: '4', label: 'California' },
+//     { value: '5', label: 'Indonesia' },
+//     { value: '5', label: 'Iraq' },
+// ]
 
-const type = [
-    { value: '1', label: 'Property Type' },
-    { value: '2', label: 'Wide Area' },
-    { value: '3', label: 'Building' },
-    { value: '4', label: 'Commertial' },
-    { value: '5', label: 'Residental' },
+// const type = [
+//     { value: '1', label: 'Property Type' },
+//     { value: '2', label: 'Wide Area' },
+//     { value: '3', label: 'Building' },
+//     { value: '4', label: 'Commertial' },
+//     { value: '5', label: 'Residental' },
     
-]
+// ]
 
-const Rent = [
-    { value: '1', label: 'Select Category' },
-    { value: '2', label: 'For Rent' },
-    { value: '3', label: 'For Sale' },
-]
+// const Rent = [
+//     { value: '1', label: 'Select Category' },
+//     { value: '2', label: 'For Rent' },
+//     { value: '3', label: 'For Sale' },
+// ]
 
 const cardData = [
     {image:property1, tag:'London', price:'$22000', beds:'3', bath:'2', area:'2000', name:'Thomas Djons' , option:"image" , profile: avat1},
@@ -128,6 +74,7 @@ const Rentoption = [
     { value: '2', label: 'For Rent' },
     { value: '3', label: 'For Sale' },
 ]
+
 
 function BasicDetail(props){
     return(
@@ -196,6 +143,48 @@ const PropertyList = () => {
     const [value2, setValue2] = useState([40.01, 60.01]);
     const [openVideo, setOpenVideo] = useState(false);
     const [openMenu, setOpenMenu] = useState(true);
+    const [ search, setSearch] = useState('');
+
+
+    // const [statusOptions, setstatusOptions] = useState([]);
+    const [propertyTypeOptions, setPropertyTypeOptions] = useState([]);
+    const [garageOptions, setgarageOptions] = useState([]);
+    // const [frontLotOptions, setfrontLotOptions] = useState([]);
+    const [bedRoomsOptions, setbedRoomsOptions] = useState([]);
+    // const [bathRoomsOptions, setbathRoomsOptions] = useState([]);
+    const [basementTypeOptions, setbasementTypeOptions] = useState([]);
+    // const [projectName, setProjectName] =useState([]);
+
+    const fetchData = async () => {
+        try {
+          const [statusResponse, propertyTypeResponse,garageResponse,frontLotResponse,bedRoomsResponse,bathRoomsResponse,basementTypeResponse,projectName ] = await axios.all([
+            axios.get("http://localhost:8086/api/metadata/status/all"),
+            axios.get("http://localhost:8086/api/metadata/property/all"),
+            axios.get("http://localhost:8086/api/metadata/garage/all"),
+            axios.get("http://localhost:8086/api/metadata/frontlot/all"),
+            axios.get("http://localhost:8086/api/metadata/bedroom/all"),
+            axios.get("http://localhost:8086/api/metadata/bathroom/all"),
+            axios.get("http://localhost:8086/api/metadata/basement/all"),
+            axios.all("http://localhost:808/api/private/projects/search"),
+          ]);
+    
+        //   setstatusOptions(statusResponse.data.map(item => ({ value: item.status, label: item.status })));
+          setPropertyTypeOptions(propertyTypeResponse.data.map(item => ({ value: item.propertyField, label: item.propertyField })));
+          setgarageOptions(garageResponse.data.map(item => ({ value: item.garage, label: item.garage })));
+        //   setfrontLotOptions(frontLotResponse.data.map(item => ({ value: item.frontLot, label: item.frontLot })));
+          setbedRoomsOptions(bedRoomsResponse.data.map(item => ({ value: item.numberOfBedrooms, label: item.numberOfBedrooms })));
+        //   setbathRoomsOptions(bathRoomsResponse.data.map(item => ({ value: item.numberOfBathrooms, label: item.numberOfBathrooms })));
+          setbasementTypeOptions(basementTypeResponse.data.map(item => ({ value: item.basementField, label: item.basementField })));
+        } catch (error) {
+          console.error("Error fetching data:", error);
+        }
+      };
+    
+    
+      useEffect(() => {
+        fetchData();
+      }, []);
+
     return (
         <>
             <PageTitle activeMenu={"Property List"} motherMenu={"Property"} />
@@ -220,31 +209,44 @@ const PropertyList = () => {
                                     <form>
                                         <div className="row">
                                             <div className="mb-3 col-lg-3 col-md-6">
-                                                <input type="text" className="form-control" placeholder="Enter Your Keyword..." required="" />
+                                                <input type="text" className="form-control" placeholder="Enter Your Keyword..." value={search} onChange={(e) => { setSearch(e.target.value) }} required="" />
                                             </div>
                                             <div className="mb-3 col-lg-3 col-md-6">                                            
                                                 <Select 
-                                                    options={location} 
-                                                    defaultValue={location[0]}
+                                                    options={bedRoomsOptions} 
+                                                    defaultValue={bedRoomsOptions[0]}
                                                     className="custom-react-select"
                                                     isSearchable = {false}
+                                                    placeholder = "Select Bedrooms"
                                                 />
                                             </div>
                                             <div className="mb-3 col-lg-3 col-md-6">
                                                 <Select 
-                                                    options={type} 
-                                                    defaultValue={type[0]}
+                                                    options={propertyTypeOptions} 
+                                                    defaultValue={propertyTypeOptions[0]}
                                                     className="custom-react-select"
                                                     isSearchable = {false}
+                                                    placeholder = "Select PropertyType"
                                                 />
                                                 
                                             </div>
                                             <div className="mb-3 col-lg-3 col-md-6">                                            
                                                 <Select 
-                                                    options={Rent} 
-                                                    defaultValue={Rent[0]}
+                                                    options={basementTypeOptions} 
+                                                    defaultValue={basementTypeOptions[0]}
                                                     className="custom-react-select"
                                                     isSearchable = {false}
+                                                    placeholder = "Select BasementType"
+                                                />
+                                            </div>
+
+                                            <div className="mb-3 col-lg-3 col-md-6">                                            
+                                                <Select 
+                                                    options={garageOptions} 
+                                                    defaultValue={garageOptions[0]}
+                                                    className="custom-react-select"
+                                                    isSearchable = {false}
+                                                    placeholder = "Select GarageOptions"
                                                 />
                                             </div>
                                         </div>
@@ -297,8 +299,8 @@ const PropertyList = () => {
                                             </div>
                                         </div>
                                         <div className="col-lg-4 col-md-6 align-self-end mb-3">
-                                            <button className="btn btn-primary rounded-sm w-100" title="Click here to Search" type="button">
-                                                <i className="fa fa-search me-1" />Search
+                                            <button className="btn btn-primary rounded-sm w-100" title="Click here to Search" type="button"  onClick={() => { setSearch('') }}>
+                                                <i className="fa fa-search me-1" />SearchMe
                                             </button>
                                         </div>
                                     </div>
@@ -458,6 +460,8 @@ const PropertyList = () => {
                     </Tab.Pane>
                 </Tab.Content>
             </Tab.Container>
+
+            
             <ModalVideo
 				channel="youtube"
                 autoplay = {true}
