@@ -12,6 +12,7 @@ import '../../../../node_modules/react-modal-video/scss/modal-video.scss';
 
 import PageTitle from '../../layouts/PageTitle';
 
+
 //images
 import property1 from '../../../images/property/1.jpg'
 import property2 from '../../../images/property/2.jpg'
@@ -47,27 +48,27 @@ import DemoSlider from './DemoSlider';
 //     { value: '3', label: 'For Sale' },
 // ]
 
-const cardData = [
-    {image:property1, tag:'London', price:'$22000', beds:'3', bath:'2', area:'2000', name:'Thomas Djons' , option:"image" , profile: avat1},
-    {image:property2, tag:'Paris', price:'$45000', beds:'5', bath:'3', area:'5000', name:'Oliver Jean', option:"slider", profile: avat4 },
-    {image:property3, tag:'Dubai', price:'$32000', beds:'4', bath:'3', area:'3000', name:'Jane Cooper' , option:"video", profile: avat3},
-    {image:property1, tag:'London', price:'$52000', beds:'6', bath:'5', area:'5500', name:'Monalisa' , option:"image", profile: avat2},
-    {image:property2, tag:'London', price:'$22000', beds:'3', bath:'2', area:'2000', name:'Thomas Djons' , option:"image" , profile: avat1},
-    {image:property3, tag:'France', price:'$25000', beds:'3', bath:'3', area:'2500', name:'Keanu Repes' , option:"video", profile: avat3},
-    {image:property1, tag:'London', price:'$52000', beds:'6', bath:'5', area:'5500', name:'Monalisa' , option:"image", profile: avat2},
-    {image:property2, tag:'Russia', price:'$30000', beds:'4', bath:'3', area:'4000', name:'Rio Fernan', option:"slider", profile: avat4 },
-];
+// const cardData = [
+//     {image:property1, tag:'London', price:'$22000', beds:'3', bath:'2', area:'2000', name:'Thomas Djons' , option:"image" , profile: avat1},
+//     {image:property2, tag:'Paris', price:'$45000', beds:'5', bath:'3', area:'5000', name:'Oliver Jean', option:"slider", profile: avat4 },
+//     {image:property3, tag:'Dubai', price:'$32000', beds:'4', bath:'3', area:'3000', name:'Jane Cooper' , option:"video", profile: avat3},
+//     {image:property1, tag:'London', price:'$52000', beds:'6', bath:'5', area:'5500', name:'Monalisa' , option:"image", profile: avat2},
+//     {image:property2, tag:'London', price:'$22000', beds:'3', bath:'2', area:'2000', name:'Thomas Djons' , option:"image" , profile: avat1},
+//     {image:property3, tag:'France', price:'$25000', beds:'3', bath:'3', area:'2500', name:'Keanu Repes' , option:"video", profile: avat3},
+//     {image:property1, tag:'London', price:'$52000', beds:'6', bath:'5', area:'5500', name:'Monalisa' , option:"image", profile: avat2},
+//     {image:property2, tag:'Russia', price:'$30000', beds:'4', bath:'3', area:'4000', name:'Rio Fernan', option:"slider", profile: avat4 },
+// ];
 
-const listBlog = [
-    {image:property1, tag:'London', price:'$23500', beds:'3', bath:'2', area:'2100', name:'Thomas Djons' , option:"image" , profile: avat1},
-    {image:property4, tag:'New York ', price:'$45000', beds:'5', bath:'3', area:'5200', name:'Oliver Jean', option:"video", profile: avat4 },
-    {image:property3, tag:'Canada', price:'$52000', beds:'6', bath:'5', area:'5400', name:'Monalisa' , option:"image", profile: avat2},
-    {image:property2, tag:'Russia', price:'$30000', beds:'4', bath:'3', area:'4500', name:'Rio Fernan', option:"video", profile: avat4 },
-    {image:property1, tag:'Dubai', price:'$22000', beds:'3', bath:'2', area:'2500', name:'Thomas Djons' , option:"image" , profile: avat1},
-    {image:property4, tag:'France ', price:'$45000', beds:'5', bath:'3', area:'5000', name:'Oliver Jean', option:"video", profile: avat4 },
-    {image:property3, tag:'India', price:'$48000', beds:'6', bath:'5', area:'5500', name:'Monalisa' , option:"image", profile: avat2},
-    {image:property2, tag:'Germany', price:'$25000', beds:'4', bath:'3', area:'4000', name:'Rio Fernan', option:"video", profile: avat4 },
-];
+// const listBlog = [
+//     {image:property1, tag:'London', price:'$23500', beds:'3', bath:'2', area:'2100', name:'Thomas Djons' , option:"image" , profile: avat1},
+//     {image:property4, tag:'New York ', price:'$45000', beds:'5', bath:'3', area:'5200', name:'Oliver Jean', option:"video", profile: avat4 },
+//     {image:property3, tag:'Canada', price:'$52000', beds:'6', bath:'5', area:'5400', name:'Monalisa' , option:"image", profile: avat2},
+//     {image:property2, tag:'Russia', price:'$30000', beds:'4', bath:'3', area:'4500', name:'Rio Fernan', option:"video", profile: avat4 },
+//     {image:property1, tag:'Dubai', price:'$22000', beds:'3', bath:'2', area:'2500', name:'Thomas Djons' , option:"image" , profile: avat1},
+//     {image:property4, tag:'France ', price:'$45000', beds:'5', bath:'3', area:'5000', name:'Oliver Jean', option:"video", profile: avat4 },
+//     {image:property3, tag:'India', price:'$48000', beds:'6', bath:'5', area:'5500', name:'Monalisa' , option:"image", profile: avat2},
+//     {image:property2, tag:'Germany', price:'$25000', beds:'4', bath:'3', area:'4000', name:'Rio Fernan', option:"video", profile: avat4 },
+// ];
 
 const Rentoption = [
     { value: '1', label: 'Default' },
@@ -129,11 +130,12 @@ const CardFooter = () => {
                 </Link>
             </li>
             <li>
-                <Link to={"#"}>
+               <Link to={"#"}>
                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="feather feather-plus"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line>
                     </svg>
-                </Link>
+                </Link>    
             </li>
+     
         </ul>
     )
 }
@@ -144,6 +146,8 @@ const PropertyList = () => {
     const [openVideo, setOpenVideo] = useState(false);
     const [openMenu, setOpenMenu] = useState(true);
     const [ search, setSearch] = useState('');
+    const [propertyData, setPropertyData] = useState([]);
+    
 
 
     // const [statusOptions, setstatusOptions] = useState([]);
@@ -184,6 +188,22 @@ const PropertyList = () => {
       useEffect(() => {
         fetchData();
       }, []);
+
+    
+
+    useEffect(() => {
+        getvalues();
+      }, []);
+    
+      const getvalues = async () => {
+        try {
+          const response = await axios.get( "http://localhost:8086/api/public/project-details/get-all-projects");
+          setPropertyData(response.data); 
+        } catch (error) {
+          console.error('Error fetching data:', error);
+        }
+      };
+
 
     return (
         <>
@@ -344,17 +364,18 @@ const PropertyList = () => {
                     </div>
                 </div>
                 <Tab.Content>
-                    <Tab.Pane eventKey={'Grid'}>
+                   <Tab.Pane eventKey={'Grid'}>
                         <div className="row">
-                            {cardData.map((item, ind)=>(
-                                <div className="col-xl-3 col-xxl-4 col-md-6 col-sm-6 col-lg-4 m-b30" key={ind}>                             
+                        {propertyData.map((property, index) => (
+                        
+                                <div className="col-xl-3 col-xxl-4 col-md-6 col-sm-6 col-lg-4 m-b30" key={index}>                             
                                     <div className="property-card style-1">
                                         {
-                                            item.option === "video" ?
+                                            property.option === "video" ?
                                                 <div className="dz-media">
                                                     <ul>
                                                         <li className="badge badge-sm badge-primary light">
-                                                            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="feather feather-map-pin"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg> {item.tag}
+                                                            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="feather feather-map-pin"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg> 
                                                         </li>
                                                         <li className="rent badge badge-sm badge-primary">For Rent</li>
                                                     </ul>
@@ -367,13 +388,13 @@ const PropertyList = () => {
                                                 </div>
                                                 
                                             :
-                                            item.option === "slider" ?
+                                            property.option === "slider" ?
                                                 <DemoSlider />
                                             :
                                             <div className="dz-media">
                                                 <ul>
                                                     <li className="badge badge-sm badge-primary light">
-                                                        <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="feather feather-map-pin"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg> {item.tag}
+                                                        <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="feather feather-map-pin"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg> 
                                                     </li>
                                                     <li className="rent badge badge-sm badge-primary">For Rent</li>
                                                 </ul>
@@ -381,19 +402,92 @@ const PropertyList = () => {
                                             </div>
                                         }
                                         <div className="dz-content">
-                                            <h3 className="title">{item.price}</h3>
+                                            <h3 className="title">${property.modelCost}</h3>
                                             <div className="dz-meta">
-                                                <BasicDetail beds={item.beds}  bath={item.bath} area={item.area}/>      
+                                                <BasicDetail beds={property.bedrooms}  bath={property.bathrooms}  area={property.modelSize}/>      
                                             </div>
                                             <p>
                                                 There are many variations of passages of Lorem Ipsum available, but the majority have. There are many variations of passages of Lorem Ipsum available, but the majority have.</p>
                                             <hr />
+                                                                                    
+                                            <button
+                                                type="button"
+                                                class="btn btn-primary mb-3"
+                                                data-bs-toggle="modal"
+                                                data-bs-target={`#staticBackdrop${index}`}
+                                            > View more
+                                            </button>
+
+                                            <div className="modal fade" id={`staticBackdrop${index}`} data-bs-backdrop="static" data-bs-keyboard="false" tabIndex="-1" aria-labelledby={`staticBackdropLabel${index}`} aria-hidden="true">
+                                                <div className="modal-dialog modal-dialog-centered modal-xl">
+                                                    <div className="modal-content">
+                                                        <div className="modal-header">
+                                                            <h5 className="modal-title" id={`staticBackdropLabel${index}`}>{property.projectName}</h5>
+                                                            <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                        </div>
+                                                        <div className="modal-body">
+                                                            <div className="row">
+                                                                <div className="col-md-4">
+                                                                    <p>Property Type: <br/><strong>{property.propertyType}</strong></p>
+                                                                    <p>Property Area: <br/><strong>{property.propertyArea}</strong></p>
+                                                                    <p>Project Name: <br/><strong>{property.projectName}</strong></p>
+                                                                    <p>Developer: <br/><strong>{property.developer}</strong></p>
+                                                                    <p>Property Closing: <br/><strong>{property.propClosing}</strong></p>
+                                                                    <p>Property Closing Year: <br/><strong>{property.propClosingYear}</strong></p>
+                                                                    <p>Status: <br/><strong>{property.status}</strong></p>
+                                                                    <p>Commission: <br/><strong>{property.commission}</strong></p>
+                                                                    <p>Commission Payment: <br/><strong>{property.commissionPayment}</strong></p>
+                                                                    <p>Developer Email: <br/><strong>{property.developerEmail}</strong></p>
+                                                                    <p>Sales Representatives: <br/><strong>{property.salesReprasentatives}</strong></p>
+                                                                    <p>Address: <br/><strong>{property.address}</strong></p>
+                                                                    <p>Sales Office Telephone: <br/><strong>{property.salesOfficeTelephone}</strong></p>
+                                                                </div>
+                                                                <div className="col-md-4">
+                                                                    <p>Model Name: <br/><strong>{property.modelName}</strong></p>
+                                                                    <p>Model Cost: <br/><strong>{property.modelCost}</strong></p>
+                                                                    <p>Model Size: <br/><strong>{property.modelSize}</strong></p>
+                                                                    <p>Story: <br/><strong>{property.story}</strong></p>
+                                                                    <p>Front Lot Size: <br/><strong>{property.frontLotSize}</strong></p>
+                                                                    <p>Lot Depth: <br/><strong>{property.lotDepth}</strong></p>
+                                                                    <p>Bedrooms: <br/><strong>{property.bedrooms}</strong></p>
+                                                                    <p>Bathrooms: <br/><strong>{property.bathrooms}</strong></p>
+                                                                    <p>Garage: <br/><strong>{property.garage}</strong></p>
+                                                                    <p>Basement: <br/><strong>{property.basement}</strong></p>
+                                                                    <p>Basement Type: <br/><strong>{property.basementType}</strong></p>
+                                                                    <p>Inclusion: <br/><strong>{property.inclusion}</strong></p>
+                                                                    <p>Add On: <br/><strong>{property.addOn}</strong></p>
+                                                                </div>
+                                                                <div className="col-md-4">
+                                                                    <p>Intersection: <br/><strong>{property.intersection}</strong></p>
+                                                                    <p>Project Phase: <br/><strong>{property.projectPhase}</strong></p>
+                                                                    <p>Total Deposit: <br/><strong>{property.totalDeposit}</strong></p>
+                                                                    <p>Deposit Submission: <br/><strong>{property.depositSubmission}</strong></p>
+                                                                    <p>Development Charges: <br/><strong>{property.developmentCharges}</strong></p>
+                                                                    <p>Maintainance Freehold: <br/><strong>{property.maintainanceFreehold}</strong></p>
+                                                                    <p>Maintainance Amount: <br/><strong>{property.maintainanceAmount}</strong></p>
+                                                                    <p>Developer Special Incentive: <br/><strong>{property.developerSpecialIncentive}</strong></p>
+                                                                    <p>DHRE Special Incentive: <br/><strong>{property.dhreSpecialIncentive}</strong></p>
+                                                                </div>
+                                                            </div>
+                                                            
+                                                            <p>Website Link: <br/><strong><a href={property.websiteLink} target="_blank" rel="noopener noreferrer">{property.websiteLink}</a></strong></p>
+                                                        </div>
+
+                                                        <div className="modal-footer">
+                                                            <button type="button" className="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+
                                             <div className="dz-footer">
                                                 <div className="property-card">
                                                     <div className="property-media">
                                                         <img src="https://omah.dexignzone.com/react/demo/static/media/2.5188b4e8963e0b39de97.jpg" alt="/" />
                                                     </div>
-                                                    <h6 className="title mb-0">{item.name}</h6>
+                                                    <h6 className="title mb-0">{property.projectName}</h6>
+                                                   
                                                 </div>
                                                 <CardFooter />
                                             </div>
@@ -401,23 +495,24 @@ const PropertyList = () => {
                                     </div>
                                 </div>
                             ))}
+                           
                         </div>
                     </Tab.Pane>
                     <Tab.Pane eventKey={'List'}>
                         <div className="row justify-content-lg-center">
-                            {listBlog.map((data, index)=>(
+                            {propertyData.map((property, index) => (
                                 <div className="col-xl-6 col-lg-8 m-b30" key={index}>
                                     <div className="property-card style-1 blog-half">
                                         {
-                                          data.option === "video" ?
+                                          property.option === "video" ?
                                             <div className="dz-media">
                                                 <ul>
                                                     <li className="badge badge-sm badge-primary light">
-                                                        <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="feather feather-map-pin"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg> {data.tag}
+                                                        <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="feather feather-map-pin"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg> 
                                                     </li>
                                                     <li className="rent badge badge-sm badge-primary">For Rent</li>
                                                 </ul>
-                                                <img src={data.image} alt="/" />
+                                                <img src={property.image} alt="/" />
                                                 <Link to={"#"} className="video style-1 video-btn popup-youtube" 
                                                     onClick={()=>setOpenVideo(true)}    
                                                 >
@@ -428,7 +523,7 @@ const PropertyList = () => {
                                             <div className="dz-media">
                                                 <ul>
                                                     <li className="badge badge-sm badge-primary light">
-                                                        <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="feather feather-map-pin"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg> {data.tag}
+                                                        <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="feather feather-map-pin"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
                                                     </li>
                                                     <li className="rent badge badge-sm badge-primary">For Rent</li>
                                                 </ul>
@@ -437,9 +532,9 @@ const PropertyList = () => {
                                         }
                                            
                                         <div className="dz-content">
-                                            <h3 className="title">{data.price}</h3>
+                                            <h3 className="title">${property.modelCost}</h3>
                                             <div className="dz-meta">
-                                                <BasicDetail beds={data.beds}  bath={data.bath} area={data.area}/>                                                
+                                                <BasicDetail beds={property.bedrooms}  bath={property.bathrooms} area={property.modelSize}/>                                                
                                             </div>
                                             <p>There are many variations of passages of Lorem Ipsum available, but the majority have. There are many variations of passages.</p>
                                             <hr />
@@ -448,7 +543,7 @@ const PropertyList = () => {
                                                     <div className="property-media">
                                                         <img src="https://omah.dexignzone.com/react/demo/static/media/2.5188b4e8963e0b39de97.jpg" alt="/" />
                                                     </div>
-                                                    <h6 className="title mb-0">{data.name}</h6>
+                                                    <h6 className="title mb-0">{property.projectName}</h6>
                                                 </div>
                                                 <CardFooter />
                                             </div>
