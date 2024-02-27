@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import Select from 'react-select';
 import {Link} from 'react-router-dom';
-import { Tab, Nav, Collapse } from 'react-bootstrap';
+import { Tab, Nav, Collapse, TabContainer } from 'react-bootstrap';
 import {RangeSlider} from 'rsuite';
 import 'rsuite/dist/rsuite.min.css';
 import axios from 'axios';
@@ -23,6 +23,7 @@ import avat2 from '../../../images/avatar/2.jpg';
 import avat3 from '../../../images/avatar/3.jpg';
 import avat4 from '../../../images/avatar/4.jpg';
 import DemoSlider from './DemoSlider';
+
 
 // const location = [
 //     { value: '1', label: 'Select Location' },
@@ -58,6 +59,18 @@ import DemoSlider from './DemoSlider';
 //     {image:property1, tag:'London', price:'$52000', beds:'6', bath:'5', area:'5500', name:'Monalisa' , option:"image", profile: avat2},
 //     {image:property2, tag:'Russia', price:'$30000', beds:'4', bath:'3', area:'4000', name:'Rio Fernan', option:"slider", profile: avat4 },
 // ];
+
+const cardData = [
+    {image:property1, tag:'London', price:'$22000', beds:'3', bath:'2', area:'2000', name:'Thomas Djons' , option:"image" , profile: avat1},
+    {image:property2, tag:'Paris', price:'$45000', beds:'5', bath:'3', area:'5000', name:'Oliver Jean', option:"slider", profile: avat4 },
+    {image:property3, tag:'Dubai', price:'$32000', beds:'4', bath:'3', area:'3000', name:'Jane Cooper' , option:"video", profile: avat3},
+    {image:property1, tag:'London', price:'$52000', beds:'6', bath:'5', area:'5500', name:'Monalisa' , option:"image", profile: avat2},
+    {image:property2, tag:'London', price:'$22000', beds:'3', bath:'2', area:'2000', name:'Thomas Djons' , option:"image" , profile: avat1},
+    {image:property3, tag:'France', price:'$25000', beds:'3', bath:'3', area:'2500', name:'Keanu Repes' , option:"video", profile: avat3},
+    {image:property1, tag:'London', price:'$52000', beds:'6', bath:'5', area:'5500', name:'Monalisa' , option:"image", profile: avat2},
+    {image:property2, tag:'Russia', price:'$30000', beds:'4', bath:'3', area:'4000', name:'Rio Fernan', option:"slider", profile: avat4 },
+];
+
 
 // const listBlog = [
 //     {image:property1, tag:'London', price:'$23500', beds:'3', bath:'2', area:'2100', name:'Thomas Djons' , option:"image" , profile: avat1},
@@ -145,9 +158,11 @@ const PropertyList = () => {
     const [value2, setValue2] = useState([40.01, 60.01]);
     const [openVideo, setOpenVideo] = useState(false);
     const [openMenu, setOpenMenu] = useState(true);
-    const [ search, setSearch] = useState('');
-    const [propertyData, setPropertyData] = useState([]);
     
+    
+    const [propertyData, setPropertyData] = useState([]);
+    const [search, setSearch] = useState('');
+    // const [filteredPropertyData, setFilteredPropertyData] = useState([]);
 
 
     // const [statusOptions, setstatusOptions] = useState([]);
@@ -183,7 +198,19 @@ const PropertyList = () => {
           console.error("Error fetching data:", error);
         }
       };
-    
+
+      const handleSearch = (event) => {
+        setSearch(event.target.value)
+        if(event.target.value == '')setPropertyData(propertyData)
+       else {
+        const filteredData = propertyData.filter(property =>
+            (property.bathrooms == event.target.value || property.bedrooms == event.target.value)
+            );
+        console.log(filteredData)
+        setPropertyData(filteredData);
+       }
+        
+      }
     
       useEffect(() => {
         fetchData();
@@ -198,12 +225,16 @@ const PropertyList = () => {
       const getvalues = async () => {
         try {
           const response = await axios.get( "http://localhost:8086/api/public/project-details/get-all-projects");
-          setPropertyData(response.data); 
+          setPropertyData(response.data);
+          
+          console.log(propertyData);
+         
         } catch (error) {
           console.error('Error fetching data:', error);
         }
+       
       };
-
+   
 
     return (
         <>
@@ -227,9 +258,10 @@ const PropertyList = () => {
                             <div className="cm-content-body form excerpt">
                                 <div className="card-body">
                                     <form>
-                                        <div className="row">
+                                        <div className="row"  >
+                                       
                                             <div className="mb-3 col-lg-3 col-md-6">
-                                                <input type="text" className="form-control" placeholder="Enter Your Keyword..." value={search} onChange={(e) => { setSearch(e.target.value) }} required="" />
+                                                <input type="text" className="form-control" placeholder="Enter Your Keyword..." value={search} onChange={handleSearch} required="" />
                                             </div>
                                             <div className="mb-3 col-lg-3 col-md-6">                                            
                                                 <Select 
@@ -268,7 +300,9 @@ const PropertyList = () => {
                                                     isSearchable = {false}
                                                     placeholder = "Select GarageOptions"
                                                 />
+                                                
                                             </div>
+          
                                         </div>
                                     </form>
                                     <div className="row align-items-center">
@@ -319,7 +353,10 @@ const PropertyList = () => {
                                             </div>
                                         </div>
                                         <div className="col-lg-4 col-md-6 align-self-end mb-3">
-                                            <button className="btn btn-primary rounded-sm w-100" title="Click here to Search" type="button"  onClick={() => { setSearch('') }}>
+                                            <button className="btn btn-primary rounded-sm w-100" title="Click here to Search" type="button"  onClick={() => {
+                        setSearch('');
+                        // Reset to show all data
+                    }}>
                                                 <i className="fa fa-search me-1" />SearchMe
                                             </button>
                                         </div>
@@ -550,11 +587,14 @@ const PropertyList = () => {
                                     </div>
                                 </div>
                             ))}
+                            
 						</div>
+                        
                     </Tab.Pane>
                 </Tab.Content>
             </Tab.Container>
-
+            
+           
             
             <ModalVideo
 				channel="youtube"

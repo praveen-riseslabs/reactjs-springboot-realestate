@@ -19,7 +19,6 @@ const Users = () => {
       } else {
         console.error("Error: Response data is not an array");
       }
-    } catch (error) {
       setLoading(false);
       console.error("Error fetching data:", error);
     }
