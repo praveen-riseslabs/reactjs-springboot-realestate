@@ -10,8 +10,9 @@ const Users = () => {
 
   const getValues = async () => {
     setLoading(true);
+    const token = localStorage.getItem('token');
     try {
-      const res = await axios.get("http://localhost:8086/api/private/users");
+      const res = await axios.get("http://localhost:8086/api/private/users", {headers: {Authorization: `Bearer ${token}`}})
       setLoading(false);
       if (Array.isArray(res.data)) {
         setUsers(res.data);
@@ -26,8 +27,9 @@ const Users = () => {
 
   const saveRole = async id => {
     //http://localhost:8086/api/private/give-role?email=praveen.rondi%40riseslabs.com&role=Data_Analyst_Admin
+    const token = localStorage.getItem('token');
     const res = await axios.post(
-      `http://localhost:8086/api/private/give-role?role=${selectedClient}&email=${id}`
+      `http://localhost:8086/api/private/give-role?role=${selectedClient}&email=${id}`, {}, {headers: {Authorization: `Bearer ${token}`}}
     );
     if (res.data.message == "Role Updated") {
       toast.success(res.data.message, {
