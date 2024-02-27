@@ -12,13 +12,14 @@ const Users = () => {
     setLoading(true);
     const token = localStorage.getItem('token');
     try {
-      const res = await axios.get("http://localhost:8086/api/private/users", {headers: {Authorization: `Bearer ${token}`}})
+      const res = await axios.get("http://localhost:8086/api/private/users", {headers: {Authorization: `Bearer ${token}`}});
       setLoading(false);
       if (Array.isArray(res.data)) {
         setUsers(res.data);
       } else {
         console.error("Error: Response data is not an array");
       }
+    }catch(error) {
       setLoading(false);
       console.error("Error fetching data:", error);
     }
