@@ -11,7 +11,11 @@ const Users = () => {
   const getValues = async () => {
     setLoading(true);
     try {
-      const res = await axios.get("http://localhost:8086/api/private/users");
+      const res = await  axios.get('http://localhost:8086/api/private/users', {
+        headers: {
+              Authorization: `Bearer ${localStorage.getItem('token')}`,
+          },
+          })
       setLoading(false);
       if (Array.isArray(res.data)) {
         setUsers(res.data);
