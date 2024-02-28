@@ -109,9 +109,13 @@ export const MenuList = [
                 to:'property-list',
             },
             {
-                title:'Property Details',
-                to:'property-details',
+                title:'Excelsheet Upload',
+                to:'excel-upload',
             },
+            // {
+            //     title:'Property Details',
+            //     to:'property-details',
+            // },
         ]
     },
     //Apps

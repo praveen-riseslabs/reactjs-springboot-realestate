@@ -130,6 +130,7 @@ import Bedrooms from "./components/Metadata/Bedrooms";
 import Bathrooms from "./components/Metadata/Bathrooms";
 import BasementType from "./components/Metadata/BasementType";
 import Status1 from "./components/Metadata/Status1";
+import ExcelUpload from "./components/Property/ExcelUpload";
 
 
 
@@ -164,7 +165,8 @@ const Markup = () => {
     //property    
 	  { url: 'add-property', component: <AddProperty/> },
 	  { url: 'property-list', component: <PropertyList/> },
-	  { url: 'property-details', component: <PropertyDetails/> },
+	  { url: 'excel-upload', component: <ExcelUpload/> },
+	  // { url: 'property-details', component: <PropertyDetails/> },
     
     //
 	  { url: 'flat-icons', component: <FlaticonIcons /> },

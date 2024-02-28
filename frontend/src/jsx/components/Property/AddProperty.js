@@ -47,7 +47,6 @@ const AddProperty = () => {
     address: "",
   });
 
-  const [file, setFile] = useState(null);
   const [statusOptions, setstatusOptions] = useState([]);
   const [propertyTypeOptions, setPropertyTypeOptions] = useState([]);
   const [garageOptions, setgarageOptions] = useState([]);
@@ -77,40 +76,10 @@ const AddProperty = () => {
         userProperty
       );
       console.log("Data sent to backend successfully", response.data);
-      // Optionally, you can handle the response from the server here
     } catch (error) {
       console.error("Error sending data to backend:", error);
     }
   };
-
-  const handleFileChange = (e) => {
-    const selectedFile = e.target.files[0];
-    setFile(selectedFile);
-  };
-
-  const handleUpload = async () => {
-    if (!file) return;
-  
-    try {
-      const formData = new FormData();
-      formData.append('file', file);
-  
-      const response = await axios.post(
-        "http://localhost:8086/api/public/project-details/upload-customers-data",
-        formData,
-        {
-          headers: {
-            'Content-Type': 'multipart/form-data' 
-          }
-        }
-      );
-  
-      console.log("Excel sheet Data sent to backend successfully", response.data);
-    } catch (error) {
-      console.error("Error sending data to backend:", error);
-    }
-  };
-  
 
   
   const fetchData = async () => {
@@ -135,7 +104,6 @@ const AddProperty = () => {
     } catch (error) {
       console.error("Error fetching data:", error);
     }
-    console.log(statusOptions);
   };
 
 
@@ -661,113 +629,6 @@ const AddProperty = () => {
                     />
                   </div>
 
-                  <div className=" d-flex justify-content-end mt-3">
-                    <button className="btn btn-secondary">
-                      Add New Property
-                    </button>
-                  </div>
-
-                  <hr className="my-4" />
-
-                  <div className="mb-3 col-6" style={{ overflowX: "auto" }}>
-                    <label className="form-label">
-                      Deposit with Agreement/Offer
-                      <span className="text-danger">*</span>
-                    </label>
-                    <div className="d-flex align-items-center">
-                      <button className="btn btn-outline-primary me-2">
-                        Price :{price}
-                      </button>
-                      <button className="btn btn-outline-primary me-2">
-                        Days : {days}
-                      </button>
-                      <button className="btn btn-outline-primary me-2">
-                        Percentage : {percentage}%
-                      </button>
-                    </div>
-                    <input
-                      type="range"
-                      className="form-range mt-3"
-                      min="0"
-                      max="10000"
-                      step="100"
-                      value={rangeValue}
-                      onChange={handleRangeChange}
-                    />
-                  </div>
-
-                  <div className="mb-3 col-6" style={{ overflowX: "auto" }}>
-                    <label className="form-label">Deposit structure 2 <span className="text-danger">*</span></label>
-                    <div className="d-flex align-items-center">
-                      <button className="btn btn-outline-primary me-2">
-                        Price: {price}
-                      </button>
-                      <button className="btn btn-outline-primary me-2">
-                        Days: {days}
-                      </button>
-                      <button className="btn btn-outline-primary me-2">
-                        Percentage: {percentage}%
-                      </button>
-                    </div>
-                    <input
-                      type="range"
-                      className="form-range"
-                      min="0"
-                      max="10000"
-                      step="100"
-                      value={rangeValue}
-                      onChange={handleRangeChange}
-                    />
-                  </div>
-
-                  <div className="mb-3 col-6" style={{ overflowX: "auto" }}>
-                    <label className="form-label">Deposit structure 1 <span className="text-danger">*</span></label>
-                    <div className="d-flex align-items-center">
-                      <button className="btn btn-outline-primary me-2">
-                        Price: {price}
-                      </button>
-                      <button className="btn btn-outline-primary me-2">
-                        Days: {days}
-                      </button>
-                      <button className="btn btn-outline-primary me-2">
-                        Percentage: {percentage}%
-                      </button>
-                    </div>
-                    <input
-                      type="range"
-                      className="form-range"
-                      min="0"
-                      max="10000"
-                      step="100"
-                      value={rangeValue}
-                      onChange={handleRangeChange}
-                    />
-                  </div>
-
-                  <div className="mb-3 col-6" style={{ overflowX: "auto" }}>
-                    <label className="form-label">Deposit structure 3 <span className="text-danger">*</span></label>
-                    <div className="d-flex align-items-center">
-                      <button className="btn btn-outline-primary me-2">
-                        Price: {price}
-                      </button>
-                      <button className="btn btn-outline-primary me-2">
-                        Days: {days}
-                      </button>
-                      <button className="btn btn-outline-primary me-2">
-                        Percentage: {percentage}%
-                      </button>
-                    </div>
-                    <input
-                      type="range"
-                      className="form-range"
-                      min="0"
-                      max="10000"
-                      step="100"
-                      value={rangeValue}
-                      onChange={handleRangeChange}
-                    />
-                  </div>
-
                   <div className="mb-3 col-sm-6">
                     <label className="form-label">Developer Address <span className="text-danger">*</span></label>
                     <input
@@ -780,31 +641,12 @@ const AddProperty = () => {
                     />
                   </div>
 
-                  <div className=" d-flex justify-content-center">
+                  <div className=" d-flex justify-content-center mt-4">
                     <button className="btn btn-primary">Submit</button>
                   </div>
                 </div>
               </form>
 
-              <div className="mb-3 col-6 ">
-                    <label className="form-label">Upload Excel Sheet <span className="text-danger">*</span></label>
-                    <br />
-                    <div className="d-flex align-items-center">
-                      <input
-                        type="file"
-                        accept=".xlsx, .xls"
-                        name="excel_sheet"
-                        className="form-control"
-                        onChange={handleFileChange}
-                      />
-                      <button
-                        className="bg-gray p-2 m-2 border-0 "
-                        onClick={handleUpload}
-                      >
-                        Upload
-                      </button>
-                    </div>
-                  </div>
             </div>
           </div>
         </div>
